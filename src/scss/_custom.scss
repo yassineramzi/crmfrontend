@@ -1,0 +1,69 @@
+// Thinline custom css
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    color: #fff;
+    background: #611bf3;
+}
+
+.sidebar .nav-link.active {
+    color: #fff;
+    background: #4c19cb;
+}
+
+.sidebar-minimized .sidebar .sidebar-minimizer {
+    position: fixed;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #4c19cb;
+}
+
+.sidebar .nav-link .nav-icon {
+    display: inline-block;
+    width: 1.09375rem;
+    margin: 0 0.5rem 0 0;
+    font-size: 0.875rem;
+    color: #fff;
+    text-align: center;
+}
+
+.sidebar .nav-link.active .nav-icon {
+    color: #fff;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: auto;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #4c19cb;
+    border-color: #5c2ed1;
+}
+
+.potentiel_red {
+    position: absolute;
+    top: 52%;
+    // left: 50%;
+    width: 91px;
+    height: 40px;
+    background: transparent url('../assets/img/icons/rectangle.svg') 0% 0% no-repeat padding-box;
+    border-radius: 15px;
+    opacity: 1;
+}
+
+.potentiel_inside {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: transparent url('../assets/img/icons/Groupe 4523.svg') 0% 0% no-repeat padding-box;
+    opacity: 1
+}

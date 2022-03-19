@@ -1,0 +1,19 @@
+# This is an example Starter pipeline configuration
+# Use a skeleton to build, test and deploy using manual and parallel steps
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+
+image: atlassian/default-image:3
+
+pipelines:
+  default:
+    - parallel:
+      - step:
+          services:
+            - docker
+          name: Build CRM Frontend Docker image
+          script:
+            - ls
+            - docker build -t ${IMAGE_NAME} .
+            - docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_PASSWORD}
+            - docker push ${IMAGE_NAME}
