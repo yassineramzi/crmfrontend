@@ -21,7 +21,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Pharmacies',
-    url: '/pharmacie',
+    url: '/pharmacies',
     icon: 'icon-heart',
     badge: {
       variant: 'info',
