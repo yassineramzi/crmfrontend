@@ -2,7 +2,7 @@
 FROM node:14.17.4-alpine3.12 as node
 WORKDIR /app
 COPY . .
-RUN npm install -g angular-cli@11.2.18
+RUN npm install -g @angular/cli@11.2.18
 RUN npm install
 RUN npm run build --prod
 #stage 2
