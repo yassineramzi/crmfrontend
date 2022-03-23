@@ -3,7 +3,7 @@ FROM node:14.17.4-alpine3.12 as node
 WORKDIR /app
 COPY . .
 RUN npm install -g @angular/cli
-RUN npm --legacy-peer-deps install
+RUN npm install
 RUN npm run build --prod
 #stage 2
 FROM nginx:alpine
