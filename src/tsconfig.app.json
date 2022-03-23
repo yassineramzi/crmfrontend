@@ -9,7 +9,10 @@
     "paths": {
       "@angular/*": [
         "../node_modules/@angular/*"
-      ]
+      ],
+      "@models/*"                 : ["app/models/*"],
+      "@environments/*"           : ["environments/*"],
+      "@views/*"                  : ["app/views/*"]
     }
   },
   "angularCompilerOptions": {
