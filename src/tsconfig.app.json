@@ -8,7 +8,7 @@
     "types": [],
     "paths": {
       "@angular/*": [
-        "../node_modules/@angular/*"
+        "node_modules/@angular/*"
       ],
       "@models/*"                 : ["app/models/*"],
       "@environments/*"           : ["environments/*"],
