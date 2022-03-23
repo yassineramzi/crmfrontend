@@ -1,9 +1,9 @@
 #stage 1
-FROM node:latest as node
+FROM node:14.17.4-alpine3.12 as node
 WORKDIR /app
 COPY . .
 RUN npm install -g @angular/cli
-RUN npm install --legacy-peer-deps
+RUN npm --legacy-peer-deps install
 RUN npm run build --prod
 #stage 2
 FROM nginx:alpine
