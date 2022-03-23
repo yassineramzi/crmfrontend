@@ -5,7 +5,7 @@ COPY . .
 RUN ls
 RUN npm install -g @angular/cli@11.2.18
 RUN npm install
-RUN ng -version
+RUN ng version
 RUN npm run build --prod
 #stage 2
 FROM nginx:alpine
