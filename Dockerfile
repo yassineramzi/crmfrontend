@@ -1,13 +1,11 @@
 #stage 1
 FROM node:14.17.4-alpine3.12 as node
+RUN mkdir -p /app
 WORKDIR /app
-COPY . .
-RUN npm install -g @angular/cli@11.2.18
+COPY package.json /app
 RUN npm install
-RUN ng version
-RUN npm -v
-RUN pwd
-RUN ng build --configuration=production
+COPY . /app
+RUN npm run build --prod
 #stage 2
 FROM nginx:alpine
 COPY --from=node /app/dist /usr/share/nginx/html
