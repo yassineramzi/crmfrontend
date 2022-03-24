@@ -6,8 +6,7 @@ RUN npm install -g @angular/cli@11.2.18
 RUN npm install
 RUN ng version
 RUN npm -v
-RUN cd node_modules/@angular
-RUN ls
+RUN pwd
 RUN ng build --configuration=production
 #stage 2
 FROM nginx:alpine
