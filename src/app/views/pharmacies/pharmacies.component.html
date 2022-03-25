@@ -7,18 +7,17 @@
                         <div class="row" [hidden]="!affichageCritereRecherche">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Spécialité</label>
+                                    <label>Commune</label>
                                     <select class="form-control">
-                                        <option value="cardiologie">Cardiologie</option>
-                                        <option value="gynécologie">Gynécologie</option>
+                                        <option value="cardiologie">Agdal/Riad</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Type établissement</label>
-                                    <select class="form-control">
-                                    </select>
+                                    <label>Adresse</label>
+                                    <textarea class="form-control">
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -88,10 +87,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group float-left">
-                            <span class="m-2"><i class="fa fa-info-circle mr-2"></i>50&nbsp;<strong>Médecins trouvés</strong></span>
+                            <span class="m-2"><i class="fa fa-info-circle mr-2"></i>0&nbsp;<strong>Pharmacies trouvées</strong></span>
                         </div>
                         <div class="input-group float-right">
-                            <span class="m-2">5 <strong>Médecins sélectionés</strong></span>
+                            <span class="m-2">0 <strong>Pharmacies sélectionés</strong></span>
                             <button class="btn btn-primary mb-1" type="button">
                                 <i class="fa fa-calendar"></i> Planifier
                             </button>
@@ -110,71 +109,17 @@
                                     </div>
                                 </td>
                                 <th scope="col">Nom et prénom</th>
-                                <th scope="col">Spécialité</th>
-                                <th scope="col">Etablissement</th>
+                                <th scope="col">Adresse</th>
+                                <th scope="col">Commune</th>
                                 <th scope="col">Secteur IMS</th>
                                 <th scope="col">Semaine</th>
                                 <th scope="col">Potentiel</th>
                               </tr>
                               </thead>
                               <tbody>
-                                <!--tr *ngIf="medecinsArrayPage.length === 0">
+                                <tr *ngIf="dataArrayPage.length === 0">
                                     <td colspan="7">
-                                    <span class="d-flex justify-content-center">Aucune medecins disponible</span>
-                                    </td>
-                                </tr-->
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" />
-                                        </div>
-                                    </td>
-                                    <td>Dr. Ahmed RACHIDI</td>
-                                    <td>Gynécologie</td>
-                                    <td>Polyclinique Rabat</td>
-                                    <td>Agdal / Riad</td>
-                                    <td>
-                                        <img src="assets/img/icons/calendar.png"> 
-                                        <strong>S1</strong>
-                                    </td>
-                                    <td>
-        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" />
-                                        </div>
-                                    </td>
-                                    <td>Dr. Ahmed RACHIDI</td>
-                                    <td>Gynécologie</td>
-                                    <td>Polyclinique Rabat</td>
-                                    <td>Agdal / Riad</td>
-                                    <td>
-                                        <img src="assets/img/icons/calendar.png"> 
-                                        <strong>S1</strong>
-                                    </td>
-                                    <td>
-        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" />
-                                        </div>
-                                    </td>
-                                    <td>Dr. Ahmed RACHIDI</td>
-                                    <td>Gynécologie</td>
-                                    <td>Polyclinique Rabat</td>
-                                    <td>Agdal / Riad</td>
-                                    <td>
-                                        <img src="assets/img/icons/calendar.png"> 
-                                        <strong>S1</strong>
-                                    </td>
-                                    <td>
-        
+                                        <span class="d-flex justify-content-center">Aucune pharmacie trouvée</span>
                                     </td>
                                 </tr>
                               </tbody>

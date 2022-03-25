@@ -9,7 +9,7 @@ import { PaginationComponent } from '@views/commun/pagination.component';
 })
 export class MedecinsComponent extends PaginationComponent<Medecin>{
 
-  public affichageCritereRecherche: boolean = true;
+  public affichageCritereRecherche: boolean = false;
 
   constructor(
     protected formBuilder: FormBuilder
