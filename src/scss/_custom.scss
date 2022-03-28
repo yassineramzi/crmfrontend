@@ -103,3 +103,9 @@
 .app-body .main {
     background-color: #F3F6F9;
 }
+
+@media (min-width: 992px) {
+    .sidebar-minimized .sidebar .nav-item:hover>.nav-link {
+        background: #4c1aca;
+    }
+}
