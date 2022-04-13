@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -41,6 +41,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { authInterceptorProviders } from './services/auth/auth.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -59,6 +62,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     IconModule,
     IconSetModule.forRoot(),
     NgbModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    CommonModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,
@@ -73,6 +80,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       useClass: HashLocationStrategy
     },
     IconSetService,
+    authInterceptorProviders
   ],
   bootstrap: [ AppComponent ]
 })
