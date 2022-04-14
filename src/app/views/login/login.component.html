@@ -17,11 +17,36 @@
                     </div>
                     <input type="text" class="form-control" placeholder="Adresse Email *" autocomplete="username" formControlName="username" required>
                   </div>
+                  <div class="alert alert-danger mt-2" role="alert"
+                  *ngIf="loginForm.get('username').hasError('required')
+                    &&
+                    (loginForm.get('username').dirty || loginForm.get('username').touched)">
+                    Le login est obligatoire
+                  </div>
+                  <div class="alert alert-danger mt-2" role="alert"
+                        *ngIf="loginForm.get('username').hasError('minLength')
+                          &&
+                          (loginForm.get('username').dirty || loginForm.get('username').touched)">
+                    Le login doit contenir au moins 4 caractéres
+                  </div>
                   <div class="input-group mb-4">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
                     <input type="password" class="form-control" placeholder="Mot de passe *" autocomplete="current-password" formControlName="password" required>
+                  </div>
+                  <div
+                    class="alert alert-danger mt-2" role="alert"
+                    *ngIf="loginForm.get('password').hasError('required')
+                      &&
+                      (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                      Le mot de passe est obligatoire
+                  </div>
+                  <div class="alert alert-danger mt-2" role="alert"
+                      *ngIf="loginForm.get('password').hasError('minLength')
+                        &&
+                        (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                    Le mot de passe doit contenir au moins 8 caractéres
                   </div>
                   <div class="row">
                     <div class="col-6">
@@ -31,7 +56,7 @@
                       <button type="button" class="btn btn-link px-0 text-muted" >Mot de passe oublié ?</button>
                     </div>
                   </div>
-                  <div class="form-group mt-2"  [hidden]="!isLoginFailed">
+                  <div class="form-group mt-2"  *ngIf="isLoginFailed">
                     <div class="alert alert-danger" role="alert">
                       Un problème est survenu lors de votre tentative de connection
                     </div>
