@@ -51,6 +51,7 @@
     color: #fff;
     background-color: #4c19cb;
     border-color: #5c2ed1;
+    border-radius: 1rem;
 }
 
 .btn-primary:hover {
@@ -108,4 +109,8 @@
     .sidebar-minimized .sidebar .nav-item:hover>.nav-link {
         background: #4c1aca;
     }
+}
+
+.form-control {
+    border-radius: 1rem;
 }
