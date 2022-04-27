@@ -22,16 +22,16 @@ export class AuthService {
     protected router: Router
     ) { }
 
-  login(loginRequest: LoginRequest): Observable<EntityResponseType> {
+  public login(loginRequest: LoginRequest): Observable<EntityResponseType> {
     return this.http.post<JwtResponse>(this.resourceUrl + '/login', loginRequest, {observe: 'response'});
   }
 
-  logout(): void {
+  public logout(): void {
     this.tokenStorageService.clearSession();
-    this.router.navigate(['/login-page']);
+    this.router.navigate(['/login']);
   }
 
-  isAuthorized(autorizedRoles : Array<string>): boolean {
+  public isAuthorized(autorizedRoles : Array<string>): boolean {
     const currentUser: JwtResponse = this.tokenStorageService.getUser();
     if(currentUser) {
       return (

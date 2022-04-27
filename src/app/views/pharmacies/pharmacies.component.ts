@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import Pharmacie from '@models/pharmacie.model';
-import { PaginationComponent } from '@views/commun/pagination.component';
+import PaginationComponent from '@views/commun/pagination.component';
 
 @Component({
   selector: 'app-pharmacies',

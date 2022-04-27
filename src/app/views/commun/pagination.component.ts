@@ -4,13 +4,13 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 @Component({
   template: ''
 })
-export abstract class PaginationComponent<T> {
+export default abstract class PaginationComponent<T> {
 
     public pageSize: number = 5;
     public dataArrayPage: Array<T> = [];
     public paginationForm: FormGroup = this.formBuilder.group(
         {
-        pageSize: new FormControl(2)
+        pageSize: new FormControl(5)
         }
     );
     public dataArray: Array<T> = new Array<T>();

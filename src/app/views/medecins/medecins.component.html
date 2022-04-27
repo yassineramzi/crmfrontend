@@ -2,13 +2,14 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <div class="row">
+                <div class="row" [formGroup]="rechercheMedecinForm"> 
                     <div class="col-md-12">
                         <div class="row" [hidden]="!affichageCritereRecherche">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Spécialité</label>
-                                    <select class="form-control">
+                                    <select class="form-control" formControlName="specialite">
+                                        <option value="Rhumatologie">Rhumatologie</option>
                                         <option value="cardiologie">Cardiologie</option>
                                         <option value="gynécologie">Gynécologie</option>
                                     </select>
@@ -40,7 +41,8 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Ville</label>
-                                    <select class="form-control">
+                                    <select class="form-control" formControlName="ville">
+                                        <option value="Rabat">Rabat</option>
                                     </select>
                                 </div>
                             </div>
@@ -48,6 +50,7 @@
                                 <div class="form-group">
                                     <label>Secteur IMS</label>
                                     <select class="form-control">
+                                        <option value="Agdal/Riad">Agdal/Riad</option>
                                     </select>
                                 </div>
                             </div>
@@ -66,10 +69,10 @@
                                         <span *ngIf="affichageCritereRecherche">Masquer les critères</span>
                                         <span *ngIf="!affichageCritereRecherche">Afficher les critères</span>
                                     </button>
-                                    <button class="btn btn-primary m-2" type="button">
+                                    <button class="btn btn-primary m-2" type="button" (click)="initialiserCritereRecherche()">
                                         Réinitialiser
                                     </button>
-                                    <button class="btn btn-primary m-2" type="button">
+                                    <button class="btn btn-primary m-2" type="button" (click)="rechercherMedecins()">
                                         Filtrer
                                     </button>
                                 </div>
@@ -88,10 +91,10 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group float-left">
-                            <span class="m-2"><i class="fa fa-info-circle mr-2"></i>50&nbsp;<strong>Médecins trouvés</strong></span>
+                            <span class="m-2"><i class="fa fa-info-circle mr-2"></i>{{dataArray.length}}&nbsp;<strong>Médecins trouvés</strong></span>
                         </div>
                         <div class="input-group float-right">
-                            <span class="m-2">5 <strong>Médecins sélectionés</strong></span>
+                            <span class="m-2">0 <strong>Médecins sélectionés</strong></span>
                             <button class="btn btn-primary mb-1" type="button">
                                 <i class="fa fa-calendar"></i> Planifier
                             </button>
@@ -118,63 +121,26 @@
                               </tr>
                               </thead>
                               <tbody>
-                                <!--tr *ngIf="medecinsArrayPage.length === 0">
+                                <tr *ngIf="dataArrayPage.length === 0">
                                     <td colspan="7">
-                                    <span class="d-flex justify-content-center">Aucune medecins disponible</span>
-                                    </td>
-                                </tr-->
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" />
-                                        </div>
-                                    </td>
-                                    <td>Dr. Ahmed RACHIDI</td>
-                                    <td>Gynécologie</td>
-                                    <td>Polyclinique Rabat</td>
-                                    <td>Agdal / Riad</td>
-                                    <td>
-                                        <img src="assets/img/icons/calendar.png"> 
-                                        <strong>S1</strong>
-                                    </td>
-                                    <td>
-        
+                                    <span class="d-flex justify-content-center">Aucun médecin trouvé</span>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr *ngFor="let medecin of dataArrayPage">
                                     <td>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" />
                                         </div>
                                     </td>
-                                    <td>Dr. Ahmed RACHIDI</td>
-                                    <td>Gynécologie</td>
-                                    <td>Polyclinique Rabat</td>
-                                    <td>Agdal / Riad</td>
+                                    <td>Dr.{{medecin.nom}} {{medecin.prenom}}</td>
+                                    <td>{{medecin.specialite.nom}}</td>
+                                    <td></td>
+                                    <td>{{medecin.secteur.nom}} {{medecin.secteur.ville.nom}}</td>
                                     <td>
                                         <img src="assets/img/icons/calendar.png"> 
                                         <strong>S1</strong>
                                     </td>
                                     <td>
-        
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" />
-                                        </div>
-                                    </td>
-                                    <td>Dr. Ahmed RACHIDI</td>
-                                    <td>Gynécologie</td>
-                                    <td>Polyclinique Rabat</td>
-                                    <td>Agdal / Riad</td>
-                                    <td>
-                                        <img src="assets/img/icons/calendar.png"> 
-                                        <strong>S1</strong>
-                                    </td>
-                                    <td>
-        
                                     </td>
                                 </tr>
                               </tbody>
