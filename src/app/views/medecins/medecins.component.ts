@@ -16,6 +16,8 @@ export class MedecinsComponent extends PaginationComponent<Medecin>{
 
   public affichageCritereRecherche: boolean = true;
 
+  public affichageModeListe: boolean = true;
+
   public rechercheMedecinForm: FormGroup = this.formBuilder.group(
     {
       secteur : new FormControl(null),
@@ -53,6 +55,10 @@ export class MedecinsComponent extends PaginationComponent<Medecin>{
         specialite : null
       }
     );
+  }
+
+  public changerAffichage(): void {
+    this.affichageModeListe = !this.affichageModeListe;
   }
 
 }

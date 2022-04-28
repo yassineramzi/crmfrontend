@@ -119,3 +119,12 @@
     background-color: #4c1aca;
     border-color: #4c1aca;;
 }
+
+.view-mode-not-selected {
+    cursor: pointer;
+    color: gray;
+}
+
+.view-mode-selected {
+    color: black;
+}
