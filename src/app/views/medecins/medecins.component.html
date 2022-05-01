@@ -150,32 +150,27 @@
                             </table>
                             <!-- Vue mode Card -->
                             <div class="row" *ngIf="!affichageModeListe">
-                                <div class="card m-3" style="width: 18rem;">
+                                <div *ngFor="let medecin of dataArrayPage" class="card m-3" style="width: 18rem;">
                                     <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                                    </div>
-                                </div>
-                                <div class="card m-3" style="width: 18rem;">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                                    </div>
-                                </div>
-                                <div class="card m-3" style="width: 18rem;">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                                    </div>
-                                </div>
-                                <div class="card m-3" style="width: 18rem;">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        <h5 class="card-title">
+                                            <div class="input-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" />
+                                                </div>
+                                                <span>Dr. {{medecin.nom}} {{medecin.prenom}}</span>
+                                            </div>
+                                        </h5>
+                                        <div class="card-text">
+                                            <div class="input-group">
+                                                <span><i class="fa fa-stethoscope"></i> {{medecin.specialite.nom}} </span>
+                                            </div>
+                                            <div class="input-group">
+                                                <span><i class="fa fa-hospital-o"></i> Polyclinique Rabat </span>
+                                            </div>
+                                            <div class="input-group">
+                                                <span><i class="fa fa-pie-chart"></i> {{medecin.secteur.nom}} {{medecin.secteur.ville.nom}} </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

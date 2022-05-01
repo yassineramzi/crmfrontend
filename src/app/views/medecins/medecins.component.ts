@@ -16,7 +16,7 @@ export class MedecinsComponent extends PaginationComponent<Medecin>{
 
   public affichageCritereRecherche: boolean = true;
 
-  public affichageModeListe: boolean = true;
+  public affichageModeListe: boolean = false;
 
   public rechercheMedecinForm: FormGroup = this.formBuilder.group(
     {
