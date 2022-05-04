@@ -18,6 +18,8 @@ export class MedecinsComponent extends PaginationComponent<Medecin>{
 
   public affichageModeListe: boolean = false;
 
+  public medecinsSelectionnes: Array<Medecin> = new Array();
+
   public rechercheMedecinForm: FormGroup = this.formBuilder.group(
     {
       secteur : new FormControl(null),
@@ -59,6 +61,24 @@ export class MedecinsComponent extends PaginationComponent<Medecin>{
 
   public changerAffichage(): void {
     this.affichageModeListe = !this.affichageModeListe;
+  }
+
+  public selectionnerMedecin(id: number): void {
+    let predicateMedecin: any = (medecin: Medecin)=>{
+      if(medecin.id === id) {
+        return medecin;
+      }else {
+        return null;
+      }
+    };
+    let medecinSelectionne: Medecin = this.medecinsSelectionnes.find(predicateMedecin);
+    if (medecinSelectionne) {
+      const idMedecinSelectionne = this.medecinsSelectionnes.indexOf(medecinSelectionne);
+      this.medecinsSelectionnes.splice(idMedecinSelectionne, 1);
+    } else {
+      medecinSelectionne = this.dataArray.find(predicateMedecin);
+      this.medecinsSelectionnes.push(medecinSelectionne);
+    }
   }
 
 }

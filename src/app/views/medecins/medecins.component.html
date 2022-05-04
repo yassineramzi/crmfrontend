@@ -96,7 +96,7 @@
                             <span class="m-2"><i class="fa fa-info-circle mr-2"></i>{{dataArray.length}}&nbsp;<strong>Médecins trouvés</strong></span>
                         </div>
                         <div class="input-group float-right">
-                            <span class="m-2">0 <strong>Médecins sélectionés</strong></span>
+                            <span class="m-2">{{medecinsSelectionnes.length}} <strong>Médecins sélectionés</strong></span>
                             <button class="btn btn-primary mb-1" type="button">
                                 <i class="fa fa-calendar"></i> Planifier
                             </button>
@@ -132,7 +132,7 @@
                                 <tr *ngFor="let medecin of dataArrayPage">
                                     <td>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" />
+                                            <input class="form-check-input" type="checkbox" (click)="selectionnerMedecin(medecin.id)"/>
                                         </div>
                                     </td>
                                     <td>Dr.{{medecin.nom}} {{medecin.prenom}}</td>
@@ -149,13 +149,16 @@
                               </tbody>
                             </table>
                             <!-- Vue mode Card -->
+                            <div class="row" *ngIf="!affichageModeListe && dataArrayPage.length === 0">
+                                <span class="col-md-12 d-flex justify-content-center">Aucun médecin trouvé</span>
+                            </div>
                             <div class="row" *ngIf="!affichageModeListe">
                                 <div *ngFor="let medecin of dataArrayPage" class="card m-3" style="width: 18rem;">
                                     <div class="card-body">
                                         <h5 class="card-title">
                                             <div class="input-group">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" />
+                                                <div class="form-check mr-1">
+                                                    <input class="form-check-input" type="checkbox" (click)="selectionnerMedecin(medecin.id)"/>
                                                 </div>
                                                 <span>Dr. {{medecin.nom}} {{medecin.prenom}}</span>
                                             </div>

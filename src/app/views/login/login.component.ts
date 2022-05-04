@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       (response : HttpResponse<JwtResponse>) => {
         this.tokenStorageService.saveToken(response.body.token);
         this.tokenStorageService.saveUser(response.body);
-        this.isLoginFailed = true;
+        this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.router.navigate([this.returnUrl]);
       },
