@@ -154,7 +154,7 @@
                             </div>
                             <div class="row" *ngIf="!affichageModeListe">
                                 <div *ngFor="let medecin of dataArrayPage" class="card m-3" style="width: 18rem;">
-                                    <div class="card-body">
+                                    <div class="card-body" [ngClass]="isMedecinSelectionne(medecin.id)  ? 'selected-item' : 'not-selected-item'">
                                         <h5 class="card-title">
                                             <div class="input-group">
                                                 <div class="form-check mr-1">

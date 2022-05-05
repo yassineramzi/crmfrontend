@@ -64,7 +64,7 @@ export class MedecinsComponent extends PaginationComponent<Medecin>{
   }
 
   public selectionnerMedecin(id: number): void {
-    let predicateMedecin: any = (medecin: Medecin)=>{
+    const predicateMedecin: any = (medecin: Medecin)=>{
       if(medecin.id === id) {
         return medecin;
       }else {
@@ -79,6 +79,17 @@ export class MedecinsComponent extends PaginationComponent<Medecin>{
       medecinSelectionne = this.dataArray.find(predicateMedecin);
       this.medecinsSelectionnes.push(medecinSelectionne);
     }
+  }
+
+  public isMedecinSelectionne(id: number): boolean {
+    const predicateMedecin: any = (medecin: Medecin)=>{
+      if(medecin.id === id) {
+        return medecin;
+      }else {
+        return null;
+      }
+    };
+    return this.medecinsSelectionnes.some(predicateMedecin);
   }
 
 }
