@@ -1,24 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import Medecin from '../../models/medecin.model';
-import PaginationComponent from '../commun/pagination.component';
 import MedecinService from '../../services/medecin.service';
 import { HttpResponse } from '@angular/common/http';
 import CritereRechercheMedecin from '../../models/critereRechercheMedecin.model';
+import RechercheAbsractComponent from '../commun/rechercheAbsract.component';
 
-type EntityArrayResponseType = HttpResponse<Medecin[]>;
+type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 
 @Component({
   selector: 'app-medecins',
   templateUrl: './medecins.component.html'
 })
-export class MedecinsComponent extends PaginationComponent<Medecin>{
-
-  public affichageCritereRecherche: boolean = true;
-
-  public affichageModeListe: boolean = false;
-
-  public medecinsSelectionnes: Array<Medecin> = new Array();
+export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
 
   public rechercheMedecinForm: FormGroup = this.formBuilder.group(
     {
@@ -35,14 +29,10 @@ export class MedecinsComponent extends PaginationComponent<Medecin>{
     super(formBuilder);
   }
 
-  public afficherCritereRecherche(): void {
-    this.affichageCritereRecherche = !this.affichageCritereRecherche;
-  }
-
   public rechercherMedecins(): void {
     const critereRechercheMedecin: CritereRechercheMedecin = new CritereRechercheMedecin(this.rechercheMedecinForm);
     this.medecinService.search(critereRechercheMedecin).subscribe(
-      (medecins: EntityArrayResponseType) => {
+      (medecins: EntityArrayResponseMedecinType) => {
         this.dataArray = medecins.body;
         this.refresh();
       }
@@ -59,37 +49,33 @@ export class MedecinsComponent extends PaginationComponent<Medecin>{
     );
   }
 
-  public changerAffichage(): void {
-    this.affichageModeListe = !this.affichageModeListe;
-  }
-
-  public selectionnerMedecin(id: number): void {
-    const predicateMedecin: any = (medecin: Medecin)=>{
-      if(medecin.id === id) {
-        return medecin;
+  public selectionner(id: number): void {
+    const predicate: any = (entite: Medecin)=>{
+      if(entite.id === id) {
+        return entite;
       }else {
         return null;
       }
     };
-    let medecinSelectionne: Medecin = this.medecinsSelectionnes.find(predicateMedecin);
-    if (medecinSelectionne) {
-      const idMedecinSelectionne = this.medecinsSelectionnes.indexOf(medecinSelectionne);
-      this.medecinsSelectionnes.splice(idMedecinSelectionne, 1);
+    let entiteSelectionne: Medecin = this.entiteSelectionnes.find(predicate);
+    if (entiteSelectionne) {
+      const idMedecinSelectionne = this.entiteSelectionnes.indexOf(entiteSelectionne);
+      this.entiteSelectionnes.splice(idMedecinSelectionne, 1);
     } else {
-      medecinSelectionne = this.dataArray.find(predicateMedecin);
-      this.medecinsSelectionnes.push(medecinSelectionne);
+      entiteSelectionne = this.dataArray.find(predicate);
+      this.entiteSelectionnes.push(entiteSelectionne);
     }
   }
 
-  public isMedecinSelectionne(id: number): boolean {
-    const predicateMedecin: any = (medecin: Medecin)=>{
-      if(medecin.id === id) {
-        return medecin;
+  public isSelectionne(id: number): boolean {
+    const predicate: any = (entite: Medecin)=>{
+      if(entite.id === id) {
+        return entite;
       }else {
         return null;
       }
     };
-    return this.medecinsSelectionnes.some(predicateMedecin);
+    return this.entiteSelectionnes.some(predicate);
   }
 
 }
