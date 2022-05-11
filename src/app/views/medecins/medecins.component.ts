@@ -18,7 +18,8 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
     {
       secteur : new FormControl(null),
       ville : new FormControl(null),
-      specialite : new FormControl(null)
+      specialite : new FormControl(null),
+      potentiel : new FormControl(null),
     }
   );
 
