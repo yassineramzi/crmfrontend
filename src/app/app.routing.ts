@@ -54,6 +54,10 @@ export const routes: Routes = [
         path: 'pharmacies',
         loadChildren: () => import('./views/pharmacies/pharmacies.module').then(m => m.PharmaciesModule)
       },
+      {
+        path: 'settings',
+        loadChildren: () => import('./views/settings/settings.module').then(m => m.SettingsModule)
+      },
     ]
   },
   { path: '**', component: P404Component }

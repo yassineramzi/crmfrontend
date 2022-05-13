@@ -45,7 +45,8 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
       {
         secteur : null,
         ville : null,
-        specialite : null
+        specialite : null,
+        potentiel : null
       }
     );
   }

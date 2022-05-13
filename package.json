@@ -1,21 +1,10 @@
 {
-  "name": "@coreui/coreui-free-angular-admin-template",
+  "name": "CRM_DM21",
   "version": "2.11.2",
-  "description": "CoreUI Free Angular 11 Admin Template",
+  "description": "CRM DM21",
   "author": {
-    "name": "Łukasz Holeczek",
-    "url": "http://holeczek.pl",
-    "github": "https://github.com/mrholek",
-    "twitter": "https://twitter.com/lukaszholeczek"
+    "name": "Thinline"
   },
-  "contributors": [
-    {
-      "name": "Andrzej Kopański",
-      "url": "https://github.com/xidedix"
-    }
-  ],
-  "homepage": "https://coreui.io/angular",
-  "copyright": "Copyright 2021 creativeLabs Łukasz Holeczek",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
