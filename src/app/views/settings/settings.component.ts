@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -8,9 +8,16 @@ import { FormBuilder } from '@angular/forms';
 })
 export class SettingsComponent {
 
+  public settingsForm: FormGroup = this.formBuilder.group(
+    {
+      couleurTheme : new FormControl(null),
+      
+    }
+  );
+
   constructor(
     protected formBuilder: FormBuilder
   ) {
   }
-  
+
 }
