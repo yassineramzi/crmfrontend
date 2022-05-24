@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MedecinsComponent } from './medecins.component';
 import { MedecinsRoutingModule } from './medecins-routing.module';
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -16,7 +16,8 @@ import { MedecinsRoutingModule } from './medecins-routing.module';
     FormsModule,
     ReactiveFormsModule,
     MedecinsRoutingModule,
-    NgbModule
+    NgbModule,
+    InfiniteScrollModule
   ]
 })
 export class MedecinsModule { }
