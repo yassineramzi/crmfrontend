@@ -129,9 +129,21 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="table-responsive">
-                            <!-- Vue mode liste-->
-                            <table id="table" class="table table-centered table-hover m-1" *ngIf="affichageModeListe">
+                        <div class="search-results"
+                            infinite-scroll
+                            [infiniteScrollDistance]="scrollDistance"
+                            [infiniteScrollUpDistance]="scrollUpDistance"
+                            [infiniteScrollThrottle]="throttle"
+                            (scrolled)="onScrollDown()"
+                            (scrolledUp)="onUp()">
+                            <p *ngFor="let i of array">
+                                {{ i }}
+                            </p>
+                        </div>
+                        <!--div class="table-responsive">
+                            < Vue mode liste>
+                            <table id="table" class="table table-centered table-hover m-1" *ngIf="affichageModeListe"
+                            >
                               <thead>
                               <tr>
                                 <td>
@@ -173,7 +185,7 @@
                                 </tr>
                               </tbody>
                             </table>
-                            <!-- Vue mode Card -->
+                            <Vue mode Card>
                             <div class="row mb-2" *ngIf="!affichageModeListe && dataArrayPage.length === 0">
                                 <span class="col-md-12 d-flex justify-content-center">Aucun médecin trouvé</span>
                             </div>
@@ -202,22 +214,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="table-responsive">
-                            <div class="d-flex justify-content-between p-2" [formGroup]="paginationForm">
-                                <ngb-pagination
-                                  [collectionSize]="dataCollectionSize"
-                                  [(page)]="dataPage"
-                                  [pageSize]="pageSize"
-                                  (pageChange)="refresh()">
-                                </ngb-pagination>
-                                <select class="custom-select" style="width: auto" formControlName="pageSize" (change)="refresh()">
-                                  <option [ngValue]="5">5 résultats par page</option>
-                                  <option [ngValue]="10">10 résultats par page</option>
-                                  <option [ngValue]="20">20 résultats par page</option>
-                                </select>
-                            </div>
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>
