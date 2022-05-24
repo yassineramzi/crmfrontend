@@ -41,6 +41,7 @@
     "font-awesome": "^4.7.0",
     "ng2-charts": "^2.4.2",
     "ngx-bootstrap": "^6.2.0",
+    "ngx-infinite-scroll": "^10.0.0",
     "ngx-perfect-scrollbar": "^10.1.0",
     "rxjs": "^6.6.6",
     "simple-line-icons": "^2.5.5",
@@ -50,6 +51,7 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^11.1.1",
     "@angular-devkit/build-angular": "^0.1102.4",
     "@angular/cli": "^11.2.4",
     "@angular/compiler-cli": "^11.2.5",

@@ -9,7 +9,7 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist",
             "index": "src/index.html",
@@ -36,7 +36,10 @@
             "allowedCommonJsDependencies": [
               "chart.js",
               "classnames"
-            ]
+            ],
+            "customWebpackConfig": {
+              "path": "./webpack.config.js"
+           }
           },
           "configurations": {
             "production": {
@@ -64,7 +67,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "ng:build"
           },
@@ -73,7 +76,7 @@
               "browserTarget": "ng:build:production"
             }
           }
-        },
+      },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {

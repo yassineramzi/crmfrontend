@@ -44,6 +44,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { authInterceptorProviders } from './services/auth/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    InfiniteScrollModule
   ],
   declarations: [
     AppComponent,
