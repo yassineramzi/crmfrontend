@@ -40,7 +40,7 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
   }
 
 
-  addItems(startIndex, endIndex, _method) {
+  addItems(startIndex?, endIndex?, _method?) {
     for (let i = 0; i < this.sum; ++i) {
       this.array[_method]([i, " ", this.generateWord()].join("")); 
     }
@@ -50,15 +50,15 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
     return "DM21"+this.sum;
   }
 
-  appendItems(startIndex, endIndex) {
+  appendItems(startIndex?, endIndex?) {
     this.addItems(startIndex, endIndex, "push");
   }
 
-  prependItems(startIndex, endIndex) {
+  prependItems(startIndex?, endIndex?) {
     this.addItems(startIndex, endIndex, "unshift");
   }
 
-  onScrollDown(ev) {
+  onScrollDown(ev?) {
     console.log("scrolled down!!", ev);
 
     // add another 20 items
@@ -69,7 +69,7 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
     this.direction = "down";
   }
 
-  onUp(ev) {
+  onUp(ev?) {
     console.log("scrolled up!", ev);
     const start = this.sum;
     this.sum += 20;
