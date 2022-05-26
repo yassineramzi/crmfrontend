@@ -162,7 +162,7 @@
                                 <tr *ngFor="let medecin of dataArrayPage">
                                     <td>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" (click)="selectionnerMedecin(medecin.id)"/>
+                                            <input class="form-check-input" type="checkbox" (click)="selectionner(medecin.id)"/>
                                         </div>
                                     </td>
                                     <td>Dr.{{medecin.nom}} {{medecin.prenom}}</td>
