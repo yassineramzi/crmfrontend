@@ -129,37 +129,31 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="search-results"
-                            infinite-scroll
-                            [infiniteScrollDistance]="scrollDistance"
-                            [infiniteScrollUpDistance]="scrollUpDistance"
-                            [infiniteScrollThrottle]="throttle"
-                            (scrolled)="onScrollDown()"
-                            (scrolledUp)="onUp()">
-                            <p *ngFor="let i of array">
-                                {{ i }}
-                            </p>
-                        </div>
-                        <!--div class="table-responsive">
-                            < Vue mode liste>
-                            <table id="table" class="table table-centered table-hover m-1" *ngIf="affichageModeListe"
-                            >
+                        <div class="table-responsive">
+                            <!--Vue mode liste-->
+                            <table id="table" class="table table-centered table-hover m-1" *ngIf="affichageModeListe">
                               <thead>
-                              <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" />
-                                    </div>
-                                </td>
-                                <th scope="col">Nom et prénom</th>
-                                <th scope="col">Spécialité</th>
-                                <th scope="col">Etablissement</th>
-                                <th scope="col">Secteur IMS</th>
-                                <th scope="col">Semaine</th>
-                                <th scope="col">Potentiel</th>
-                              </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" />
+                                        </div>
+                                    </td>
+                                    <th scope="col">Nom et prénom</th>
+                                    <th scope="col">Spécialité</th>
+                                    <th scope="col">Etablissement</th>
+                                    <th scope="col">Secteur IMS</th>
+                                    <th scope="col">Semaine</th>
+                                    <th scope="col">Potentiel</th>
+                                </tr>
                               </thead>
-                              <tbody>
+                              <tbody
+                                infinite-scroll
+                                [infiniteScrollDistance]="scrollDistance"
+                                [infiniteScrollUpDistance]="scrollUpDistance"
+                                [infiniteScrollThrottle]="throttle"
+                                (scrolled)="addItems()"
+                              >
                                 <tr *ngIf="dataArrayPage.length === 0">
                                     <td colspan="7">
                                     <span class="d-flex justify-content-center">Aucun médecin trouvé</span>
@@ -185,11 +179,16 @@
                                 </tr>
                               </tbody>
                             </table>
-                            <Vue mode Card>
+                            <!--Vue mode Card-->
                             <div class="row mb-2" *ngIf="!affichageModeListe && dataArrayPage.length === 0">
                                 <span class="col-md-12 d-flex justify-content-center">Aucun médecin trouvé</span>
                             </div>
-                            <div class="row" *ngIf="!affichageModeListe">
+                            <div class="row" *ngIf="!affichageModeListe" 
+                                                infinite-scroll
+                                                [infiniteScrollDistance]="scrollDistance"
+                                                [infiniteScrollUpDistance]="scrollUpDistance"
+                                                [infiniteScrollThrottle]="throttle"
+                                                (scrolled)="addItems()">
                                 <div *ngFor="let medecin of dataArrayPage" class="card m-3" style="width: 18rem;">
                                     <div class="card-body" [ngClass]="isSelectionne(medecin.id)  ? 'selected-item' : 'not-selected-item'">
                                         <h5 class="card-title">
@@ -214,7 +213,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div-->
+                        </div>
                     </div>
                 </div>
             </div>
