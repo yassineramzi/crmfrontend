@@ -10,6 +10,9 @@ export default abstract class RechercheAbsractComponent<T> {
     public dataArrayPage: Array<T> = [];
     public dataArray: Array<T> = new Array<T>();
     public dataPage: number = 1;
+    public throttle: number = 300;
+    public scrollDistance: number = 1;
+    public scrollUpDistance: number = 2;
 
     /** Selection des données. */
     public entiteSelectionnes: Array<T> = new Array<T>();
@@ -19,16 +22,6 @@ export default abstract class RechercheAbsractComponent<T> {
     
     /** Affichage des critères de recherche. */
     public affichageCritereRecherche: boolean = true;
-
-    public throttle: number = 300;
-
-    public scrollDistance: number = 1;
-
-    public scrollUpDistance: number = 2;
-
-    public sum: number = 100;
-    
-    public direction: string = "";
 
     constructor(protected formBuilder: FormBuilder) { }
     
