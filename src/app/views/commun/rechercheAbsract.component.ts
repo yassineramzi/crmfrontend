@@ -8,13 +8,7 @@ export default abstract class RechercheAbsractComponent<T> {
     /** Pagination. */
     public pageSize: number = 5;
     public dataArrayPage: Array<T> = [];
-    public paginationForm: FormGroup = this.formBuilder.group(
-        {
-        pageSize: new FormControl(5)
-        }
-    );
     public dataArray: Array<T> = new Array<T>();
-    public dataCollectionSize: number = 0;
     public dataPage: number = 1;
 
     /** Selection des données. */
@@ -26,14 +20,26 @@ export default abstract class RechercheAbsractComponent<T> {
     /** Affichage des critères de recherche. */
     public affichageCritereRecherche: boolean = true;
 
-    constructor(protected formBuilder: FormBuilder) { }
+    public throttle: number = 300;
 
-    public refresh(): void {
-        this.pageSize = this.pageSizeFormControl.value;
-        this.dataArrayPage = this.dataArray
-          .slice((this.dataPage - 1) * this.pageSize, (this.dataPage - 1) * this.pageSize + this.pageSize);
-        this.dataCollectionSize = this.dataArray.length;
-        this.entiteSelectionnes = new Array<T>();
+    public scrollDistance: number = 1;
+
+    public scrollUpDistance: number = 2;
+
+    public sum: number = 100;
+    
+    public direction: string = "";
+
+    constructor(protected formBuilder: FormBuilder) { }
+    
+    public addItems(): void {
+      let startIndex: number = this.dataArrayPage.length;
+      let endIndex: number   = this.dataArrayPage.length + this.pageSize;
+        this.dataArrayPage = this.dataArrayPage.concat(
+          this.dataArray
+          .slice(startIndex, endIndex)
+        );
+        console.log(this.dataArrayPage);
     }
 
     public afficherCritereRecherche(): void {
@@ -47,9 +53,5 @@ export default abstract class RechercheAbsractComponent<T> {
     public abstract selectionner(id: number): void;
 
     public abstract isSelectionne(id: number): boolean;
-
-    public get pageSizeFormControl(): FormControl {
-        return this.paginationForm.get('pageSize') as FormControl;
-    }
 
 }
