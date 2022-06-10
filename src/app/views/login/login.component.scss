@@ -1,3 +1,6 @@
+@import '../../../scss/_theme.scss';
+@import '../../../scss/_function.scss';
+
 .app-body .main {
-    background-color: #691ff0;
+    background-color: var(--themeColor);
 }
