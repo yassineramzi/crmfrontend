@@ -32,31 +32,31 @@
             <div class="card-header">
                 Couleurs et polices :
             </div>
-            <div class="card-body">
+            <div class="card-body" [formGroup]="settingsForm">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Couleur du théme :</label>
-                            <input type="color" class="form-control"/>
+                            <input type="color" class="form-control" formControlName="couleurTheme" (change)="onCouleurThemeChange()"/>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Couleur du menu selectionné :</label>
-                            <input type="color" class="form-control"/>
+                            <input type="color" class="form-control" formControlName="couleurMenuSelectione" (change)="onCouleurMenuSelectioneChange()"/>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Couleur de la police :</label>
-                            <input type="color" class="form-control"/>
+                            <input type="color" class="form-control" formControlName="couleurPolice" (change)="onCouleurPoliceChange()"/>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group float-right">
-                            <button class="btn btn-primary m-2" type="button">
+                            <button class="btn btn-primary m-2" type="button" (click)="saveConfigurationPersonalisee()">
                                 Enregistrer
                             </button>
                         </div>

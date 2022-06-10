@@ -1,21 +1,24 @@
+@import 'theme';
+@import 'function';
+
 // Thinline custom css
 .sidebar {
     display: flex;
     flex-direction: column;
     padding: 0;
-    color: #fff;
-    background: #611bf3;
+    color: var(--policeColor);
+    background: var(--themeColor);
 }
 
 .sidebar .nav-link.active {
-    color: #fff;
-    background: #4c19cb;
+    color: var(--policeColor);
+    background: var(--selectedElementColor);
 }
 
 .sidebar .nav-link:hover {
-    color: #fff;
-    background: #4c1aca;
-    border-color: #5b288e;
+    color: var(--policeColor);
+    background: var(--selectedElementColor);
+    // border-color: #5b288e;
 }
 
 .sidebar-minimized .sidebar .sidebar-minimizer {
@@ -23,7 +26,7 @@
     bottom: 0;
     width: 50px;
     height: 50px;
-    background-color: #4c19cb;
+    background-color: var(--themeColor);
 }
 
 .sidebar .nav-link .nav-icon {
@@ -31,12 +34,12 @@
     width: 1.09375rem;
     margin: 0 0.5rem 0 0;
     font-size: 0.875rem;
-    color: #fff;
+    color: var(--policeColor);
     text-align: center;
 }
 
 .sidebar .nav-link.active .nav-icon {
-    color: #fff;
+    color: var(--policeColor);
 }
 
 .input-group {
@@ -48,20 +51,20 @@
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #4c19cb;
-    border-color: #5c2ed1;
+    color: var(--policeColor);
+    background-color: var(--themeColor);
+    //border-color: #5c2ed1;
     border-radius: 1rem;
 }
 
 .btn-primary:hover {
-    background-color: #4c1aca;
-    border-color: #5b288e;
+    background-color: var(--selectedElementColor);
+    border-color: #ffffff;
 }
 
 .btn-primary:focus {
-    background-color: #4c1aca;
-    border-color: #5b288e;
+    background-color: var(--selectedElementColor);
+    border-color: #ffffff;
 }
 
 .potentiel_red {
@@ -107,7 +110,7 @@
 
 @media (min-width: 992px) {
     .sidebar-minimized .sidebar .nav-item:hover>.nav-link {
-        background: #4c1aca;
+        background: var(--selectedElementColor);
     }
 }
 
@@ -116,8 +119,8 @@
 }
 
 .page-item.active .page-link {
-    background-color: #4c1aca;
-    border-color: #4c1aca;;
+    background-color: var(--selectedElementColor);
+    border-color: var(--selectedElementColor);;
 }
 
 .view-mode-not-selected {
@@ -134,5 +137,10 @@
 }
 
 .not-selected-item {
+    background-color: #ffffff;
+}
+
+.badge-info {
+    color: #23282c;
     background-color: #ffffff;
 }

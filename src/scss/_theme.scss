@@ -1,0 +1,11 @@
+:root {
+    --themeColor: #611bf3;
+    --selectedElementColor :#4c19cb;
+    --policeColor: #fff;
+}
+// pass variables into a sass map
+$variables: (
+    --themeColor: var(--themeColor),
+    --selectedElementColor : var(--selectedElementColor),
+    --policeColor: var(--policeColor)
+);
