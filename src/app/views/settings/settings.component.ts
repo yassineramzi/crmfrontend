@@ -11,7 +11,6 @@ export class SettingsComponent {
   @ViewChild('labelImportFavicon')
   public labelImportFavicon: ElementRef;
 
-  
   @ViewChild('labelImportLogo')
   public labelImportLogo: ElementRef;
 
