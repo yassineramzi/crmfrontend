@@ -1,6 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { JwtResponse } from '../../models/jwtResponse.model';
 import { ThemeSettings } from '../../models/themeSettings.model';
+import { TokenStorageService } from '../../services/auth/token-storage.service';
+import SettingsService from '../../services/settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -31,12 +34,15 @@ export class SettingsComponent {
   private themeWrapper = document.querySelector('body');
 
   constructor(
-    protected formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private settingsService: SettingsService,
+    private tokenStorageService: TokenStorageService
   ) {
   }
 
   public saveConfigurationPersonalisee(): void {
-    const themeSettings: ThemeSettings = new ThemeSettings(this.settingsForm, this.favIconImageBase64, this.logoImageBase64 );
+    const jwtResponse: JwtResponse = this.tokenStorageService.getUser();
+    const themeSettings: ThemeSettings = new ThemeSettings(this.settingsForm, this.favIconImageBase64, this.logoImageBase64, jwtResponse.societe );
     if(themeSettings.couleurTheme) {
       this.themeWrapper!.style.setProperty('--themeColor', themeSettings.couleurTheme);
     }
@@ -46,11 +52,15 @@ export class SettingsComponent {
     if(themeSettings.couleurPolice) {
       this.themeWrapper!.style.setProperty('--policeColor', themeSettings.couleurPolice);
     }
-    console.log(themeSettings);
+    this.settingsService.create(themeSettings).subscribe(
+      response => {
+        console.log(response.body);
+      }
+    );
   }
 
   public onThemeChange(): void {
-    const themeSettings: ThemeSettings = new ThemeSettings(this.settingsForm, this.favIconImageBase64, this.logoImageBase64 );
+    const themeSettings: ThemeSettings = new ThemeSettings(this.settingsForm);
     if(themeSettings.couleurTheme) {
       this.themeWrapper!.style.setProperty('--themeColor', themeSettings.couleurTheme);
     }
@@ -70,7 +80,6 @@ export class SettingsComponent {
        reader.onload = (event:any) => 
        {
            this.favIconImageBase64 = event.target.result;
-           console.log(this.favIconImageBase64);
        };
        reader.readAsDataURL(event.target.files[i]);
        this.labelImportFavicon.nativeElement.innerText = event.target.files[i].name;
@@ -85,7 +94,6 @@ export class SettingsComponent {
        reader.onload = (event:any) => 
        {
            this.logoImageBase64 = event.target.result;
-           console.log(this.logoImageBase64);
        };
        reader.readAsDataURL(event.target.files[i]);
        this.labelImportLogo.nativeElement.innerText = event.target.files[i].name;
