@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { JwtResponse } from '@models/jwtResponse.model';
+import { ThemeSettings } from '../../models/themeSettings.model';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
+const THEME_SETTINGS_KEY = 'theme-settings';
 
 @Injectable({
   providedIn: 'root'
@@ -36,4 +38,16 @@ export class TokenStorageService {
     return null;
   }
 
+  public saveThemeSettings(themeSettings: ThemeSettings): void {
+    window.localStorage.removeItem(THEME_SETTINGS_KEY);
+    window.localStorage.setItem(THEME_SETTINGS_KEY, JSON.stringify(themeSettings));
+  }
+
+  public getThemeSettings(): ThemeSettings {
+    const themeSettings = window.localStorage.getItem(THEME_SETTINGS_KEY);
+    if (themeSettings) {
+      return JSON.parse(themeSettings);
+    }
+    return null;
+  }
 }

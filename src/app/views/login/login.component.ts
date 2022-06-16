@@ -4,8 +4,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { JwtResponse } from '../../models/jwtResponse.model';
 import { LoginRequest } from '../../models/loginRequest.model';
+import { ThemeSettings } from '../../models/themeSettings.model';
 import { AuthService } from '../../services/auth/auth.service';
 import { TokenStorageService } from '../../services/auth/token-storage.service';
+import SettingsService from '../../services/settings.service';
+import ThemeService from '../../services/theme.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,14 +25,28 @@ export class LoginComponent implements OnInit {
   public isLoginFailed: boolean = false;
   public errorMessage: string = '';
   public returnUrl: string 
+  public step: string= 'TYPE_LOGIN';
+  public logoSrc: string= '../../../assets/img/brand/logo.png';
+  public logoWidth: number = 116;
+  public logoHeight: number = 32;
 
   constructor(
     private authService: AuthService,
     private tokenStorageService: TokenStorageService,
+    private settingsService: SettingsService,
+    private themeService: ThemeService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router
-    ){}
+    ){
+      const themeSettings: ThemeSettings = this.tokenStorageService.getThemeSettings();
+      if(themeSettings){
+        this.logoSrc = themeSettings.logoImageBase64;
+        this.logoWidth = 100;
+        this.logoHeight = 100;
+        this.themeService.applyTheme();
+      }
+    }
 
   ngOnInit(): void {
     if (this.tokenStorageService.getToken()) {
@@ -39,6 +56,22 @@ export class LoginComponent implements OnInit {
     if (this.isLoggedIn === true) {
       this.router.navigate([this.returnUrl]);
     }
+  }
+
+  public nextStep(): void {
+    this.settingsService.getSettingsBySociete(3).subscribe(
+      (response: HttpResponse<ThemeSettings>) => {
+        const themeSettings: ThemeSettings = response.body;
+        if(themeSettings){
+          this.logoSrc = themeSettings.logoImageBase64;
+          this.tokenStorageService.saveThemeSettings(themeSettings);
+          this.themeService.applyTheme();
+          this.logoWidth = 100;
+          this.logoHeight = 100;
+        }
+        this.step = 'TYPE_PASSWORD';
+      }
+    );
   }
 
   public login(): void {

@@ -8,14 +8,14 @@
               <div class="card-body">
                 <form [formGroup]="loginForm">
                   <div class="d-flex justify-content-between p-2">
-                    <img class="logo-login" src="../../../assets/img/brand/logo.png"/>
+                    <img class="logo-login" [src]="logoSrc" [width]="logoWidth" [height]="logoHeight"/>
                   </div>
                   <p class="center-text text-muted">Veuillez vous connecter avec vos informations personnelles.</p>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Adresse Email *" autocomplete="username" formControlName="username" required>
+                    <input type="text" class="form-control" placeholder="Login *" [disabled]="step==='TYPE_PASSWORD'" autocomplete="username" formControlName="username" required >
                   </div>
                   <div class="alert alert-danger mt-2" role="alert"
                   *ngIf="loginForm.get('username').hasError('required')
@@ -29,7 +29,7 @@
                           (loginForm.get('username').dirty || loginForm.get('username').touched)">
                     Le login doit contenir au moins 4 caractéres
                   </div>
-                  <div class="input-group mb-4">
+                  <div class="input-group mb-4" *ngIf="step==='TYPE_PASSWORD'">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
@@ -50,7 +50,8 @@
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button type="button" class="btn btn-primary px-4" (click)="login()" [disabled]="!loginForm.valid">Se connecter</button>
+                      <button type="button" class="btn btn-primary px-4" (click)="nextStep()" *ngIf="step==='TYPE_LOGIN'" [disabled]="loginForm.get('username').hasError('minLength')">Suivant</button>
+                      <button type="button" class="btn btn-primary px-4" (click)="login()" *ngIf="step==='TYPE_PASSWORD'" [disabled]="!loginForm.valid">Se connecter</button>
                     </div>
                     <div class="col-6 text-right">
                       <button type="button" class="btn btn-link px-0 text-muted" >Mot de passe oublié ?</button>

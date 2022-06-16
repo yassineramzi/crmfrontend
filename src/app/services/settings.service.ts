@@ -20,4 +20,7 @@ export default class SettingsService {
         return this.http.post<ThemeSettings>(this.resourceUrl + '/create', settings, {observe: 'response'});
     }
     
+    public getSettingsBySociete(societeId: number): Observable<EntityResponseType> {
+        return this.http.get<ThemeSettings>(`${this.resourceUrl}/${societeId}` + '/societe', {observe: 'response'});
+    }
 }
