@@ -15,7 +15,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Login *" [disabled]="step==='TYPE_PASSWORD'" autocomplete="username" formControlName="username" required >
+                    <input type="text" class="form-control" placeholder="Login *" autocomplete="username" formControlName="username" >
                   </div>
                   <div class="alert alert-danger mt-2" role="alert"
                   *ngIf="loginForm.get('username').hasError('required')
@@ -50,7 +50,7 @@
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button type="button" class="btn btn-primary px-4" (click)="nextStep()" *ngIf="step==='TYPE_LOGIN'" [disabled]="loginForm.get('username').hasError('minLength')">Suivant</button>
+                      <button type="button" class="btn btn-primary px-4" (click)="nextStep()" *ngIf="step==='TYPE_LOGIN'" [disabled]="!isValidLogin()">Suivant</button>
                       <button type="button" class="btn btn-primary px-4" (click)="login()" *ngIf="step==='TYPE_PASSWORD'" [disabled]="!loginForm.valid">Se connecter</button>
                     </div>
                     <div class="col-6 text-right">

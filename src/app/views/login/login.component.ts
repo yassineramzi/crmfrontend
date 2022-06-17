@@ -17,10 +17,6 @@ import ThemeService from '../../services/theme.service';
 })
 export class LoginComponent implements OnInit {
   
-  public loginForm: FormGroup = this.formBuilder.group({
-    username : new FormControl(null, [Validators.required, Validators.minLength(4)]),
-    password : new FormControl(null, [Validators.required, Validators.minLength(8)])
-  });
   public isLoggedIn: boolean = false;
   public isLoginFailed: boolean = false;
   public errorMessage: string = '';
@@ -29,6 +25,10 @@ export class LoginComponent implements OnInit {
   public logoSrc: string= '../../../assets/img/brand/logo.png';
   public logoWidth: number = 116;
   public logoHeight: number = 32;
+  public loginForm: FormGroup = this.formBuilder.group({
+    username : new FormControl(null, [Validators.required, Validators.minLength(4)]),
+    password : new FormControl(null, [Validators.required, Validators.minLength(8)])
+  });
 
   constructor(
     private authService: AuthService,
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         this.logoHeight = 100;
         this.themeService.applyTheme();
       }
-    }
+  }
 
   ngOnInit(): void {
     if (this.tokenStorageService.getToken()) {
@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
           this.logoHeight = 100;
         }
         this.step = 'TYPE_PASSWORD';
+        this.loginForm.get(['username']).disable();
       }
     );
   }
@@ -90,10 +91,17 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  public isValidLogin(): boolean {
+    if(this.loginForm.get(['username']).value != null &&this.loginForm.get(['username'])!.value.length >= 8)
+      return true
+    return false;
+  }
+
   private createLoginRequestFromForm(): LoginRequest {
     return new LoginRequest(
       this.loginForm.get(['username'])!.value,
       this.loginForm.get(['password'])!.value
     );
   }
+
 }
