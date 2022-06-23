@@ -165,7 +165,7 @@
                                             <input class="form-check-input" type="checkbox" (click)="selectionner(medecin.id)"/>
                                         </div>
                                     </td>
-                                    <td>Dr.{{medecin.nom}} {{medecin.prenom}}</td>
+                                    <td><span class="client-name">Dr.{{medecin.nom}} {{medecin.prenom}}</span></td>
                                     <td>{{medecin.specialite.nom}}</td>
                                     <td></td>
                                     <td>{{medecin.secteur.nom}} {{medecin.secteur.ville.nom}}</td>
@@ -174,7 +174,12 @@
                                         <strong>S1</strong>
                                     </td>
                                     <td>
-                                        {{medecin.potentiel}}
+                                        <div [ngClass]="getClassPotentiel(medecin.potentiel)">
+                                            <div class="potentiel-content potentiel-color">
+                                                <i class="fa fa-bullseye"></i>
+                                                <span class="potentiel-text">{{medecin.potentiel}}</span>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                               </tbody>
@@ -189,26 +194,43 @@
                                                 [infiniteScrollUpDistance]="scrollUpDistance"
                                                 [infiniteScrollThrottle]="throttle"
                                                 (scrolled)="addItems()">
-                                <div *ngFor="let medecin of dataArrayPage" class="card m-3" style="width: 18rem;">
+                                <div *ngFor="let medecin of dataArrayPage" class="card m-3" style="width: 20rem;">
                                     <div class="card-body" [ngClass]="isSelectionne(medecin.id)  ? 'selected-item' : 'not-selected-item'">
                                         <h5 class="card-title">
                                             <div class="input-group">
                                                 <div class="form-check mr-1">
                                                     <input class="form-check-input" type="checkbox" (click)="selectionner(medecin.id)"/>
                                                 </div>
-                                                <span>Dr. {{medecin.nom}} {{medecin.prenom}}</span>
+                                                <span class="client-name">Dr.{{medecin.nom}} {{medecin.prenom}}</span>
                                             </div>
                                         </h5>
                                         <div class="card-text">
-                                            <div class="input-group">
-                                                <span><i class="fa fa-stethoscope"></i> {{medecin.specialite.nom}} </span>
+                                            <div class="row">
+                                                <div class="col-md-6 pr-0 pt-1">
+                                                    <div class="input-group">
+                                                        <span><i class="icon-color fa fa-stethoscope"></i> {{medecin.specialite.nom}} </span>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <span><i class="icon-color fa fa-hospital-o"></i> Polyclinique Rabat </span>
+                                                    </div>
+                                                    <div class="input-group">
+                                                        <span><i class="icon-color fa fa-pie-chart"></i> {{medecin.secteur.nom}} {{medecin.secteur.ville.nom}} </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 potentiel-content-card">
+                                                    <img src="assets/img/icons/calendar.png"> 
+                                                    <strong style="font-size: 0.75rem;">S1</strong>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div [ngClass]="(getClassPotentiel(medecin.potentiel)+'-card')">
+                                                        <div class="potentiel-content-card potentiel-color">
+                                                            <i class="fa fa-bullseye"></i>
+                                                            <span class="potentiel-text">{{medecin.potentiel}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="input-group">
-                                                <span><i class="fa fa-hospital-o"></i> Polyclinique Rabat </span>
-                                            </div>
-                                            <div class="input-group">
-                                                <span><i class="fa fa-pie-chart"></i> {{medecin.secteur.nom}} {{medecin.secteur.ville.nom}} </span>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>

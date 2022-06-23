@@ -53,7 +53,6 @@
 .btn-primary {
     color: var(--policeColor);
     background-color: var(--themeColor);
-    //border-color: #5c2ed1;
     border-radius: 1rem;
 }
 
@@ -65,27 +64,6 @@
 .btn-primary:focus {
     background-color: var(--selectedElementColor);
     border-color: #ffffff;
-}
-
-.potentiel_red {
-    position: absolute;
-    top: 52%;
-    // left: 50%;
-    width: 91px;
-    height: 40px;
-    background: transparent url('../assets/img/icons/rectangle.svg') 0% 0% no-repeat padding-box;
-    border-radius: 15px;
-    opacity: 1;
-}
-
-.potentiel_inside {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    background: transparent url('../assets/img/icons/Groupe 4523.svg') 0% 0% no-repeat padding-box;
-    opacity: 1
 }
 
 .logo-login {
@@ -143,4 +121,116 @@
 .badge-info {
     color: #23282c;
     background-color: #ffffff;
+}
+
+.client-name {
+    font-weight: bold;
+    color : var(--selectedElementColor);
+}
+
+.icon-color {
+    color : var(--selectedElementColor);
+}
+
+/** Style potentiels **/
+.potentiel-color {
+    color :  #ffffff;
+}
+
+.potentiel-content {
+    padding-top: 0.25rem;
+    padding-left: 1.5rem;
+}
+
+.potentiel-content-card {
+    padding-top: 2.2rem;
+    padding-left: 0.85rem;
+}
+
+.potentiel-text {
+    font-weight: bold;
+}
+
+.potentiel-A-plus {
+    height: 2rem;
+    width: 5rem;
+    background-color:#1AF330;
+    border-radius: 1rem;
+}
+
+.potentiel-A-plus-card {
+    height: 6rem;
+    width: 3.75rem;
+    background-color:#1AF330;
+    border-radius: 1rem;
+}
+
+.potentiel-A {
+    height: 2rem;
+    width: 5rem;
+    background-color: #1af37f;
+    border-radius: 1rem;
+}
+
+.potentiel-A-card {
+    height: 6rem;
+    width: 3.75rem;
+    background-color: #1af37f;
+    border-radius: 1rem;
+}
+
+.potentiel-B-plus {
+    height: 2rem;
+    width: 5rem;
+    background-color: #F3951A;
+    border-radius: 1rem;
+}
+
+.potentiel-B-plus-card {
+    height: 6rem;
+    width: 3.75rem;
+    background-color: #F3951A;
+    border-radius: 1rem;
+}
+
+.potentiel-B {
+    height: 2rem;
+    width: 5rem;
+    background-color: #F3D61A;
+    border-radius: 1rem;
+}
+
+.potentiel-B-card {
+    height: 6rem;
+    width: 3.75rem;
+    background-color: #F3D61A;
+    border-radius: 1rem;
+}
+
+.potentiel-C-plus {
+    height: 2rem;
+    width: 5rem;
+    background-color: #cf675b;
+    border-radius: 1rem;
+}
+
+.potentiel-C-plus-card {
+    height: 6rem;
+    width: 3.75rem;
+    background-color: #cf675b;
+    border-radius: 1rem;
+}
+
+.potentiel-C {
+    height: 2rem;
+    width: 5rem;
+    background-color: #F3291A;;
+    border-radius: 1rem;
+}
+
+.potentiel-C-card {
+    height: 6rem;
+    width: 3.75rem;
+    background-color: #F3291A;
+    border-radius: 1rem;
 }

@@ -31,6 +31,7 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
   }
 
   public rechercherMedecins(): void {
+    this.initData();
     const critereRechercheMedecin: CritereRechercheMedecin = new CritereRechercheMedecin(this.rechercheMedecinForm);
     this.medecinService.search(critereRechercheMedecin).subscribe(
       (medecins: EntityArrayResponseMedecinType) => {

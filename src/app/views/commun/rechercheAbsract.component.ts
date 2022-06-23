@@ -24,6 +24,12 @@ export default abstract class RechercheAbsractComponent<T> {
     public affichageCritereRecherche: boolean = true;
 
     constructor(protected formBuilder: FormBuilder) { }
+
+    protected initData(): void {
+      this.dataArray = [];
+      this.dataArrayPage = [];
+      this.entiteSelectionnes = [];
+    }
     
     public addItems(): void {
       let startIndex: number = this.dataArrayPage.length;
@@ -32,7 +38,6 @@ export default abstract class RechercheAbsractComponent<T> {
           this.dataArray
           .slice(startIndex, endIndex)
         );
-        console.log(this.dataArrayPage);
     }
 
     public afficherCritereRecherche(): void {
@@ -41,6 +46,23 @@ export default abstract class RechercheAbsractComponent<T> {
 
     public changerAffichage(): void {
       this.affichageModeListe = !this.affichageModeListe;
+    }
+
+    public getClassPotentiel(potentiel: string){
+      switch(potentiel) {
+        case 'A+':
+          return 'potentiel-A-plus';
+        case 'A':
+          return 'potentiel-A';
+        case 'B+':
+          return 'potentiel-B-plus';
+        case 'B':
+          return 'potentiel-B';
+        case 'C+':
+          return 'potentiel-C-plus';
+        case 'C':
+          return 'potentiel-C';
+      }
     }
 
     public abstract selectionner(id: number): void;
