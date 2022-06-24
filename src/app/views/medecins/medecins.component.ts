@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import Medecin from '../../models/medecin.model';
-import MedecinService from '../../services/medecin.service';
 import { HttpResponse } from '@angular/common/http';
 import CritereRechercheMedecin from '../../models/critereRechercheMedecin.model';
 import RechercheAbsractComponent from '../commun/rechercheAbsract.component';
+import Medecin from '../../models/medecin.model';
+import MedecinService from '../../services/medecin.service';
 
 type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 

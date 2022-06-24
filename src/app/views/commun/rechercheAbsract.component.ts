@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   template: ''
 })
 export default abstract class RechercheAbsractComponent<T> {
     /** Pagination. */
-    public pageSize: number = 5;
+    public pageSize: number = 6;
     public dataArrayPage: Array<T> = [];
     public dataArray: Array<T> = new Array<T>();
     public dataPage: number = 1;
