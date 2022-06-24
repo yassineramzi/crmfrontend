@@ -96,6 +96,10 @@
     border-radius: 1rem;
 }
 
+.border-radius-card {
+    border-radius: 1rem;
+}
+
 .page-item.active .page-link {
     background-color: var(--selectedElementColor);
     border-color: var(--selectedElementColor);;
@@ -142,11 +146,6 @@
     padding-left: 1.5rem;
 }
 
-.potentiel-content-card {
-    padding-top: 2.2rem;
-    padding-left: 0.85rem;
-}
-
 .potentiel-text {
     font-weight: bold;
 }
@@ -158,23 +157,9 @@
     border-radius: 1rem;
 }
 
-.potentiel-A-plus-card {
-    height: 6rem;
-    width: 3.75rem;
-    background-color:#1AF330;
-    border-radius: 1rem;
-}
-
 .potentiel-A {
     height: 2rem;
     width: 5rem;
-    background-color: #1af37f;
-    border-radius: 1rem;
-}
-
-.potentiel-A-card {
-    height: 6rem;
-    width: 3.75rem;
     background-color: #1af37f;
     border-radius: 1rem;
 }
@@ -186,23 +171,9 @@
     border-radius: 1rem;
 }
 
-.potentiel-B-plus-card {
-    height: 6rem;
-    width: 3.75rem;
-    background-color: #F3951A;
-    border-radius: 1rem;
-}
-
 .potentiel-B {
     height: 2rem;
     width: 5rem;
-    background-color: #F3D61A;
-    border-radius: 1rem;
-}
-
-.potentiel-B-card {
-    height: 6rem;
-    width: 3.75rem;
     background-color: #F3D61A;
     border-radius: 1rem;
 }
@@ -214,13 +185,6 @@
     border-radius: 1rem;
 }
 
-.potentiel-C-plus-card {
-    height: 6rem;
-    width: 3.75rem;
-    background-color: #cf675b;
-    border-radius: 1rem;
-}
-
 .potentiel-C {
     height: 2rem;
     width: 5rem;
@@ -228,9 +192,122 @@
     border-radius: 1rem;
 }
 
-.potentiel-C-card {
-    height: 6rem;
-    width: 3.75rem;
-    background-color: #F3291A;
-    border-radius: 1rem;
+
+@media only screen and (min-width:481px) {
+    .card-margin {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        justify-content: space-evenly;
+    }
+
+    .potentiel-content-card {
+        padding-top: 2.2rem;
+        padding-left: 0.85rem;
+    }
+
+    .semaine-content-card {
+        padding-top: 2.2rem;
+        padding-left: 0.85rem;
+    }
+
+    .potentiel-A-plus-card {
+        height: 6rem;
+        width: 3.75rem;
+        background-color:#1AF330;
+        border-radius: 1rem;
+    }
+    
+    .potentiel-A-card {
+        height: 6rem;
+        width: 3.75rem;
+        background-color: #1af37f;
+        border-radius: 1rem;
+    }
+    
+    .potentiel-B-plus-card {
+        height: 6rem;
+        width: 3.75rem;
+        background-color: #F3951A;
+        border-radius: 1rem;
+    }
+
+    .potentiel-B-card {
+        height: 6rem;
+        width: 3.75rem;
+        background-color: #F3D61A;
+        border-radius: 1rem;
+    }
+
+    .potentiel-C-plus-card {
+        height: 6rem;
+        width: 3.75rem;
+        background-color: #cf675b;
+        border-radius: 1rem;
+    }
+
+    .potentiel-C-card {
+        height: 6rem;
+        width: 3.75rem;
+        background-color: #F3291A;
+        border-radius: 1rem;
+    }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px)  { 
+    .card-margin {
+        margin-left: 0rem;
+        margin-right: 0rem;
+        justify-content: center;
+    }
+    /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
+    .semaine-content-card {
+        padding-top: 0.25rem;
+        padding-left: 1.5rem;
+    }
+
+    .potentiel-content-card {
+        padding-top: 0.25rem;
+    }
+
+    .potentiel-A-plus-card {
+        height: 2rem;
+        width: 14rem;
+        background-color:#1AF330;
+        border-radius: 1rem;
+    }
+
+    .potentiel-A-card {
+        height: 2rem;
+        width: 14rem;
+        background-color: #1af37f;
+        border-radius: 1rem;
+    }
+    
+    .potentiel-B-plus-card {
+        height: 2rem;
+        width: 14rem;
+        background-color: #F3951A;
+        border-radius: 1rem;
+    }
+    
+    .potentiel-B-card {
+        height: 2rem;
+        width: 14rem;
+        background-color: #F3D61A;
+        border-radius: 1rem;
+    }
+    
+    .potentiel-C-plus-card {
+        height: 2rem;
+        width: 14rem;
+        background-color: #cf675b;
+        border-radius: 1rem;
+    }
+    
+    .potentiel-C-card {
+        height: 2rem;
+        width: 14rem;
+        background-color: #F3291A;
+        border-radius: 1rem;
+    }
 }

@@ -188,25 +188,25 @@
                             <div class="row mb-2" *ngIf="!affichageModeListe && dataArrayPage.length === 0">
                                 <span class="col-md-12 d-flex justify-content-center">Aucun médecin trouvé</span>
                             </div>
-                            <div class="row" *ngIf="!affichageModeListe" 
+                            <div class="row card-margin" *ngIf="!affichageModeListe" 
                                                 infinite-scroll
                                                 [infiniteScrollDistance]="scrollDistance"
                                                 [infiniteScrollUpDistance]="scrollUpDistance"
                                                 [infiniteScrollThrottle]="throttle"
                                                 (scrolled)="addItems()">
-                                <div *ngFor="let medecin of dataArrayPage" class="card m-3" style="width: 20rem;">
-                                    <div class="card-body" [ngClass]="isSelectionne(medecin.id)  ? 'selected-item' : 'not-selected-item'">
+                                <div *ngFor="let medecin of dataArrayPage" class="card m-3 border-radius-card" style="width: 18rem;">
+                                    <div class="card-body border-radius-card" [ngClass]="isSelectionne(medecin.id)  ? 'selected-item' : 'not-selected-item'">
                                         <h5 class="card-title">
                                             <div class="input-group">
-                                                <div class="form-check mr-1">
+                                                <div class="col-12 form-check mr-1">
                                                     <input class="form-check-input" type="checkbox" (click)="selectionner(medecin.id)"/>
                                                 </div>
-                                                <span class="client-name">Dr.{{medecin.nom}} {{medecin.prenom}}</span>
+                                                <span class="col-12 client-name">Dr.{{medecin.nom}} {{medecin.prenom}}</span>
                                             </div>
                                         </h5>
                                         <div class="card-text">
                                             <div class="row">
-                                                <div class="col-md-6 pr-0 pt-1">
+                                                <div class="col-8 col-md-5 pr-0 pt-1">
                                                     <div class="input-group">
                                                         <span><i class="icon-color fa fa-stethoscope"></i> {{medecin.specialite.nom}} </span>
                                                     </div>
@@ -217,15 +217,15 @@
                                                         <span><i class="icon-color fa fa-pie-chart"></i> {{medecin.secteur.nom}} {{medecin.secteur.ville.nom}} </span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 potentiel-content-card">
-                                                    <img src="assets/img/icons/calendar.png"> 
+                                                <div class="col-4 col-md-3 semaine-content-card">
+                                                    <i class="icon-color fa fa-calendar-o"></i> 
                                                     <strong style="font-size: 0.75rem;">S1</strong>
                                                 </div>
-                                                <div class="col-md-3">
+                                                <div class="col-12 col-md-3 d-flex justify-content-center">
                                                     <div [ngClass]="(getClassPotentiel(medecin.potentiel)+'-card')">
-                                                        <div class="potentiel-content-card potentiel-color">
-                                                            <i class="fa fa-bullseye"></i>
-                                                            <span class="potentiel-text">{{medecin.potentiel}}</span>
+                                                        <div class="potentiel-content-card potentiel-color d-flex justify-content-center">
+                                                            <i class="fa fa-bullseye mt-1 mr-1"></i>
+                                                            <span class="potentiel-text mr-1">{{medecin.potentiel}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
