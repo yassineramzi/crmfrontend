@@ -9,8 +9,8 @@ import { TokenStorageService } from './token-storage.service';
 export class AuthGuard implements CanActivate {
   
     constructor(
-      public tokenStorageService: TokenStorageService,
-      public router: Router
+      private tokenStorageService: TokenStorageService,
+      private router: Router
     ) { }
 
     public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
