@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component} from '@angular/core';
 import { ThemeSettings } from '../../models/themeSettings.model';
 import { AuthService } from '../../services/auth/auth.service';
 import { TokenStorageService } from '../../services/auth/token-storage.service';

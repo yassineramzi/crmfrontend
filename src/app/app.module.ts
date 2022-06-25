@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -45,6 +45,7 @@ import { authInterceptorProviders } from './services/auth/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
@@ -67,7 +68,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgxSpinnerModule
   ],
   declarations: [
     AppComponent,
@@ -84,6 +86,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     IconSetService,
     authInterceptorProviders
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  schemas : [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
