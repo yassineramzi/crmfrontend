@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   template: ''
@@ -23,7 +24,10 @@ export default abstract class RechercheAbsractComponent<T> {
     /** Affichage des critères de recherche. */
     public affichageCritereRecherche: boolean = true;
 
-    constructor(protected formBuilder: FormBuilder) { }
+    constructor(
+      protected formBuilder: FormBuilder,
+      protected modalService: NgbModal
+      ) { }
 
     protected initData(): void {
       this.dataArray = [];
@@ -64,6 +68,8 @@ export default abstract class RechercheAbsractComponent<T> {
           return 'potentiel-C';
       }
     }
+
+    public abstract openPlanificationModal(): void;
 
     public abstract selectionner(id: number): void;
 

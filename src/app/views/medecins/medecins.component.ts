@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 import CritereRechercheMedecin from '../../models/critereRechercheMedecin.model';
 import RechercheAbsractComponent from '../commun/rechercheAbsract.component';
 import Medecin from '../../models/medecin.model';
 import MedecinService from '../../services/medecin.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlanificationModalComponent } from './planification-modal/planification-modal.component';
 
 type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 
@@ -25,9 +27,10 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
 
   constructor(
     protected formBuilder: FormBuilder,
+    protected modalService: NgbModal,
     private medecinService: MedecinService
   ) {
-    super(formBuilder);
+    super(formBuilder, modalService);
   }
 
   public rechercherMedecins(): void {
@@ -81,4 +84,7 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
     return this.entiteSelectionnes.some(predicate);
   }
 
+  public openPlanificationModal(): void {
+    const modalRef = this.modalService.open(PlanificationModalComponent, {size: 'md'});
+  }
 }

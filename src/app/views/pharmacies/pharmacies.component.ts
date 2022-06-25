@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Pharmacie from '../../models/pharmacie.model';
 import RechercheAbsractComponent from '../commun/rechercheAbsract.component';
 
@@ -10,9 +11,10 @@ import RechercheAbsractComponent from '../commun/rechercheAbsract.component';
 export class PharmaciesComponent extends RechercheAbsractComponent<Pharmacie>{
 
   constructor(
-    protected formBuilder: FormBuilder
+    protected formBuilder: FormBuilder,
+    protected modalService: NgbModal,
   ) {
-    super(formBuilder);
+    super(formBuilder, modalService);
   }
 
   public selectionner(id: number): void {
@@ -42,5 +44,9 @@ export class PharmaciesComponent extends RechercheAbsractComponent<Pharmacie>{
       }
     };
     return this.entiteSelectionnes.some(predicate);
+  }
+
+  public openPlanificationModal(): void {
+    throw new Error('Method not implemented.');
   }
 }
