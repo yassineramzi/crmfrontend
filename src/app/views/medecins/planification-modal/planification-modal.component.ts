@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import Medecin from '../../../models/medecin.model';
 
 @Component({
   selector: 'app-planification-modal',
@@ -7,9 +10,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanificationModalComponent implements OnInit {
 
-  constructor() { }
+  public medecinsSelectiones: Array<Medecin> = new Array();
+
+  public planificationsForm : FormArray = this.formBuilder.array([]);
+
+  public hour: number = 9;
+
+  public minutes: number = 0;
+
+  constructor(
+    protected activeModal: NgbActiveModal,
+    protected formBuilder: FormBuilder
+    ) { }
 
   ngOnInit(): void {
+    for(let i=0; i <this.medecinsSelectiones.length; i++) {
+      const medecin: Medecin = this.medecinsSelectiones[i];
+      let formGroupPlanification: FormGroup = this.formBuilder.group({
+        id : medecin.id,
+        time : new FormControl(null)
+      });
+      formGroupPlanification.patchValue({
+        time : this.getTime(i)
+      });
+      this.planificationsForm.push(
+        formGroupPlanification
+      );
+    }
+  }
+
+  public deleteMedecinFromSelection(medecinSelectionne: Medecin): void {
+    this.medecinsSelectiones.splice(this.medecinsSelectiones.indexOf(medecinSelectionne),1);
+  }
+
+  public onClose(): void {
+    this.activeModal.close();
+  }
+
+  private getTime(index : number): string {
+    const hourByIndexStr: string = this.hour <= 9 ? '0'+this.hour : this.hour.toString();
+    const minutesByIndexStr: string = this.minutes == 0 ? '00' : '30';
+    this.hour = (this.minutes == 0 ? this.hour : (this.hour+1));
+    this.minutes = this.minutes == 0 ? 30 : 0;
+    return hourByIndexStr+':'+minutesByIndexStr;
   }
 
 }

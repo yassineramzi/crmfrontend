@@ -5,16 +5,16 @@
 </div>
 <div class="modal-body">
     <div class="row p-2">
-        <label class="col-7 col-md-7 client-name">6 planifications pour le :</label>
+        <label class="col-7 col-md-7 client-name">{{medecinsSelectiones.length}} Planifications pour le :</label>
         <input type="date" class="form-control col-5 col-md-5" placeholder="JJ/MM/AAAA">
     </div>
-    <div class="row p-2">
-        <span class="col-5 col-md-5 client-name">Dr.Aaberg Elbertina</span>
-        <i class="icon-color fa fa-trash-o col-2 col-md-2"></i>
-        <input type="time" class="form-control col-5 col-md-5"/>
+    <div class="row p-2"  *ngFor="let planificationForm of planificationsForm.controls;let index = index" [formGroup]="planificationForm">
+        <span class="col-5 col-md-5 client-name">Dr. {{medecinsSelectiones[index].nom}} {{medecinsSelectiones[index].prenom}}</span>
+        <i class="icon-color fa fa-trash-o col-2 col-md-2" (click)="deleteMedecinFromSelection(medecinsSelectiones[index])"></i>
+        <input type="time" class="form-control col-5 col-md-5" formControlName="time"/>
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default float-left" data-dismiss="modal">Annuler</button>
+    <button type="button" class="btn btn-default float-left" (click)="onClose()">Annuler</button>
     <button type="submit" class="btn btn-primary float-right">Planifier</button>
 </div>

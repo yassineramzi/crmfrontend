@@ -46,6 +46,10 @@ export class AuthInterceptor implements HttpInterceptor {
               case 404: //not found
                 break;
               case 500: //internal server error
+                {
+                  this.tokenStorageService.clearSession();
+                  this.router.navigate(['/login']);
+                }
                 break;
             }
           }

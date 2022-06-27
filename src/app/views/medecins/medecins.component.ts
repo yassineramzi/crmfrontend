@@ -86,5 +86,6 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
 
   public openPlanificationModal(): void {
     const modalRef = this.modalService.open(PlanificationModalComponent, {size: 'md'});
+    modalRef.componentInstance.medecinsSelectiones = this.entiteSelectionnes;
   }
 }
