@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <mwl-calendar-week-view 
+                    *ngIf="!isMobileView"
+                    [viewDate]="viewDate"
+                    [daysInWeek]="daysInWeek"
+                    [events]="events">
+                </mwl-calendar-week-view>
+                <mwl-calendar-day-view
+                    *ngIf="isMobileView"
+                    [viewDate]="viewDate"
+                    [events]="events"
+                    [dayStartHour]="9"
+                    [dayEndHour]="19">
+                </mwl-calendar-day-view>
+            </div>
+        </div>
+    </div>
+</div>

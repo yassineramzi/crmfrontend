@@ -58,6 +58,10 @@ export const routes: Routes = [
         path: 'settings',
         loadChildren: () => import('./views/settings/settings.module').then(m => m.SettingsModule)
       },
+      {
+        path: 'agenda',
+        loadChildren: () => import('./views/calendrier/calendrier.module').then(m => m.CalendrierModule)
+      }
     ]
   },
   { path: '**', component: P404Component }

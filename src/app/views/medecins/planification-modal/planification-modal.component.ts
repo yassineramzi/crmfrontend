@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import Medecin from '../../../models/medecin.model';
 
@@ -26,12 +26,12 @@ export class PlanificationModalComponent implements OnInit {
   ngOnInit(): void {
     for(let i=0; i <this.medecinsSelectiones.length; i++) {
       const medecin: Medecin = this.medecinsSelectiones[i];
-      let formGroupPlanification: FormGroup = this.formBuilder.group({
+      const formGroupPlanification: FormGroup = this.formBuilder.group({
         id : medecin.id,
         time : new FormControl(null)
       });
       formGroupPlanification.patchValue({
-        time : this.getTime(i)
+        time : this.getTime()
       });
       this.planificationsForm.push(
         formGroupPlanification
@@ -41,13 +41,15 @@ export class PlanificationModalComponent implements OnInit {
 
   public deleteMedecinFromSelection(medecinSelectionne: Medecin): void {
     this.medecinsSelectiones.splice(this.medecinsSelectiones.indexOf(medecinSelectionne),1);
+    const formMedecinSelectionne: AbstractControl = this.planificationsForm.controls.find(value=> {return value.value.id === medecinSelectionne.id;});
+    this.planificationsForm.controls.splice(this.planificationsForm.controls.indexOf(formMedecinSelectionne),1);
   }
 
   public onClose(): void {
     this.activeModal.close();
   }
 
-  private getTime(index : number): string {
+  private getTime(): string {
     const hourByIndexStr: string = this.hour <= 9 ? '0'+this.hour : this.hour.toString();
     const minutesByIndexStr: string = this.minutes == 0 ? '00' : '30';
     this.hour = (this.minutes == 0 ? this.hour : (this.hour+1));
