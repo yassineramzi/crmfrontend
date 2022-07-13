@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit, HostListener } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
-import { addDays, endOfMonth, isSameDay, isSameMonth, setHours, setMinutes, startOfDay, subDays } from 'date-fns';
-import { UtilsService } from '../../services/utils.service';
+import { setHours, setMinutes } from 'date-fns';
 
 const colors: any = {
   red: {

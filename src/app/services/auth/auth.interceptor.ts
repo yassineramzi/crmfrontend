@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private tokenStorageService: TokenStorageService,
     private spinnerService: NgxSpinnerService,
-    private router: Router,
+    private router: Router
     ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
   }
 
   public nextStep(): void {
-    this.settingsService.getSettingsBySociete(3).subscribe(
+    this.settingsService.getSettingsBySociete(24).subscribe(
       (response: HttpResponse<ThemeSettings>) => {
         const themeSettings: ThemeSettings = response.body;
         if(themeSettings){
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
   }
 
   public isValidLogin(): boolean {
-    if(this.loginForm.get(['username']).value != null &&this.loginForm.get(['username'])!.value.length >= 8)
+    if(this.loginForm.get(['username']).value != null && !this.loginForm.get('username').hasError('minLength'))
       return true
     return false;
   }
