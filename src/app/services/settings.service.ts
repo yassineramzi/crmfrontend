@@ -23,4 +23,8 @@ export default class SettingsService {
     public getSettingsBySociete(societeId: number): Observable<EntityResponseType> {
         return this.http.get<ThemeSettings>(`${this.resourceUrl}/${societeId}` + '/societe', {observe: 'response'});
     }
+
+    public getSettingsByLogin(login: string): Observable<EntityResponseType> {
+        return this.http.get<ThemeSettings>(`${this.resourceUrl}/${login}` + '/utilisateur', {observe: 'response'});
+    }
 }

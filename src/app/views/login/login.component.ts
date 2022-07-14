@@ -59,7 +59,9 @@ export class LoginComponent implements OnInit {
   }
 
   public nextStep(): void {
-    this.settingsService.getSettingsBySociete(24).subscribe(
+    this.settingsService
+    .getSettingsByLogin(this.loginForm.get(['username'])!.value)
+    .subscribe(
       (response: HttpResponse<ThemeSettings>) => {
         const themeSettings: ThemeSettings = response.body;
         if(themeSettings){
