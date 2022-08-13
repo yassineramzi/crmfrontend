@@ -1,7 +1,10 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import Medecin from '../../../models/medecin.model';
+import { Planification } from '../../../models/planification.model';
+import PlanificationService from '../../../services/planification.service';
 
 @Component({
   selector: 'app-planification-modal',
@@ -20,7 +23,8 @@ export class PlanificationModalComponent implements OnInit {
 
   constructor(
     protected activeModal: NgbActiveModal,
-    protected formBuilder: FormBuilder
+    protected formBuilder: FormBuilder,
+    protected planificationService: PlanificationService
     ) { }
 
   ngOnInit(): void {
@@ -47,6 +51,26 @@ export class PlanificationModalComponent implements OnInit {
 
   public onClose(): void {
     this.activeModal.close();
+  }
+
+  public save(): void {
+    const planification : Planification = new Planification();
+    var date1 = new Date();
+    var dateToMilliseconds = date1.getTime();
+    var addedMinutes = dateToMilliseconds + (300000*5);
+    //This will add 5 minutes to our time.
+    var newDate = new Date(addedMinutes);
+    planification.dateDebut = new Date();
+    planification.dateFin = newDate;
+    planification.medecin = 1;
+    planification.proprietaire = 1;
+    const planifications : Planification[] = new Array();
+    planifications.push(planification);
+    this.planificationService.planifierEnMasse(planifications).subscribe(
+      (response : HttpResponse<Planification[]>) => {
+        this.onClose();
+      }
+    );
   }
 
   private getTime(): string {
