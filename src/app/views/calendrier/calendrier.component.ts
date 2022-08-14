@@ -3,6 +3,7 @@ import { CalendarEvent } from 'angular-calendar';
 import { setHours, setMinutes } from 'date-fns';
 import * as moment from 'moment';
 import { Planification } from '../../models/planification.model';
+import { TokenStorageService } from '../../services/auth/token-storage.service';
 import PlanificationService from '../../services/planification.service';
 
 const colors: any = {
@@ -35,15 +36,16 @@ export class CalendrierComponent implements OnInit{
   public events: CalendarEvent[] = [];
 
   constructor(
-    private planificationService: PlanificationService
+    private planificationService: PlanificationService,
+    private tokenStorageService: TokenStorageService
   ){
   }
 
   ngOnInit() {
-    this.setViewMode();
-    this.planificationService.getPlanificationsByUser().subscribe(
+    this.planificationService
+    .getPlanificationsByUser(this.tokenStorageService.getUser().id)
+    .subscribe(
       response => {
-        console.log(response.body);
         this.setEventFromPlanifications(response.body);
       }
     );
@@ -56,9 +58,9 @@ export class CalendrierComponent implements OnInit{
 
   private setViewMode(): void {
     const screenWidth = window.screen.width;
-    if (screenWidth >= 320 && screenWidth <= 480) { // 768px portrait
+    // if (screenWidth >= 320 && screenWidth <= 480) { // 768px portrait
       this.isMobileView = true;
-    }
+    // }
   }
 
   private setEventFromPlanifications(planifications: Planification[]): void {

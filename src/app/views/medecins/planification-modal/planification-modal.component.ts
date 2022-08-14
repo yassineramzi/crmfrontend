@@ -4,6 +4,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from 
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import Medecin from '../../../models/medecin.model';
 import { Planification } from '../../../models/planification.model';
+import { TokenStorageService } from '../../../services/auth/token-storage.service';
 import PlanificationService from '../../../services/planification.service';
 
 @Component({
@@ -17,6 +18,10 @@ export class PlanificationModalComponent implements OnInit {
 
   public planificationsForm : FormArray = this.formBuilder.array([]);
 
+  public planificationFormDate : FormGroup = this.formBuilder.group({
+    date : new FormControl(null)
+  });
+
   public hour: number = 9;
 
   public minutes: number = 0;
@@ -24,23 +29,30 @@ export class PlanificationModalComponent implements OnInit {
   constructor(
     protected activeModal: NgbActiveModal,
     protected formBuilder: FormBuilder,
-    protected planificationService: PlanificationService
+    protected planificationService: PlanificationService,
+    protected tokenStorageService: TokenStorageService
     ) { }
 
   ngOnInit(): void {
+    const proprietaire: number = this.tokenStorageService.getUser().id;
     for(let i=0; i <this.medecinsSelectiones.length; i++) {
       const medecin: Medecin = this.medecinsSelectiones[i];
       const formGroupPlanification: FormGroup = this.formBuilder.group({
         id : medecin.id,
-        time : new FormControl(null)
+        time : new FormControl(null),
+        proprietaire : new FormControl(null)
       });
       formGroupPlanification.patchValue({
         time : this.getTime()
+      });
+      formGroupPlanification.patchValue({
+        proprietaire : proprietaire
       });
       this.planificationsForm.push(
         formGroupPlanification
       );
     }
+    console.log(this.planificationsForm);
   }
 
   public deleteMedecinFromSelection(medecinSelectionne: Medecin): void {
@@ -54,18 +66,14 @@ export class PlanificationModalComponent implements OnInit {
   }
 
   public save(): void {
-    const planification : Planification = new Planification();
-    var date1 = new Date();
-    var dateToMilliseconds = date1.getTime();
-    var addedMinutes = dateToMilliseconds + (300000*5);
-    //This will add 5 minutes to our time.
-    var newDate = new Date(addedMinutes);
-    planification.dateDebut = new Date();
-    planification.dateFin = newDate;
-    planification.medecin = 1;
-    planification.proprietaire = 1;
     const planifications : Planification[] = new Array();
-    planifications.push(planification);
+    this.planificationsForm.controls.forEach(
+      (planificationControl: FormControl) => {
+        planifications.push(
+          new Planification(planificationControl, new Date(this.planificationFormDate.get("date").value))
+        );
+      }
+    );
     this.planificationService.planifierEnMasse(planifications).subscribe(
       (response : HttpResponse<Planification[]>) => {
         this.onClose();

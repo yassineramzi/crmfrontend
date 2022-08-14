@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { JwtResponse } from '@models/jwtResponse.model';
+import { JwtResponse } from '../../models/jwtResponse.model';
 import { ThemeSettings } from '../../models/themeSettings.model';
 
 const TOKEN_KEY = 'auth-token';

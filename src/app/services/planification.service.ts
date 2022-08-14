@@ -18,7 +18,7 @@ export default class PlanificationService {
         return this.http.post<Planification[]>(this.resourceUrl + '/en-masse', planifications, {observe: 'response'});
     }
 
-    public getPlanificationsByUser(): Observable<EntityArrayResponseType> {
-        return this.http.get<Planification[]>(this.resourceUrl + '/all',  {observe: 'response'});
+    public getPlanificationsByUser(userId: number): Observable<EntityArrayResponseType> {
+        return this.http.get<Planification[]>(`${this.resourceUrl}/${userId}` + '/utilisateur',  {observe: 'response'});
     }
 }
