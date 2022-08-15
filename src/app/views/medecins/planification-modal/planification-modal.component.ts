@@ -35,24 +35,20 @@ export class PlanificationModalComponent implements OnInit {
 
   ngOnInit(): void {
     const proprietaire: number = this.tokenStorageService.getUser().id;
-    for(let i=0; i <this.medecinsSelectiones.length; i++) {
+    for(let i=0; i<this.medecinsSelectiones.length; i++) {
       const medecin: Medecin = this.medecinsSelectiones[i];
       const formGroupPlanification: FormGroup = this.formBuilder.group({
         id : medecin.id,
         time : new FormControl(null),
-        proprietaire : new FormControl(null)
+        proprietaire : proprietaire
       });
       formGroupPlanification.patchValue({
         time : this.getTime()
-      });
-      formGroupPlanification.patchValue({
-        proprietaire : proprietaire
       });
       this.planificationsForm.push(
         formGroupPlanification
       );
     }
-    console.log(this.planificationsForm);
   }
 
   public deleteMedecinFromSelection(medecinSelectionne: Medecin): void {

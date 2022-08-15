@@ -1,7 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit, HostListener } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
-import { setHours, setMinutes } from 'date-fns';
-import * as moment from 'moment';
 import { Planification } from '../../models/planification.model';
 import { TokenStorageService } from '../../services/auth/token-storage.service';
 import PlanificationService from '../../services/planification.service';
@@ -20,10 +18,10 @@ const colors: any = {
     secondary: '#FDF1BA',
   },
 };
-
+// https://stackoverflow.com/questions/62769300/angular-calendar-from-mattlewis92-angular-calendar-does-not-initiate-my-data-on
 @Component({
   selector: 'app-calendrier',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls : ['./calendrier.component.scss'],
   templateUrl: './calendrier.component.html',
 })
@@ -47,6 +45,7 @@ export class CalendrierComponent implements OnInit{
     .subscribe(
       response => {
         this.setEventFromPlanifications(response.body);
+        this.viewDate = new Date();
       }
     );
   }
@@ -58,9 +57,9 @@ export class CalendrierComponent implements OnInit{
 
   private setViewMode(): void {
     const screenWidth = window.screen.width;
-    // if (screenWidth >= 320 && screenWidth <= 480) { // 768px portrait
+    if (screenWidth >= 320 && screenWidth <= 480) { // 768px portrait
       this.isMobileView = true;
-    // }
+    }
   }
 
   private setEventFromPlanifications(planifications: Planification[]): void {
