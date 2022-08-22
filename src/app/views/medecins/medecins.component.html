@@ -165,7 +165,7 @@
                                             <input class="form-check-input" type="checkbox" (click)="selectionner(medecin.id)"/>
                                         </div>
                                     </td>
-                                    <td><span class="client-name">Dr.{{medecin.nom}} {{medecin.prenom}}</span></td>
+                                    <td><span class="client-name"><a [routerLink]="['/fiche-medecin', medecin.id]">Dr.{{medecin.nom}} {{medecin.prenom}}</a></span></td>
                                     <td>{{medecin.specialite.nom}}</td>
                                     <td></td>
                                     <td>{{medecin.secteur.nom}} {{medecin.secteur.ville.nom}}</td>
@@ -202,7 +202,7 @@
                                                     <input class="form-check-input" type="checkbox" (click)="selectionner(medecin.id)"/>
                                                 </div>
                                                 <div class="col-10 pl-0">
-                                                    <span class="client-name">Dr.{{medecin.nom}} {{medecin.prenom}}</span>
+                                                    <span class="client-name"><a [routerLink]="['/fiche-medecin', medecin.id]">Dr.{{medecin.nom}} {{medecin.prenom}}</a></span>
                                                 </div>
                                             </div>
                                         </h5>

@@ -1,5 +1,5 @@
 import { FormControl } from "@angular/forms";
-
+// https://stackoverflow.com/questions/55574382/spring-cloud-gateway-for-composite-api-calls
 export class Planification {
     public id : number;
 

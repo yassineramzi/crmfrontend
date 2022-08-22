@@ -7,6 +7,7 @@ import Medecin from '../../models/medecin.model';
 import MedecinService from '../../services/medecin.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlanificationModalComponent } from './planification-modal/planification-modal.component';
+import PotentielService from '../../services/potentiel.service';
 
 type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 
@@ -28,9 +29,10 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
   constructor(
     protected formBuilder: FormBuilder,
     protected modalService: NgbModal,
+    protected potentielService: PotentielService,
     private medecinService: MedecinService
   ) {
-    super(formBuilder, modalService);
+    super(formBuilder, modalService, potentielService);
   }
 
   public rechercherMedecins(): void {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Pharmacie from '../../models/pharmacie.model';
+import PotentielService from '../../services/potentiel.service';
 import RechercheAbsractComponent from '../commun/rechercheAbsract.component';
 
 @Component({
@@ -13,8 +14,9 @@ export class PharmaciesComponent extends RechercheAbsractComponent<Pharmacie>{
   constructor(
     protected formBuilder: FormBuilder,
     protected modalService: NgbModal,
+    protected potentielService: PotentielService
   ) {
-    super(formBuilder, modalService);
+    super(formBuilder, modalService, potentielService);
   }
 
   public selectionner(id: number): void {

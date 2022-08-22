@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import PotentielService from '../../services/potentiel.service';
 
 @Component({
   template: ''
@@ -26,7 +27,8 @@ export default abstract class RechercheAbsractComponent<T> {
 
     constructor(
       protected formBuilder: FormBuilder,
-      protected modalService: NgbModal
+      protected modalService: NgbModal,
+      protected potentielService: PotentielService
       ) { }
 
     protected initData(): void {
@@ -52,21 +54,8 @@ export default abstract class RechercheAbsractComponent<T> {
       this.affichageModeListe = !this.affichageModeListe;
     }
 
-    public getClassPotentiel(potentiel: string){
-      switch(potentiel) {
-        case 'A+':
-          return 'potentiel-A-plus';
-        case 'A':
-          return 'potentiel-A';
-        case 'B+':
-          return 'potentiel-B-plus';
-        case 'B':
-          return 'potentiel-B';
-        case 'C+':
-          return 'potentiel-C-plus';
-        case 'C':
-          return 'potentiel-C';
-      }
+    public getClassPotentiel(potentiel: string): string {
+      return this.potentielService.getClassPotentiel(potentiel);
     }
 
     public abstract openPlanificationModal(): void;

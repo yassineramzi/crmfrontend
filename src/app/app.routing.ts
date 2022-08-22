@@ -61,6 +61,10 @@ export const routes: Routes = [
       {
         path: 'agenda',
         loadChildren: () => import('./views/calendrier/calendrier.module').then(m => m.CalendrierModule)
+      },
+      {
+        path: 'fiche-medecin',
+        loadChildren: () => import('./views/fiche-medecin/fiche-medecin.module').then(m => m.FicheMedecinModule)
       }
     ]
   },
