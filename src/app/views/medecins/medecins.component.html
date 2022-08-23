@@ -188,12 +188,14 @@
                             <div class="row mb-2" *ngIf="!affichageModeListe && dataArrayPage.length === 0">
                                 <span class="col-md-12 d-flex justify-content-center">Aucun médecin trouvé</span>
                             </div>
-                            <div class="row card-margin" *ngIf="!affichageModeListe" 
-                                                infinite-scroll
-                                                [infiniteScrollDistance]="scrollDistance"
-                                                [infiniteScrollUpDistance]="scrollUpDistance"
-                                                [infiniteScrollThrottle]="throttle"
-                                                (scrolled)="addItems()">
+                            <div 
+                                class="row card-margin" 
+                                *ngIf="!affichageModeListe" 
+                                infinite-scroll
+                                [infiniteScrollDistance]="scrollDistance"
+                                [infiniteScrollUpDistance]="scrollUpDistance"
+                                [infiniteScrollThrottle]="throttle"
+                                 (scrolled)="addItems()">
                                 <div *ngFor="let medecin of dataArrayPage" class="card m-3 border-radius-card" style="width: 18rem;">
                                     <div class="card-body border-radius-card" [ngClass]="isSelectionne(medecin.id)  ? 'selected-item' : 'not-selected-item'">
                                         <h5 class="card-title">
@@ -232,7 +234,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                         </div>
                                     </div>
                                 </div>

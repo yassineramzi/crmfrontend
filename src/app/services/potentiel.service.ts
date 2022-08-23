@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 
 @Injectable({providedIn: 'root'})
 export default class PotentielService {
-    public getClassPotentiel(potentiel: string): string{
+
+    public getClassPotentiel(potentiel: string): string {
         switch(potentiel) {
           case 'A+':
             return 'potentiel-A-plus';
@@ -18,4 +19,5 @@ export default class PotentielService {
             return 'potentiel-C';
         }
     }
+    
 }

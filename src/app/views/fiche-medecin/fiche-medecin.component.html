@@ -1,8 +1,15 @@
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 col-12">
         <div class="row mr-2">
             <div class="col-md-12 card border-radius-card">
                 <div class="card-body">
+                    <div class="initials-circle">AA</div>
+                    <div [ngClass]="(getClassPotentiel('C')+'-card')">
+                        <div class="potentiel-content-card potentiel-color d-flex justify-content-center">
+                            <i class="fa fa-bullseye mt-1 mr-1"></i>
+                            <span class="potentiel-text mr-1">C</span>
+                        </div>
+                    </div>
                     <h5 class="card-title">
                         <div class="row input-group">
                             <div class="col-10 col-md-12">
@@ -12,7 +19,7 @@
                     </h5>
                     <div class="card-text">
                         <div class="row">
-                            <div class="col-8 col-md-8 pr-0 pt-1">
+                            <div class="col-8 col-md-12 pr-0 pt-1">
                                 <div class="input-group">
                                     <span><i class="icon-color fa fa-stethoscope mr-1"></i>Gynaecology</span>
                                 </div>
@@ -23,16 +30,9 @@
                                     <span><i class="icon-color fa fa-pie-chart mr-1"></i>Hassan Rabat</span>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-3 d-flex justify-content-center">
-                                <div [ngClass]="(getClassPotentiel('A+')+'-card')">
-                                    <div class="potentiel-content-card potentiel-color d-flex justify-content-center">
-                                        <i class="fa fa-bullseye mt-1 mr-1"></i>
-                                        <span class="potentiel-text mr-1">A+</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
+                    <div class="plus-circle">+</div>
                 </div>
             </div>
         </div>
@@ -71,8 +71,8 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9">
-        <div class="row">
+    <div class="col-md-9 col-12">
+        <div class="row mr-2">
             <div class="col-md-12 card border-radius-card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -93,7 +93,7 @@
                             </tr>
                           </tbody>
                         </table>
-                        <div class="d-flex justify-content-between p-2">
+                        <div class="d-flex justify-content-between p-2" [formGroup]="ficheMedecinForm">
                           <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="ficheMedecinForm.get(['pageSize']).value">
                           </ngb-pagination>
                           <select class="custom-select" style="width: auto" formControlName="pageSize">

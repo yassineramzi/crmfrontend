@@ -1,0 +1,104 @@
+.initials-circle {
+    width: 39.6px;
+    height: 39.6px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 21.6px;
+    border: 2px solid var(--selectedElementColor);
+    color:white;
+    background: var(--selectedElementColor);
+    position: absolute;
+    top: -17px;
+    left: 10%;
+    transform: translateX(-50%);
+}
+
+.plus-circle {
+    width: 39.6px;
+    height: 39.6px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 21.6px;
+    border: 2px solid var(--selectedElementColor);
+    color:white;
+    background: var(--selectedElementColor);
+    position: absolute;
+    top: 8rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+        
+.card-body {
+  position: relative;
+  padding-top: 30px;
+}
+
+.potentiel-content-card {
+    padding-top: 0.25rem;
+}
+
+.potentiel-A-plus-card {
+    height: 2rem;
+    width: 7rem;
+    background-color:#1AF330;
+    border-radius: 1rem;
+    position: absolute;
+    top: -17px;
+    left: 70%;
+    transform: translateX(-50%);
+}
+
+.potentiel-A-card {
+    height: 2rem;
+    width: 7rem;
+    background-color:#1af37f;
+    border-radius: 1rem;
+    position: absolute;
+    top: -17px;
+    left: 70%;
+    transform: translateX(-50%);
+}
+
+.potentiel-B-plus-card {
+    height: 2rem;
+    width: 7rem;
+    background-color:#F3951A;
+    border-radius: 1rem;
+    position: absolute;
+    top: -17px;
+    left: 70%;
+    transform: translateX(-50%);
+}
+
+.potentiel-B-card {
+    height: 2rem;
+    width: 7rem;
+    background-color:#F3D61A;
+    border-radius: 1rem;
+    position: absolute;
+    top: -17px;
+    left: 70%;
+    transform: translateX(-50%);
+}
+
+.potentiel-C-plus-card {
+    height: 2rem;
+    width: 7rem;
+    background-color:#cf675b;
+    border-radius: 1rem;
+    position: absolute;
+    top: -17px;
+    left: 70%;
+    transform: translateX(-50%);
+}
+
+.potentiel-C-card {
+    height: 2rem;
+    width: 7rem;
+    background-color: #F3291A;
+    border-radius: 1rem;
+    position: absolute;
+    top: -17px;
+    left: 70%;
+    transform: translateX(-50%);
+}
