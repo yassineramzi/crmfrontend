@@ -17,6 +17,11 @@ export default class MedecinService {
     }
     
     public search(critereRechercheMedecin: CritereRechercheMedecin): Observable<EntityArrayResponseType> {
-        return this.http.post<any[]>(this.resourceUrl + '/search', critereRechercheMedecin, {observe: 'response'});
+        return this.http.post<Medecin[]>(this.resourceUrl + '/search', critereRechercheMedecin, {observe: 'response'});
     }
+
+    public findById(id: number): Observable<EntityResponseType> {
+        return this.http.get<Medecin>(`${this.resourceUrl}/${id}`, {observe: 'response'});
+    }
+
 }

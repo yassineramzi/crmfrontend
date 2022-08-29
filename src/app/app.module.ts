@@ -46,6 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -69,7 +70,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     CommonModule,
     FormsModule,
     InfiniteScrollModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
   ],
   declarations: [
     AppComponent,

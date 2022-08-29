@@ -4,8 +4,7 @@ import { FicheMedecinComponent } from './fiche-medecin.component';
 import { FicheMedecinRoutingModule } from './fiche-medecin-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -17,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FicheMedecinRoutingModule,
     NgbModule,
+    TabsModule
   ]
 })
 export class FicheMedecinModule { }

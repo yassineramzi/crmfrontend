@@ -51,7 +51,8 @@
     "ts-helpers": "^1.1.2",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.3",
+    "ngx-toastr": "^13.2.1"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^11.1.1",

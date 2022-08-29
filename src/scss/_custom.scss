@@ -319,3 +319,23 @@
 .table thead th {
     background-color: #f3f6f9;
 }
+/**
+    Tabs
+*/
+.tab-content {
+    margin-top: -8px;
+    background: #fff;
+    border-top: 1px solid #c8ced3;
+    border-bottom: 0px solid;
+    border-left: 0px solid;
+    border-right: 0px solid;
+}
+
+.tabs-underline {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.tab-heading {
+    color : var(--themeColor);
+}
