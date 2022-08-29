@@ -12,7 +12,7 @@ const routes: Routes = [
       title: 'Pharmacies',
       roles: ['ROLE_ADMIN']
     },
-    canActivate: [AuthGuard]
+    
   }
 ];
 

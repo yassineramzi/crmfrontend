@@ -1,0 +1,94 @@
+<form [formGroup]="formMedecin" (ngSubmit)="onSubmit()">
+
+
+
+  <div class="form-row">
+    
+<div class="form-group col-md-6">
+
+
+  <label>
+    Nom et prénom
+    <input type="text" formControlName="Nom">
+  </label>
+</div>
+
+
+<div class="form-group col-md-6">
+
+
+  <label>Spécialité</label>
+  <select class="form-control" formControlName="specialite">
+      <option value="General Medicine">General Medicine</option>
+      <option value="Pharmacy">Pharmacy</option>
+      <option value="Gynaecology">Gynaecology</option>
+      <option value="Otorhinolaryngology">Otorhinolaryngology</option>
+      <option value="Rheumatology">Rheumatology</option>
+      <option value="Psychiatry">Psychiatry</option>
+      <option value="Radiology">Radiology</option>
+      <option value="Ophthalmology">Ophthalmology</option>
+      <option value="Cardiology">Cardiology</option>
+      <option value="Neurology">Neurology</option>
+      <option value="Dermatology">Dermatology</option>
+      <option value="Nephrology">Nephrology</option>
+      <option value="Oncology">Oncology</option>
+      <option value="Hospital Pharmacy">Hospital Pharmacy</option>
+      <option value="Physical Medicine & Rehabilitation">Physical Medicine & Rehabilitation</option>
+      <option value="Sage-Femme">Sage-Femme</option>
+      <option value="Dental Surgery">Dental Surgery</option>
+  </select>
+</div>
+
+
+<div class="form-group col-md-6">
+  <label>Etablissement</label>
+  <select class="form-control">
+  </select>
+
+</div>
+
+<div class="form-group col-md-6">
+  <label>Secteur IMS</label>
+  <select class="form-control" formControlName="secteur">
+      <option value="Agdal/Riad">Agdal/Riad</option>
+      <option value="Hassan">Hassan</option>
+      <option value="El-Youssoufia">El-Youssoufia</option>
+      <option value="Yacoub El Mansour">Yacoub El Mansour</option>
+      <option value="Souissi">Souissi</option>
+  </select>
+</div>
+
+  
+
+<div class="form-group col-md-6">
+  <label>Semaine </label>
+  <select class="form-control">
+  </select>
+
+</div>
+
+
+
+
+<div class="form-group col-md-6">
+  <label>Potentiel</label>
+  <select class="form-control" formControlName="potentiel">
+      <option value="A+">A+</option>
+      <option value="A">A</option>
+      <option value="B+">B+</option>
+      <option value="B">B</option>
+      <option value="C+">C+</option>
+      <option value="C">C</option>
+  </select>
+
+</div>
+
+<button type="submit" routerLink="/medecins"  >enregistrer</button>
+
+<button routerLink="/medecins"  >close</button>
+<button type="button" class="btn btn-primary">Primary</button>
+
+
+
+</div>
+</form>

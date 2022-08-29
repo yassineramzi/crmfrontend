@@ -1,6 +1,8 @@
+import { JwtResponse } from './../../models/jwtResponse.model';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router } from '@angular/router';
-import { JwtResponse } from '@models/jwtResponse.model';
+
+
 import { TokenStorageService } from './token-storage.service';
 
 @Injectable({

@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { AddmedecinComponent } from './views/addmedecin/addmedecin.component';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Import Containers
@@ -7,8 +8,17 @@ import { DefaultLayoutComponent } from './containers';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
+import { UpdatemedecinComponent } from './views/updatemedecin/updatemedecin.component';
 
 export const routes: Routes = [
+  
+  {path: "add",component:AddmedecinComponent},
+  
+  
+  {path: "update",component:UpdatemedecinComponent},
+  
+  
+  
   {
     path: '',
     redirectTo: 'login',
@@ -42,10 +52,10 @@ export const routes: Routes = [
       title: 'Accueil'
     },
     children: [
-      {
-        path: 'dashboard',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
+
+    
+
+
       {
         path: 'medecins',
         loadChildren: () => import('./views/medecins/medecins.module').then(m => m.MedecinsModule)

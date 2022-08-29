@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 import CritereRechercheMedecin from '../../models/critereRechercheMedecin.model';
@@ -14,7 +14,98 @@ type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
   selector: 'app-medecins',
   templateUrl: './medecins.component.html'
 })
-export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
+export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implements OnInit{ 
+
+
+
+  dataArrayPage: any=[
+    {
+      id: 1,
+      nom: 'Benomar Alami',
+     prenom: 'Noureddine',
+
+     mobile: '324324',
+
+     adresse: 'agdal',
+
+     potentiel: 'A',
+    
+     secteur:  {
+      id: 1,
+      nom: 'public',
+      ville: {
+        id: 1,
+        nom: 'rabat'
+      }
+     },
+
+     specialite: {
+      id: 1,
+      nom: 'General Medicine'
+     },
+    },
+
+    
+    {
+      id: 2,
+      nom: 'El Alami',
+     prenom: 'Amal ',
+
+     mobile: '324324',
+
+     adresse: 'Souissi',
+
+     potentiel: 'B',
+    
+     secteur:  {
+      id: 2,
+      nom: 'public',
+      ville: {
+        id: 2,
+        nom: 'rabat'
+      }
+     },
+
+     specialite: {
+      id: 2,
+      nom: 'Gynaecology'
+     },
+    },
+
+
+    {
+      id: 3,
+      nom: 'Benchekroun',
+     prenom: 'Siham ',
+
+     mobile: '324324',
+
+     adresse: 'NOUR',
+
+     potentiel: 'C',
+    
+     secteur:  {
+      id: 3,
+      nom: 'privé',
+      ville: {
+        id: 3,
+        nom: 'rabat'
+      }
+     },
+
+     specialite: {
+      id: 3,
+      nom: 'Cardiology'
+     },
+    }
+
+
+  ]
+
+
+
+
+
 
   public rechercheMedecinForm: FormGroup = this.formBuilder.group(
     {
@@ -25,13 +116,38 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
     }
   );
 
+
+
   constructor(
     protected formBuilder: FormBuilder,
     protected modalService: NgbModal,
     private medecinService: MedecinService
+
   ) {
     super(formBuilder, modalService);
+
+
+
+
+     
   }
+
+
+
+
+  ngOnInit(): void {
+    this.medecinService.getMedecins().subscribe((result)=>{
+      
+      this.dataArrayPage=result;
+      
+    })
+      
+      }
+
+
+
+
+
 
   public rechercherMedecins(): void {
     this.initData();
@@ -88,4 +204,27 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
     const modalRef = this.modalService.open(PlanificationModalComponent, {size: 'md'});
     modalRef.componentInstance.medecinsSelectiones = this.entiteSelectionnes;
   }
+
+
+
+  
+
+
+
+
+
+
+  delete(id:any,i:any){
+    
+    this.medecinService.deleteMedecin(id).subscribe(res => {
+      this.dataArrayPage.splice(i,1)
+    })
+  }
+
+
+
+
+
+
+  
 }

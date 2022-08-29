@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
@@ -26,6 +27,7 @@ const APP_CONTAINERS = [
 ];
 
 import {
+  
   AppAsideModule,
   AppBreadcrumbModule,
   AppHeaderModule,
@@ -46,6 +48,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AddmedecinComponent } from './views/addmedecin/addmedecin.component';
+import { UpdatemedecinComponent } from './views/updatemedecin/updatemedecin.component';
 
 @NgModule({
   imports: [
@@ -76,7 +80,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ...APP_CONTAINERS,
     P404Component,
     P500Component,
-    LoginComponent
+    LoginComponent,
+    AddmedecinComponent,
+    UpdatemedecinComponent,
   ],
   providers: [
     {
