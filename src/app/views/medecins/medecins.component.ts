@@ -1,3 +1,6 @@
+
+
+import { AddmedecinComponent } from './../addmedecin/addmedecin.component';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
@@ -7,6 +10,8 @@ import Medecin from '../../models/medecin.model';
 import MedecinService from '../../services/medecin.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlanificationModalComponent } from './planification-modal/planification-modal.component';
+
+
 
 type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 
@@ -103,6 +108,9 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
   ]
 
 
+  
+  
+
 
 
 
@@ -121,7 +129,8 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
   constructor(
     protected formBuilder: FormBuilder,
     protected modalService: NgbModal,
-    private medecinService: MedecinService
+    private medecinService: MedecinService,
+   
 
   ) {
     super(formBuilder, modalService);

@@ -38,9 +38,13 @@ export class UpdatemedecinComponent implements OnInit {
        });
   
        this.updateForm= this.formBuilder.group({
-        name : [''],
-        price: [''],
-        description: ['']
+        Nom: (''),
+        specialite: (''),
+        Etablissement: (''),
+        secteur: (''),
+        Semaine : (''),
+        potentiel:(''),
+
       });
     }
     ngOnInit(): void {

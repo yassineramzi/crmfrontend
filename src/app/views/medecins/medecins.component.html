@@ -116,7 +116,6 @@
 
 
 
-
 <button type="button" class="btn btn-primary" routerLink="/add">Nouveau medecin</button>
 
 
@@ -219,10 +218,10 @@
 
                                     <td>
 
-                                        <button type="button" class="btn btn-primary"  routerLink="/update/{{medecin.id}}">edit</button>
+                                        <button type="button" class="btn btn-primary" class="fa fa-edit" routerLink="/update/id{{medecin.id}}"></button>
+                                       
                                         
-                                        
-                                        <button type="button" class="btn btn-primary" (click)="delete(medecin.id,i)" >delete </button>
+                                        <button type="button"  class="btn btn-primary"  class="fa fa-trash" (click)="delete(medecin.id,i)" > </button>
                                     </td>
     
 

@@ -20,10 +20,7 @@ export class AddmedecinComponent implements OnInit {
     ) 
     
     
-    { 
-      
-      
-      
+    {
       this.formMedecin = formBuilder.group({
         Nom: new FormControl(''),
         specialite: new FormControl(''),
@@ -38,29 +35,24 @@ export class AddmedecinComponent implements OnInit {
      }
 
 
-
-
-
-
-
   ngOnInit(): void {
   }
 
 
- //onSubmit():any{
-   // console.log('HI')
-    //this.medecinService.addMedecin(this.formMedecin.value)
-    //.subscribe(()=>{
-   //  console.log('Data added ');
+ onSubmit():any{
+    console.log('HI')
+    this.medecinService.addMedecin(this.formMedecin.value)
+    .subscribe(()=>{
+   console.log('Data added ');
 
-     //this.ngZone.run(()=>this.router.navigateByUrl('/'))
+     this.ngZone.run(()=>this.router.navigateByUrl('/'))
      
-    //}
-    //,(err)=>{
-   //  console.log(err);
+    }
+    ,(err)=>{
+     console.log(err);
      
-  //  });
- //}
+   });
+ }
 
 
 

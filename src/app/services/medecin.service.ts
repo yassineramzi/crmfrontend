@@ -41,13 +41,13 @@ export default class MedecinService {
 
 
   
-  //addMedecin(data: Medecin): Observable<any> {
-    //console.log('----------------- ADD ----------------- ')
-   // console.log(data)
-   // let Api_Url = `${this.resourceUrl}`;
+  addMedecin(data: Medecin): Observable<any> {
+    console.log('----------------- ADD ----------------- ')
+   console.log(data)
+    let Api_Url = `${this.resourceUrl}`;
 
-  //  return this.http.post(Api_Url, data).pipe(catchError(this.handleError));
- // }
+    return this.http.post(Api_Url, data).pipe(catchError(this.handleError));
+ }
 
   getMedecins() {
     return this.http.get(this.resourceUrl);
