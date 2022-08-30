@@ -3,17 +3,17 @@
         <div class="row mr-2">
             <div class="col-md-12 card border-radius-card">
                 <div class="card-body">
-                    <div class="initials-circle">AA</div>
-                    <div [ngClass]="(getClassPotentiel('C')+'-card')">
+                    <div class="initials-circle">{{medecinInitials}}</div>
+                    <div [ngClass]="(getClassPotentiel(medecin.potentiel)+'-card')">
                         <div class="potentiel-content-card potentiel-color d-flex justify-content-center">
                             <i class="fa fa-bullseye mt-1 mr-1"></i>
-                            <span class="potentiel-text mr-1">C</span>
+                            <span class="potentiel-text mr-1">{{medecin.potentiel}}</span>
                         </div>
                     </div>
                     <h5 class="card-title">
                         <div class="row input-group">
                             <div class="col-10 col-md-12">
-                                <span class="client-name">Dr. Adel Alvani</span>
+                                <span class="client-name">Dr. {{medecin.nom}} {{medecin.prenom}}</span>
                             </div>
                         </div>
                     </h5>
@@ -21,18 +21,36 @@
                         <div class="row">
                             <div class="col-8 col-md-12 pr-0 pt-1">
                                 <div class="input-group">
-                                    <span><i class="icon-color fa fa-stethoscope mr-1"></i>Gynaecology</span>
+                                    <span><i class="icon-color fa fa-stethoscope mr-1"></i>{{medecin.specialite.nom}}</span>
                                 </div>
                                 <div class="input-group">
-                                    <span><i class="icon-color fa fa-hospital-o mr-1"></i>Polyclinique Rabat</span>
+                                    <span><i class="icon-color fa fa-hospital-o mr-1"></i></span>
                                 </div>
                                 <div class="input-group">
-                                    <span><i class="icon-color fa fa-pie-chart mr-1"></i>Hassan Rabat</span>
+                                    <span><i class="icon-color fa fa-pie-chart mr-1"></i>{{medecin.secteur.nom}} {{medecin.secteur.ville.nom}}</span>
+                                </div>
+                                <hr class="m-1" *ngIf="isInfoOpened"/>
+                                <div class="row mt-1" *ngIf="isInfoOpened">
+                                    <label class="row col-md-12 ml-1 info-text">Adresse email</label>
+                                    <span class="row col-md-12 ml-1 info-text">test@gmail.com</span>
+                                </div>
+                                <hr class="m-1" *ngIf="isInfoOpened"/>
+                                <div class="row mt-1" *ngIf="isInfoOpened">
+                                    <label class="row col-md-12 ml-1 info-text">Téléphone fixe</label>
+                                    <span class="row col-md-12 ml-1 info-text">+2126-62-77-77-77</span>
+                                </div>
+                                <hr class="m-1" *ngIf="isInfoOpened"/>
+                                <div class="row mt-1" *ngIf="isInfoOpened">
+                                    <label class="row col-md-12 ml-1 info-text">Téléphone mobile</label>
+                                    <span class="row col-md-12 ml-1 info-text">+2125-37-77-77-77</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="plus-circle">+</div>
+                    <div class="plus-circle" (click)="openCloseInfo()">
+                        <div *ngIf="isInfoOpened">-</div>
+                        <div *ngIf="!isInfoOpened">+</div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -23,9 +23,17 @@
     color:white;
     background: var(--selectedElementColor);
     position: absolute;
-    top: 8rem;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.info-text {
+    color: var(--unnamed-color-1d2137);
+    text-align: left;
+    font: normal normal normal 15px Poppins;
+    letter-spacing: 0px;
+    color: #1D2137;
+    opacity: 1;
 }
         
 .card-body {

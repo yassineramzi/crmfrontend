@@ -4,7 +4,6 @@ import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 import { Planification } from "../models/planification.model";
 
-type EntityResponseType = HttpResponse<Planification>;
 type EntityArrayResponseType = HttpResponse<Planification[]>;
 
 @Injectable({providedIn: 'root'})
@@ -21,4 +20,9 @@ export default class PlanificationService {
     public getPlanificationsByUser(userId: number): Observable<EntityArrayResponseType> {
         return this.http.get<Planification[]>(`${this.resourceUrl}/${userId}` + '/utilisateur',  {observe: 'response'});
     }
+
+    public getPlanificationsByUserAndMedecin(userId: number, medecinId: number): Observable<EntityArrayResponseType> {
+        return this.http.get<Planification[]>(`${this.resourceUrl}/${userId}` + '/utilisateur/' + `${medecinId}` + '/medecin',  {observe: 'response'});
+    }
+
 }

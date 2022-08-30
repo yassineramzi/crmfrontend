@@ -36,6 +36,10 @@ export class FicheMedecinComponent implements OnInit {
 
   public nomDelegue: string = '';
 
+  public medecinInitials: string;
+
+  public isInfoOpened: boolean = false;
+
   constructor(
     protected potentielService: PotentielService,
     protected formBuilder: FormBuilder,
@@ -55,7 +59,7 @@ export class FicheMedecinComponent implements OnInit {
           forkJoin(
             [
               this.medecinService.findById(params ['id']),
-              this.planificationService.getPlanificationsByUser(this.tokenStorageService.getUser().id)
+              this.planificationService.getPlanificationsByUserAndMedecin(this.tokenStorageService.getUser().id, params ['id'])
             ]
           ).subscribe(
             results => {
@@ -63,6 +67,7 @@ export class FicheMedecinComponent implements OnInit {
                 this.router.navigate(['/404']);
               }
               this.medecin = results[0].body;
+              this.medecinInitials = this.medecin.nom.charAt(0).toUpperCase() + this.medecin.prenom.charAt(0).toUpperCase();
               this.visitesArray = results[1].body;
               this.refreshVisites();
             }
@@ -87,6 +92,10 @@ export class FicheMedecinComponent implements OnInit {
     this.visitesArrayPage = this.visitesArray
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
     this.collectionSize = this.visitesArray.length;
+  }
+
+  public openCloseInfo(): void {
+    this.isInfoOpened = !this.isInfoOpened;
   }
 
   public get pageSizeFormControl(): FormControl {
