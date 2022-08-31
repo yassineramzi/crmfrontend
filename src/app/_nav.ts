@@ -19,31 +19,6 @@ export const navItems: INavData[] = [
       text: 'Nouveau'
     }
   },
-  {
-    name: 'Pharmacies',
-    url: '/pharmacies',
-    icon: 'icon-heart',
-    badge: {
-      variant: 'info',
-      text: 'Nouveau'
-    }
-  },
-  {
-    name: 'Agenda',
-    url: '/agenda',
-    icon: 'icon-calendar',
-    badge: {
-      variant: 'info',
-      text: 'Nouveau'
-    }
-  },
-  {
-    name: 'Paramétrage',
-    url: '/settings',
-    icon: 'icon-settings',
-    badge: {
-      variant: 'info',
-      text: 'Nouveau'
-    }
-  },
+  
+  
 ];
