@@ -8,7 +8,7 @@ import CritereRechercheMedecin from '../../models/critereRechercheMedecin.model'
 import RechercheAbsractComponent from '../commun/rechercheAbsract.component';
 import Medecin from '../../models/medecin.model';
 import MedecinService from '../../services/medecin.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlanificationModalComponent } from './planification-modal/planification-modal.component';
 
 
@@ -21,7 +21,7 @@ type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 })
 export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implements OnInit{ 
 
-
+  
 
   dataArrayPage: any=[
     {
@@ -115,16 +115,9 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
 
 
 
-  public rechercheMedecinForm: FormGroup = this.formBuilder.group(
-    {
-      secteur : new FormControl(null),
-      ville : new FormControl(null),
-      specialite : new FormControl(null),
-      potentiel : new FormControl(null),
-    }
-  );
 
 
+  closeResult = '';
 
   constructor(
     protected formBuilder: FormBuilder,
@@ -158,27 +151,8 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
 
 
 
-  public rechercherMedecins(): void {
-    this.initData();
-    const critereRechercheMedecin: CritereRechercheMedecin = new CritereRechercheMedecin(this.rechercheMedecinForm);
-    this.medecinService.search(critereRechercheMedecin).subscribe(
-      (medecins: EntityArrayResponseMedecinType) => {
-        this.dataArray = medecins.body;
-        this.addItems();
-      }
-    );
-  }
+ 
 
-  public initialiserCritereRecherche(): void {
-    this.rechercheMedecinForm.patchValue(
-      {
-        secteur : null,
-        ville : null,
-        specialite : null,
-        potentiel : null
-      }
-    );
-  }
 
   public selectionner(id: number): void {
     const predicate: any = (entite: Medecin)=>{
@@ -233,7 +207,30 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
 
 
 
+  
 
+
+
+
+
+  
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 
   
 }
