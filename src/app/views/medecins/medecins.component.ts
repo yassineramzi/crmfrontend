@@ -21,8 +21,8 @@ type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 })
 export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implements OnInit{ 
 
-  
-
+  formMedecin:FormGroup
+  private newAttribute: any = {};
   dataArrayPage: any=[
     {
       id: 1,
@@ -108,10 +108,36 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
   ]
 
 
-  
+
+//conf msg 
+  clickMethod(medecin: string) {
+    if(confirm("Are you sure to delete "+medecin)) {
+      console.log("deleteFieldValue(index) ");
+    }
+  }
+
+  //table add
+  addFieldValue() {
+    this.dataArrayPage.push(this.newAttribute)
+    this.newAttribute = {};
+}
+
   
 
+  //table delete
+deleteFieldValue(index) {
+  this.dataArrayPage.splice(index, 1);
+}
 
+
+  //table add
+public addItem() :void{
+  this.dataArrayPage.push(this.formMedecin.value);
+  this.formMedecin.reset();
+  console.log('Data added ');
+ }
+
+ 
 
 
 
@@ -129,7 +155,15 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
     super(formBuilder, modalService);
 
 
+    this.formMedecin = formBuilder.group({
+      Nom: new FormControl(''),
+      specialite: new FormControl(''),
+      Etablissement: new FormControl(''),
+      secteur: new FormControl(''),
+      Semaine : new FormControl(''),
+      potentiel: new FormControl(''),
 
+  })
 
      
   }
@@ -145,7 +179,6 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
     })
       
       }
-
 
 
 
@@ -205,10 +238,7 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
   }
 
 
-
-
-  
-
+ 
 
 
 
@@ -220,6 +250,8 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+    
+
   }
 
   private getDismissReason(reason: any): string {
@@ -233,4 +265,12 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
   }
 
   
+  openup(update) {
+    this.modalService.open(update);
+  }
+
+  opensup(supprimer) {
+    this.modalService.open(supprimer);
+  }
+
 }

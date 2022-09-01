@@ -42,7 +42,7 @@
                                 [infiniteScrollThrottle]="throttle"
                                 (scrolled)="addItems()">
                               
-                                <tr *ngFor="let medecin of dataArrayPage">
+                                <tr *ngFor="let medecin of dataArrayPage ; let i = index">
                                     
                                     <td><span class="client-name">Dr.{{medecin.nom}} {{medecin.prenom}}</span></td>
                                     <td>{{medecin.specialite.nom}}</td>
@@ -66,8 +66,8 @@
 
                                     <td>
 
-                                        <button type="button"  class="fa fa-edit" routerLink="/update/id{{medecin.id}}"></button>
-                                        <button type="button"  class="btn btn-primary"  class="fa fa-trash" (click)="delete(medecin.id,i)" > </button>
+                                        <button type="button"  class="fa fa-edit"  (click)="openup(modifier)" ></button>
+                                        <button type="button"  class="btn btn-primary"  class="fa fa-trash" (click)="opensup(supprimer)"> </button>
                                     </td>
     
 
@@ -169,16 +169,138 @@
           </select>
         
         <br>
+        <br>
+          <button  class="btn btn-primary" (click)="addFieldValue()">enregistrer</button>
         
+          <button class="btn btn-primary" (click)="modal.close('Save click')">fermer</button>
+  
+          
         
         </form>
       </div>
+
+
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" (click)="modal.close('Save click')">enregistrer</button>
-        
-        <button class="btn btn-primary" (click)="modal.close('Save click')">fermer</button>
+       Thinline
       </div>
     </ng-template>
     
     
    
+
+
+
+
+    <ng-template #supprimer let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title"></h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <p>vous voulez supprimer ce medecin?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button"   class="btn btn-primary" (click)= "deleteFieldValue(index); d('Cross click')">oui</button>
+        <button type="button" class="btn btn-primary"  (click)= "d('Cross click')">non</button>
+      </div>
+    </ng-template>
+    
+   
+
+
+    
+
+
+
+    <ng-template #modifier let-c="close" let-d="dismiss">
+      <div class="modal-header"   style="background-color:rgb(80, 19, 248);">
+        <h4 class="modal-title" id="modal-basic-title">modifier medecin</h4>
+        
+      </div>
+      <div class="modal-body">
+         <form [formGroup]="formMedecin" (ngSubmit)="onSubmit()">
+
+          <label>
+            <strong>  Nom et prénom </strong></label> <br>
+            <input type="text" placeholder="nom prenom" style="color:red;left:400px;" formControlName="Nom">
+         
+        
+         
+        <br>
+          <label><strong>Spécialité</strong></label>
+          <select class="form-control"   formControlName="specialite">
+            <option value="">liste de choix</option>
+        
+              <option value="General Medicine">General Medicine</option>
+              <option value="Pharmacy">Pharmacy</option>
+              <option value="Gynaecology">Gynaecology</option>
+              <option value="Otorhinolaryngology">Otorhinolaryngology</option>
+              <option value="Rheumatology">Rheumatology</option>
+              <option value="Psychiatry">Psychiatry</option>
+              <option value="Radiology">Radiology</option>
+              <option value="Ophthalmology">Ophthalmology</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Dermatology">Dermatology</option>
+              <option value="Nephrology">Nephrology</option>
+              <option value="Oncology">Oncology</option>
+              <option value="Hospital Pharmacy">Hospital Pharmacy</option>
+              <option value="Physical Medicine & Rehabilitation">Physical Medicine & Rehabilitation</option>
+              <option value="Sage-Femme">Sage-Femme</option>
+              <option value="Dental Surgery">Dental Surgery</option>
+          </select>
+        
+        
+        
+          <label><strong>Etablissement</strong></label>
+          <select class="form-control">
+          </select>
+        
+        
+        
+        
+          <label><strong>Secteur IMS</strong></label>
+          <select class="form-control" formControlName="secteur">
+              <option value="Agdal/Riad">Agdal/Riad</option>
+              <option value="Hassan">Hassan</option>
+              <option value="El-Youssoufia">El-Youssoufia</option>
+              <option value="Yacoub El Mansour">Yacoub El Mansour</option>
+              <option value="Souissi">Souissi</option>
+          </select>
+        
+        
+          
+        
+        
+          <label><strong>Semaine</strong> </label>
+          <select class="form-control">
+          </select>
+        
+        
+        
+        
+        
+        
+        
+          <label><strong>Potentiel</strong></label>
+          <select class="form-control" formControlName="potentiel">
+              <option value="A+">A+</option>
+              <option value="A">A</option>
+              <option value="B+">B+</option>
+              <option value="B">B</option>
+              <option value="C+">C+</option>
+              <option value="C">C</option>
+          </select>
+        
+        <br>
+        <br>
+          <button  class="btn btn-primary" (click)="addFieldValue()">enregistrer</button>
+        
+          <button type="button" class="btn btn-primary"  (click)= "d('Cross click')">fermer</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        Thinline
+      </div>
+    </ng-template>
+    
