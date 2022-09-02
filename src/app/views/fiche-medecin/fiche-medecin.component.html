@@ -103,7 +103,7 @@
                     <tabset type="underline">
                         <tab>
                             <ng-template tabHeading>
-                                <b class="tab-heading" [ngClass]="activeTab === 'Visites' ? 'tabs-underline' : ''" (click)="changeTab('Visites')">Visites</b>
+                                <b [ngClass]="activeTab === 'Visites' ? 'tabs-underline tab-heading-selected' : 'tab-heading'" (click)="changeTab('Visites')">Visites</b>
                             </ng-template>
                             <div class="table-responsive">
                                 <table id="table" class="table table-centered table-hover mb-0">
@@ -148,17 +148,17 @@
                         </tab>
                         <tab>
                             <ng-template tabHeading>
-                                <b class="tab-heading" [ngClass]="activeTab === 'Matériel promotionnel' ? 'tabs-underline' : ''" (click)="changeTab('Matériel promotionnel')">Matériel promotionnel</b>
+                                <b [ngClass]="activeTab === 'Matériel promotionnel' ? 'tabs-underline tab-heading-selected' : 'tab-heading'" (click)="changeTab('Matériel promotionnel')">Matériel promotionnel</b>
                             </ng-template>
                         </tab>
                         <tab>
                             <ng-template tabHeading>
-                                <b class="tab-heading" [ngClass]="activeTab === 'Evénements' ? 'tabs-underline' : ''" (click)="changeTab('Evénements')">Evénements</b>
+                                <b [ngClass]="activeTab === 'Evénements' ? 'tabs-underline tab-heading-selected' : 'tab-heading'" (click)="changeTab('Evénements')">Evénements</b>
                             </ng-template>
                         </tab>
                         <tab>
                             <ng-template tabHeading>
-                                <b class="tab-heading" [ngClass]="activeTab === 'Echantillons remis' ? 'tabs-underline' : ''" (click)="changeTab('Echantillons remis')">Echantillons remis</b>
+                                <b [ngClass]="activeTab === 'Echantillons remis' ? 'tabs-underline tab-heading-selected' : 'tab-heading'" (click)="changeTab('Echantillons remis')">Echantillons remis</b>
                             </ng-template>
                         </tab>
                     </tabset>
