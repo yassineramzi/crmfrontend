@@ -66,7 +66,7 @@
 
                                     <td>
 
-                                        <button type="button"  class="fa fa-edit"  (click)="openup(modifier)" ></button>
+                                        <button type="button"  class="fa fa-edit"  (click)="openup(modifier)"></button>
                                         <button type="button"  class="btn btn-primary"  class="fa fa-trash" (click)="opensup(supprimer)"> </button>
                                     </td>
     
@@ -98,7 +98,7 @@
 
           <label>
             <strong>  Nom et prénom </strong></label> <br>
-            <input type="text" placeholder="nom prenom" style="color:red;left:400px;" formControlName="Nom">
+            <input type="text" style="color:red;left:400px;" formControlName="nom">
          
         
          
@@ -127,14 +127,14 @@
           </select>
         
         
-        
-          <label><strong>Etablissement</strong></label>
-          <select class="form-control">
-          </select>
-        
-        
+        <br>
+          <label><strong>Mobile</strong></label>
+          <br>
+          <input type="text"  style="color:red;left:400px;" formControlName="mobile">
         
         
+        
+        <br>
           <label><strong>Secteur IMS</strong></label>
           <select class="form-control" formControlName="secteur">
               <option value="Agdal/Riad">Agdal/Riad</option>
@@ -146,15 +146,13 @@
         
         
           
+        <br>
         
+          <label><strong>Adresse</strong> </label>
+          <br>
+          <input type="text"  style="color:red;left:400px;" formControlName="adresse">
         
-          <label><strong>Semaine</strong> </label>
-          <select class="form-control">
-          </select>
-        
-        
-        
-        
+        <br>
         
         
         
@@ -170,7 +168,7 @@
         
         <br>
         <br>
-          <button  class="btn btn-primary" (click)="addFieldValue()">enregistrer</button>
+          <button  class="btn btn-primary" (click)="add()">enregistrer</button>
         
           <button class="btn btn-primary" (click)="modal.close('Save click')">fermer</button>
   
@@ -194,7 +192,7 @@
     <ng-template #supprimer let-c="close" let-d="dismiss">
       <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title"></h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+        
       </div>
       <div class="modal-body">
         <p>vous voulez supprimer ce medecin?</p>
@@ -218,11 +216,14 @@
         
       </div>
       <div class="modal-body">
-         <form [formGroup]="formMedecin" (ngSubmit)="onSubmit()">
+         
+
+
+        <form [formGroup]="formupdate" (ngSubmit)="onSubmit()">
 
           <label>
             <strong>  Nom et prénom </strong></label> <br>
-            <input type="text" placeholder="nom prenom" style="color:red;left:400px;" formControlName="Nom">
+            <input type="text" style="color:red;left:400px;" formControlName="nom">
          
         
          
@@ -251,14 +252,14 @@
           </select>
         
         
-        
-          <label><strong>Etablissement</strong></label>
-          <select class="form-control">
-          </select>
-        
-        
+        <br>
+          <label><strong>Mobile</strong></label>
+          <br>
+          <input type="text"  style="color:red;left:400px;" formControlName="mobile">
         
         
+        
+        <br>
           <label><strong>Secteur IMS</strong></label>
           <select class="form-control" formControlName="secteur">
               <option value="Agdal/Riad">Agdal/Riad</option>
@@ -270,15 +271,13 @@
         
         
           
+        <br>
         
+          <label><strong>Adresse</strong> </label>
+          <br>
+          <input type="text"  style="color:red;left:400px;" formControlName="adresse">
         
-          <label><strong>Semaine</strong> </label>
-          <select class="form-control">
-          </select>
-        
-        
-        
-        
+        <br>
         
         
         
@@ -294,10 +293,15 @@
         
         <br>
         <br>
-          <button  class="btn btn-primary" (click)="addFieldValue()">enregistrer</button>
+          <button  class="btn btn-primary" (click)="modf()">enregistrer</button>
         
-          <button type="button" class="btn btn-primary"  (click)= "d('Cross click')">fermer</button>
+          <button class="btn btn-primary" (click)= "d('Cross click')">fermer</button>
+  
+          
+        
         </form>
+
+
       </div>
       <div class="modal-footer">
         Thinline

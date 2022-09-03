@@ -11,7 +11,7 @@ import MedecinService from '../../services/medecin.service';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlanificationModalComponent } from './planification-modal/planification-modal.component';
 
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 
@@ -20,8 +20,12 @@ type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
   templateUrl: './medecins.component.html'
 })
 export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implements OnInit{ 
+ 
+  getId:any;
 
-  formMedecin:FormGroup
+  formupdate  :FormGroup
+
+  formMedecin :FormGroup
   private newAttribute: any = {};
   dataArrayPage: any=[
     {
@@ -108,20 +112,16 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
   ]
 
 
+ //modifier
 
-//conf msg 
-  clickMethod(medecin: string) {
-    if(confirm("Are you sure to delete "+medecin)) {
-      console.log("deleteFieldValue(index) ");
-    }
-  }
 
-  //table add
-  addFieldValue() {
-    this.dataArrayPage.push(this.newAttribute)
-    this.newAttribute = {};
-}
-
+  onUpdate():any{
+    this.dataArrayPage(this.getId,this.formMedecin.value)
+     
+  
+         
+     }
+   
   
 
   //table delete
@@ -130,15 +130,91 @@ deleteFieldValue(index) {
 }
 
 
+
+
+
+
+
+
+
+
+
   //table add
-public addItem() :void{
-  this.dataArrayPage.push(this.formMedecin.value);
-  this.formMedecin.reset();
-  console.log('Data added ');
+ add(){ 
+  
+
+  
+  this.dataArrayPage.push( {
+    id: 3,
+    nom: this.formMedecin.value.nom,
+   prenom: this.formMedecin.value.prenom,
+
+   mobile: this.formMedecin.value.mobile,
+
+   adresse: this.formMedecin.value.adresse,
+
+   potentiel: this.formMedecin.value.potentiel,
+  
+   secteur:  {
+    id: 1,
+    nom: this.formMedecin.value.secteur,
+    ville: {
+      id: 1,
+      nom: this.formMedecin.value.secteur,
+    }
+   },
+
+   specialite: {
+    id: 1,
+    nom: this.formMedecin.value.specialite,
+   },
+  }
+);
+ this.formMedecin.reset()
+
  }
 
- 
 
+
+
+
+
+
+//fonction add mais dans le form formpdate
+
+ modf(){ 
+  
+
+  
+  this.dataArrayPage.push( {
+    id: 3,
+    nom: this.formupdate.value.nom,
+   prenom: this. formupdate.value.prenom,
+
+   mobile: this. formupdate.value.mobile,
+
+   adresse: this. formupdate.value.adresse,
+
+   potentiel: this. formupdate.value.potentiel,
+  
+   secteur:  {
+    id: 1,
+    nom: this. formupdate.value.secteur,
+    ville: {
+      id: 1,
+      nom: this. formupdate.value.secteur,
+    }
+   },
+
+   specialite: {
+    id: 1,
+    nom: this. formupdate.value.specialite,
+   },
+  }
+);
+ this. formupdate.reset()
+
+ }
 
 
 
@@ -146,6 +222,7 @@ public addItem() :void{
   closeResult = '';
 
   constructor(
+    private activateRoute:ActivatedRoute,
     protected formBuilder: FormBuilder,
     protected modalService: NgbModal,
     private medecinService: MedecinService,
@@ -153,17 +230,16 @@ public addItem() :void{
 
   ) {
     super(formBuilder, modalService);
+    
+    this.getId=this.activateRoute.snapshot.paramMap.get('id');
 
 
-    this.formMedecin = formBuilder.group({
-      Nom: new FormControl(''),
-      specialite: new FormControl(''),
-      Etablissement: new FormControl(''),
-      secteur: new FormControl(''),
-      Semaine : new FormControl(''),
-      potentiel: new FormControl(''),
 
-  })
+
+
+  
+
+
 
      
   }
@@ -177,6 +253,33 @@ public addItem() :void{
       this.dataArrayPage=result;
       
     })
+
+
+
+    this.formMedecin = this.formBuilder.group({
+      nom: (''),
+      specialite: (''),
+      mobile: (''),
+      secteur: (''),
+      adresse : (''),
+      potentiel: (''),
+
+  })
+
+
+  this.formupdate = this.formBuilder.group({
+    nom: (''),
+    specialite: (''),
+    mobile: (''),
+    secteur: (''),
+    adresse : (''),
+    potentiel: (''),
+
+})
+
+
+
+
       
       }
 
@@ -230,16 +333,6 @@ public addItem() :void{
 
 
 
-  delete(id:any,i:any){
-    
-    this.medecinService.deleteMedecin(id).subscribe(res => {
-      this.dataArrayPage.splice(i,1)
-    })
-  }
-
-
- 
-
 
 
 
@@ -274,3 +367,51 @@ public addItem() :void{
   }
 
 }
+
+
+
+///api ffunction delete 
+
+ // delete(id:any,i:any){
+    
+   // this.medecinService.deleteMedecin(id).subscribe(res => {
+  //    this.dataArrayPage.splice(i,1)
+  //  })
+ // }
+
+
+
+ 
+ 
+///api ffunction  add 
+ 
+ //onSubmit():any{
+ // console.log('HI')
+  //this.medecinService.addMedecin(this.formMedecin.value)
+  //.subscribe(()=>{
+ //console.log('Data added ');
+
+ //  this.ngZone.run(()=>this.router.navigateByUrl('/'))
+   
+ // }
+  //,(err)=>{
+  // console.log(err);
+   
+// });
+//}
+
+
+
+///UPDATE API
+
+//onUpdate():any{
+ // this.medecinSerice.updateMedecin(this.getId,this.updateForm.value)
+  //.subscribe(() =>{
+   // console.log('Data update successfuly');
+   // this.ngZone.run(()=> this.router.navigateByUrl('/'))
+ // }
+ // ,(err)=>{
+     // console.log(err);
+      
+  //})
+//}

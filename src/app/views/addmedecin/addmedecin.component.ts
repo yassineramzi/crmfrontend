@@ -43,7 +43,7 @@ export class AddmedecinComponent implements OnInit {
     console.log('HI')
     this.medecinService.addMedecin(this.formMedecin.value)
     .subscribe(()=>{
-   console.log('Data added ');
+   console.log('hhhhhhhhhhhhhh ');
 
      this.ngZone.run(()=>this.router.navigateByUrl('/'))
      
