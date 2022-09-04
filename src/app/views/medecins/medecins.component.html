@@ -66,8 +66,8 @@
 
                                     <td>
 
-                                        <button type="button"  class="fa fa-edit"  (click)="openup(modifier)"></button>
-                                        <button type="button"  class="btn btn-primary"  class="fa fa-trash" (click)="opensup(supprimer)"> </button>
+                                        <button type="button"  class="fa fa-edit"   style="background-color:#EDF1FB  ;"   (click)="openup(modifier)"></button>
+                                        <button type="button"  class="btn btn-primary"  class="fa fa-trash" style="background-color:#EDF1FB ;"   (click)="opensup(supprimer)"> </button>
                                     </td>
     
 
@@ -90,7 +90,7 @@
 
     <ng-template #content let-modal>
       <div class="modal-header"   style="background-color:rgb(80, 19, 248);">
-        <h4 class="modal-title" id="modal-basic-title">Ajouter medecin</h4>
+        <h4 class="modal-title" id="modal-basic-title"  style="color:white"  >Ajouter medecin</h4>
         
       </div>
       <div class="modal-body">
@@ -168,7 +168,7 @@
         
         <br>
         <br>
-          <button  class="btn btn-primary" (click)="add()">enregistrer</button>
+          <button  class="btn btn-primary" (click)="add();modal.close('Save click')">enregistrer</button>
         
           <button class="btn btn-primary" (click)="modal.close('Save click')">fermer</button>
   
@@ -195,7 +195,7 @@
         
       </div>
       <div class="modal-body">
-        <p>vous voulez supprimer ce medecin?</p>
+        <p>Êtes-vous sûr de vouloir supprimer ce medecin ?</p>
       </div>
       <div class="modal-footer">
         <button type="button"   class="btn btn-primary" (click)= "deleteFieldValue(index); d('Cross click')">oui</button>
@@ -212,7 +212,7 @@
 
     <ng-template #modifier let-c="close" let-d="dismiss">
       <div class="modal-header"   style="background-color:rgb(80, 19, 248);">
-        <h4 class="modal-title" id="modal-basic-title">modifier medecin</h4>
+        <h4 class="modal-title" id="modal-basic-title  " style="color:white"  >modifier medecin</h4>
         
       </div>
       <div class="modal-body">
@@ -293,7 +293,7 @@
         
         <br>
         <br>
-          <button  class="btn btn-primary" (click)="modf()">enregistrer</button>
+          <button  class="btn btn-primary" (click)="updateItem();d('Cross click')">enregistrer</button>
         
           <button class="btn btn-primary" (click)= "d('Cross click')">fermer</button>
   

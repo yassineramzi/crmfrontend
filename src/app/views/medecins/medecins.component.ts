@@ -112,15 +112,7 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
   ]
 
 
- //modifier
-
-
-  onUpdate():any{
-    this.dataArrayPage(this.getId,this.formMedecin.value)
-     
-  
-         
-     }
+ 
    
   
 
@@ -131,6 +123,47 @@ deleteFieldValue(index) {
 
 
 
+
+
+  //update
+updateItem(mede){
+
+
+    //trouver l'index d'objet mede dans la table
+  let index = this.dataArrayPage.findIndex(mede =>mede.id === 1);
+
+    //modifier la table dans l'index 
+  this.dataArrayPage[index] = 
+  {
+    id: 3,
+    nom: this.formupdate.value.nom,
+   prenom: this.formupdate.value.prenom,
+
+   mobile: this.formupdate.value.mobile,
+
+   adresse: this.formupdate.value.adresse,
+
+   potentiel: this.formupdate.value.potentiel,
+  
+   secteur:  {
+    id: 1,
+    nom: this.formupdate.value.secteur,
+    ville: {
+      id: 1,
+      nom: this.formupdate.value.secteur,
+    }
+   },
+
+   specialite: {
+    id: 1,
+    nom: this.formupdate.value.specialite,
+   },
+  }
+
+ 
+  console.log(this.dataArrayPage);
+  this.formupdate.reset()
+}
 
 
 
@@ -177,44 +210,6 @@ deleteFieldValue(index) {
 
 
 
-
-
-
-//fonction add mais dans le form formpdate
-
- modf(){ 
-  
-
-  
-  this.dataArrayPage.push( {
-    id: 3,
-    nom: this.formupdate.value.nom,
-   prenom: this. formupdate.value.prenom,
-
-   mobile: this. formupdate.value.mobile,
-
-   adresse: this. formupdate.value.adresse,
-
-   potentiel: this. formupdate.value.potentiel,
-  
-   secteur:  {
-    id: 1,
-    nom: this. formupdate.value.secteur,
-    ville: {
-      id: 1,
-      nom: this. formupdate.value.secteur,
-    }
-   },
-
-   specialite: {
-    id: 1,
-    nom: this. formupdate.value.specialite,
-   },
-  }
-);
- this. formupdate.reset()
-
- }
 
 
 
@@ -367,6 +362,12 @@ deleteFieldValue(index) {
   }
 
 }
+
+
+
+
+
+
 
 
 
