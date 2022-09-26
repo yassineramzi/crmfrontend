@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-md-3 col-12">
-        <div class="row mr-2">
+    <div class="col-sm-12 col-lg-3 col-12">
+        <div class="row m-2">
             <div class="col-md-12 card border-radius-card">
                 <div class="card-body">
                     <div class="initials-circle">{{medecinInitials}}</div>
@@ -19,7 +19,7 @@
                     </h5>
                     <div class="card-text">
                         <div class="row">
-                            <div class="col-8 col-md-12 pr-0 pt-1">
+                            <div class="col-12 col-md-12 pt-1">
                                 <div class="input-group">
                                     <span><i class="icon-color fa fa-stethoscope mr-1"></i>{{medecin.specialite.nom}}</span>
                                 </div>
@@ -32,17 +32,17 @@
                                 <hr class="m-1" *ngIf="isInfoOpened"/>
                                 <div class="row mt-1" *ngIf="isInfoOpened">
                                     <label class="row col-md-12 ml-1 info-text">Adresse email</label>
-                                    <span class="row col-md-12 ml-1 info-text">test@gmail.com</span>
+                                    <span class="row col-md-12 ml-1 info-text">{{medecin.email}}</span>
                                 </div>
                                 <hr class="m-1" *ngIf="isInfoOpened"/>
                                 <div class="row mt-1" *ngIf="isInfoOpened">
                                     <label class="row col-md-12 ml-1 info-text">Téléphone fixe</label>
-                                    <span class="row col-md-12 ml-1 info-text">+2126-62-77-77-77</span>
+                                    <span class="row col-md-12 ml-1 info-text">{{medecin.fixe}}</span>
                                 </div>
                                 <hr class="m-1" *ngIf="isInfoOpened"/>
                                 <div class="row mt-1" *ngIf="isInfoOpened">
                                     <label class="row col-md-12 ml-1 info-text">Téléphone mobile</label>
-                                    <span class="row col-md-12 ml-1 info-text">+2125-37-77-77-77</span>
+                                    <span class="row col-md-12 ml-1 info-text">{{medecin.moblie}}</span>
                                 </div>
                             </div>
                         </div>
@@ -54,13 +54,16 @@
                 </div>
             </div>
         </div>
-        <div class="row mr-2">
+        <div class="row m-2">
             <div class="col-md-12 card border-radius-card">
                 <div class="card-body">
                     <h5 class="card-title">
                         <div class="row input-group">
                             <div class="col-10 col-md-12">
                                 <span class="client-name">Echelle d'adoption</span>
+                                <div class="input-group">
+                                    <span><i class="icon-color fa fa-handshake-o mr-1"></i>{{echelleAdoption}} %</span>
+                                </div>
                             </div>
                         </div>
                     </h5>
@@ -71,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mr-2">
+        <div class="row m-2">
             <div class="col-md-12 card border-radius-card">
                 <div class="card-body">
                     <h5 class="card-title">
@@ -89,8 +92,8 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9 col-12">
-        <div class="row mr-2">
+    <div class="col-sm-12 col-lg-9 col-12">
+        <div class="row m-2">
             <div class="col-md-12 card border-radius-card">
                 <div class="card-body">
                     <h5 class="card-title">
