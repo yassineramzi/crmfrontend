@@ -8,6 +8,7 @@ import { TokenStorageService } from '../../services/auth/token-storage.service';
 import MedecinService from '../../services/medecin.service';
 import PlanificationService from '../../services/planification.service';
 import PotentielService from '../../services/potentiel.service';
+import StatisticsService from '../../services/statistics.service';
 
 @Component({
   selector: 'app-fiche-medecin',
@@ -40,6 +41,8 @@ export class FicheMedecinComponent implements OnInit {
 
   public isInfoOpened: boolean = false;
 
+  public echelleAdoption: number = 0;
+
   constructor(
     protected potentielService: PotentielService,
     protected formBuilder: FormBuilder,
@@ -47,7 +50,8 @@ export class FicheMedecinComponent implements OnInit {
     protected router: Router,
     protected medecinService: MedecinService,
     protected planificationService: PlanificationService,
-    protected tokenStorageService: TokenStorageService
+    protected tokenStorageService: TokenStorageService,
+    protected statisticsService: StatisticsService
   ) { }
 
   ngOnInit(): void {
@@ -59,7 +63,8 @@ export class FicheMedecinComponent implements OnInit {
           forkJoin(
             [
               this.medecinService.findById(params ['id']),
-              this.planificationService.getPlanificationsByUserAndMedecin(this.tokenStorageService.getUser().id, params ['id'])
+              this.planificationService.getPlanificationsByUserAndMedecin(this.tokenStorageService.getUser().id, params ['id']),
+              this.statisticsService.getEchelleAdoptionByMedecinAndSociete(params ['id'], this.tokenStorageService.getUser().societe.id)
             ]
           ).subscribe(
             results => {
@@ -70,6 +75,7 @@ export class FicheMedecinComponent implements OnInit {
               this.medecinInitials = this.medecin.nom.charAt(0).toUpperCase() + this.medecin.prenom.charAt(0).toUpperCase();
               this.visitesArray = results[1].body;
               this.refreshVisites();
+              this.echelleAdoption = results[2].body.ratioAdoption;
             }
           );
         } else {
