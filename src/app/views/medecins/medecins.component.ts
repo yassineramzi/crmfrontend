@@ -12,6 +12,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlanificationModalComponent } from './planification-modal/planification-modal.component';
 
 import { Router, ActivatedRoute } from '@angular/router';
+import { id } from 'date-fns/locale';
 
 type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 
@@ -21,10 +22,8 @@ type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 })
 export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implements OnInit{ 
  
-  getId:any;
-
   formupdate  :FormGroup
-
+     
   formMedecin :FormGroup
   private newAttribute: any = {};
   dataArrayPage: any=[
@@ -119,51 +118,10 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin> implem
   //table delete
 deleteFieldValue(index) {
   this.dataArrayPage.splice(index, 1);
+  console.log(index)
 }
 
 
-
-
-
-  //update
-updateItem(mede){
-
-
-    //trouver l'index d'objet mede dans la table
-  let index = this.dataArrayPage.findIndex(mede =>mede.id === 1);
-
-    //modifier la table dans l'index 
-  this.dataArrayPage[index] = 
-  {
-    id: 3,
-    nom: this.formupdate.value.nom,
-   prenom: this.formupdate.value.prenom,
-
-   mobile: this.formupdate.value.mobile,
-
-   adresse: this.formupdate.value.adresse,
-
-   potentiel: this.formupdate.value.potentiel,
-  
-   secteur:  {
-    id: 1,
-    nom: this.formupdate.value.secteur,
-    ville: {
-      id: 1,
-      nom: this.formupdate.value.secteur,
-    }
-   },
-
-   specialite: {
-    id: 1,
-    nom: this.formupdate.value.specialite,
-   },
-  }
-
- 
-  console.log(this.dataArrayPage);
-  this.formupdate.reset()
-}
 
 
 
@@ -225,17 +183,7 @@ updateItem(mede){
 
   ) {
     super(formBuilder, modalService);
-    
-    this.getId=this.activateRoute.snapshot.paramMap.get('id');
-
-
-
-
-
   
-
-
-
      
   }
 
@@ -353,9 +301,92 @@ updateItem(mede){
   }
 
   
-  openup(update) {
-    this.modalService.open(update);
+  openup(medecin,modifier) {
+   
+
+    this.modalService.open(modifier , 
+      );
+      
+      
+     
+      this.formupdate.patchValue
+     
+      (
+        {  
+          
+          prenom: medecin.prenom,
+          nom: medecin.nom,
+        
+          mobile: medecin.mobile,
+          adresse: medecin.adresse,
+          potentiel: medecin.potentiel,
+        
+          
+          secteur:  {
+            id: 1,
+            nom: medecin.secteur,
+            ville: {
+              id: 1,
+              nom: medecin.secteur,
+            }
+           },
+        
+           specialite: {
+            id: 1,
+            nom: medecin.specialite,
+           },
+
+                 } );   
+                   
   }
+
+
+
+updateItem(medecin){
+
+
+  //trouver l'index d'objet medecin dans la table
+
+let index = this.dataArrayPage.findIndex(medecin =>medecin.id);
+console.log("looog")
+
+
+  //modifier la table dans l'index 
+this.dataArrayPage[index] = 
+{
+
+  nom: this.formupdate.value.nom,
+ prenom: this.formupdate.value.prenom,
+
+ mobile: this.formupdate.value.mobile,
+
+ adresse: this.formupdate.value.adresse,
+
+ potentiel: this.formupdate.value.potentiel,
+
+ secteur:  {
+  id: 1,
+  nom: this.formupdate.value.secteur,
+  ville: {
+    id: 1,
+    nom: this.formupdate.value.secteur,
+  }
+ },
+
+ specialite: {
+  id: 1,
+  nom: this.formupdate.value.specialite,
+ },
+}
+
+
+console.log(this.dataArrayPage);
+this.formupdate.reset()
+}
+
+
+
+
 
   opensup(supprimer) {
     this.modalService.open(supprimer);
