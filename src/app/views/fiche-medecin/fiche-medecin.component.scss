@@ -119,3 +119,14 @@
 .status-planification-text {
     color : #FFFFFF;
 }
+
+.label {
+    display: inline-block;
+    background-color: var(--themeColor);
+    color: white;
+    padding: 0.5rem;
+    font-family: sans-serif;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin: 0rem;
+}

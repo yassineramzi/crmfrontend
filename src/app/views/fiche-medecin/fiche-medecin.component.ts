@@ -72,6 +72,7 @@ export class FicheMedecinComponent implements OnInit {
                 this.router.navigate(['/404']);
               }
               this.medecin = results[0].body;
+              this.medecin.carteVisite = this.medecin.carteVisite ? this.medecin.carteVisite : '../../../assets/img/visit-card.webp';
               this.medecinInitials = this.medecin.nom.charAt(0).toUpperCase() + this.medecin.prenom.charAt(0).toUpperCase();
               this.visitesArray = results[1].body;
               this.refreshVisites();
@@ -102,6 +103,24 @@ export class FicheMedecinComponent implements OnInit {
 
   public openCloseInfo(): void {
     this.isInfoOpened = !this.isInfoOpened;
+  }
+
+  public medecinCarteVisiteUpload(event:any): void {
+    var file = event.target.files.length;
+    for(let i=0;i<file;i++)
+    {
+       var reader = new FileReader();
+       reader.onload = (event:any) => 
+       {
+           this.medecin.carteVisite = event.target.result;
+       };
+       reader.readAsDataURL(event.target.files[i]);
+    }
+    this.medecinService.update(this.medecin).subscribe(
+      response => {
+
+      }
+    );
   }
 
   public get pageSizeFormControl(): FormControl {

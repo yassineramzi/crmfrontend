@@ -13,6 +13,8 @@ export default class Medecin {
     public adresse: string;
 
     public potentiel: string;
+
+    public carteVisite: string;
     
     public secteur: Secteur;
 
