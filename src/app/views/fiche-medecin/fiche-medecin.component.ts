@@ -113,14 +113,14 @@ export class FicheMedecinComponent implements OnInit {
        reader.onload = (event:any) => 
        {
            this.medecin.carteVisite = event.target.result;
+           this.medecinService.update(this.medecin).subscribe(
+              response => {
+                 console.log(this.medecin);
+              }
+            );
        };
        reader.readAsDataURL(event.target.files[i]);
     }
-    this.medecinService.update(this.medecin).subscribe(
-      response => {
-
-      }
-    );
   }
 
   public get pageSizeFormControl(): FormControl {
