@@ -6,7 +6,7 @@
 <div class="modal-body">
     <div class="row p-2" [formGroup]="planificationFormDate">
         <label class="col-7 col-md-7 client-name">{{medecinsSelectiones.length}} Planifications pour le :</label>
-        <input type="date" class="form-control col-5 col-md-5" placeholder="JJ/MM/AAAA" formControlName="date">
+        <input type="date" class="form-control col-5 col-md-5" placeholder="JJ/MM/AAAA" formControlName="date" min="{{minDate | date:'yyyy-MM-dd'}}">
     </div>
     <div class="row p-2"  *ngFor="let planificationForm of planificationsForm.controls;let index = index" [formGroup]="planificationForm">
         <span class="col-5 col-md-5 client-name">Dr. {{medecinsSelectiones[index].nom}} {{medecinsSelectiones[index].prenom}}</span>
