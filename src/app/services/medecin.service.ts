@@ -25,7 +25,7 @@ export default class MedecinService {
     }
 
     public update(medecin: Medecin): Observable<EntityResponseType> {
-        return this.http.put<Medecin>(`${this.resourceUrl}`, medecin, {observe: 'response'});
+        return this.http.put<Medecin>(`${this.resourceUrl}/update`, medecin, {observe: 'response'});
     }
 
 }
