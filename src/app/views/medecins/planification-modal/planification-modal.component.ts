@@ -25,6 +25,8 @@ export class PlanificationModalComponent implements OnInit {
   public hour: number = 9;
 
   public minutes: number = 0;
+  
+  public minDate: Date = new Date();
 
   constructor(
     protected activeModal: NgbActiveModal,
