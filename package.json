@@ -46,13 +46,13 @@
     "ngx-infinite-scroll": "^10.0.0",
     "ngx-perfect-scrollbar": "^10.1.0",
     "ngx-spinner": "^11.0.2",
+    "ngx-toastr": "^13.2.1",
     "rxjs": "^6.6.6",
     "simple-line-icons": "^2.5.5",
     "ts-helpers": "^1.1.2",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.10.3",
-    "ngx-toastr": "^13.2.1"
+    "zone.js": "~0.10.3"
   },
   "devDependencies": {
     "@angular-builders/custom-webpack": "^11.1.1",

@@ -135,20 +135,3 @@
     transform: translateX(-50%);
     cursor: pointer;
 }
-
-/**
- *    Tabs
- */
-
-.tabs-underline {
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
-}
-
-.tab-heading {
-    color : #c8ced3;
-}
-
-.tab-heading-selected {
-    color : var(--themeColor);
-}

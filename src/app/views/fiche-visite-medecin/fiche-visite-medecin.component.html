@@ -112,76 +112,60 @@
                 <div class="card-body">
                     <h5 class="card-title">
                         <div class="row input-group">
-                            <div class="col-9 col-md-9">
-                                <span class="client-name">Historique</span>
-                            </div>
-                            <div class="col-3 col-md-3">
-                                <button class="btn btn-primary m-2" type="button" (click)="redirectToFicheVisite()">
-                                    Planifier
-                                </button>
+                            <div class="col-10 col-md-12">
+                                <span class="client-name">Fiche visite</span>
                             </div>
                         </div>
                     </h5>
-                    <tabset type="underline">
-                        <tab>
-                            <ng-template tabHeading>
-                                <b [ngClass]="activeTab === 'Visites' ? 'tabs-underline tab-heading-selected' : 'tab-heading'" (click)="changeTab('Visites')">Visites</b>
-                            </ng-template>
-                            <div class="table-responsive">
-                                <table id="table" class="table table-centered table-hover mb-0">
-                                  <thead>
-                                    <tr>
-                                        <th scope="col">Délégué</th>
-                                        <th scope="col">Date visite</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Statut</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr *ngIf="visitesArray.length === 0">
-                                        <td colspan="4">
-                                            <span class="d-flex justify-content-center">Aucune visite planifiée</span>
-                                        </td>
-                                    </tr>
-                                    <tr *ngFor="let visite of visitesArrayPage">
-                                        <td><span class="client-name">{{nomDelegue}}</span></td>
-                                        <td>{{visite.dateDebut | date:'dd/MM/y'}}</td>
-                                        <td>Solo</td>
-                                        <td>
-                                            <div class="status-planification-planifiee">
-                                                <div class="d-flex justify-content-center">
-                                                    <span class="status-planification-text">Planifiée</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                  </tbody>
-                                </table>
-                                <div class="d-flex justify-content-between p-2" [formGroup]="ficheMedecinForm">
-                                  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="ficheMedecinForm.get(['pageSize']).value" (pageChange)="refreshVisites()">
-                                  </ngb-pagination>
-                                  <select class="custom-select" style="width: auto" formControlName="pageSize" (change)="refreshVisites()">
-                                    <option [ngValue]="2">2 résultats par page</option>
-                                    <option [ngValue]="4">4 résultats par page</option>
-                                    <option [ngValue]="6">6 résultats par page</option>
-                                  </select>
+                    <tabset type="pills">
+                        <tab heading="1. Général">
+                            <div class="row">
+                                <div class="col-md-12" [formGroup]="ficheVisiteMedecinForm">
+                                    <div class="form-group">
+                                        <label for="date">Planification pour le :</label>
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" placeholder="JJ/MM/AAAA" formControlName="date" min="{{minDate | date:'yyyy-MM-dd'}}">
+                                            <input type="time" class="form-control" formControlName="time"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date">Durée:</label>
+                                        <select class="form-control" formControlName="duree">
+                                            <option value="15">15</option>
+                                            <option value="30">30</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date">Type visite :</label>
+                                        <select class="form-control" formControlName="typeVisite">
+                                            <option value="Solo">Solo</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date">Note :</label>
+                                        <textarea class="form-control" formControlName="note">
+                                        </textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary float-right" (click)="savePlanification()">Enregistrer</button>
+                                    </div>
                                 </div>
                             </div>
                         </tab>
-                        <tab>
-                            <ng-template tabHeading>
-                                <b [ngClass]="activeTab === 'Matériel promotionnel' ? 'tabs-underline tab-heading-selected' : 'tab-heading'" (click)="changeTab('Matériel promotionnel')">Matériel promotionnel</b>
-                            </ng-template>
+                        <tab heading="2. Produits">
+                            <div class="row">
+                                
+                            </div>
                         </tab>
-                        <tab>
-                            <ng-template tabHeading>
-                                <b [ngClass]="activeTab === 'Evénements' ? 'tabs-underline tab-heading-selected' : 'tab-heading'" (click)="changeTab('Evénements')">Evénements</b>
-                            </ng-template>
+                        <tab heading="3. Echantillons">
+                            <div class="row">
+                                
+                            </div>
                         </tab>
-                        <tab>
-                            <ng-template tabHeading>
-                                <b [ngClass]="activeTab === 'Echantillons remis' ? 'tabs-underline tab-heading-selected' : 'tab-heading'" (click)="changeTab('Echantillons remis')">Echantillons remis</b>
-                            </ng-template>
+                        <tab heading="4. Matériels promotionnels">
+                            <div class="row">
+                                
+                            </div>
                         </tab>
                     </tabset>
                 </div>

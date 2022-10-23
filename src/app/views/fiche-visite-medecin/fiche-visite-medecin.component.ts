@@ -12,29 +12,21 @@ import PotentielService from '../../services/potentiel.service';
 import StatisticsService from '../../services/statistics.service';
 
 @Component({
-  selector: 'app-fiche-medecin',
-  templateUrl: './fiche-medecin.component.html',
-  styleUrls: ['./fiche-medecin.component.scss']
+  selector: 'app-fiche-visite-medecin',
+  templateUrl: './fiche-visite-medecin.component.html',
+  styleUrls: ['./fiche-visite-medecin.component.scss']
 })
-export class FicheMedecinComponent implements OnInit {
+export class FicheVisiteMedecinComponent implements OnInit {
 
-  public page: number = 1;
-
-  public collectionSize: number = 0;
-
-  public pageSize: number = 4;
-
-  public visitesArray: Planification[] = new Array<Planification>();
-
-  public visitesArrayPage: Planification[] = new Array<Planification>();
-
-  public ficheMedecinForm: FormGroup = this.formBuilder.group({
-    pageSize: new FormControl(6)
+  public ficheVisiteMedecinForm: FormGroup = this.formBuilder.group({
+    date : new FormControl(null),
+    time : new FormControl(null),
+    duree : new FormControl(null),
+    typeVisite : new FormControl(null),
+    note : new FormControl(null),
   });
 
   public medecin: Medecin = new Medecin();
-
-  public activeTab: string = 'Visites'; 
 
   public nomDelegue: string = '';
 
@@ -43,6 +35,12 @@ export class FicheMedecinComponent implements OnInit {
   public isInfoOpened: boolean = false;
 
   public echelleAdoption: number = 0;
+
+  public hour: number = 9;
+
+  public minutes: number = 0;
+  
+  public minDate: Date = new Date();
 
   constructor(
     protected potentielService: PotentielService,
@@ -54,10 +52,7 @@ export class FicheMedecinComponent implements OnInit {
     protected tokenStorageService: TokenStorageService,
     protected statisticsService: StatisticsService,
     protected toastrService: ToastrService
-  ) { }
-
-  ngOnInit(): void {
-    this.nomDelegue = this.tokenStorageService.getUser().username;
+  ) { 
     this.activatedRoute.params.subscribe(
       (params) => {
         if( params ['id'] )
@@ -76,8 +71,6 @@ export class FicheMedecinComponent implements OnInit {
               this.medecin = results[0].body;
               this.medecin.carteVisite = this.medecin.carteVisite ? this.medecin.carteVisite : '../../../assets/img/visit-card.webp';
               this.medecinInitials = this.medecin.nom.charAt(0).toUpperCase() + this.medecin.prenom.charAt(0).toUpperCase();
-              this.visitesArray = results[1].body;
-              this.refreshVisites();
               this.echelleAdoption = results[2].body.ratioAdoption;
             }
           );
@@ -88,19 +81,12 @@ export class FicheMedecinComponent implements OnInit {
     );
   }
 
+  ngOnInit(): void {
+    this.nomDelegue = this.tokenStorageService.getUser().username;
+  }
+
   public getClassPotentiel(potentiel: string): string {
     return this.potentielService.getClassPotentiel(potentiel);
-  }
-
-  public changeTab(activeTabTitle: string): void {
-    this.activeTab = activeTabTitle;
-  }
-
-  public refreshVisites(): void {
-    this.pageSize = this.pageSizeFormControl.value;
-    this.visitesArrayPage = this.visitesArray
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-    this.collectionSize = this.visitesArray.length;
   }
 
   public openCloseInfo(): void {
@@ -125,11 +111,7 @@ export class FicheMedecinComponent implements OnInit {
     }
   }
 
-  public redirectToFicheVisite(): void {
-    this.router.navigate(['/fiche-visite-medecin', this.medecin.id]);
+  public savePlanification(): void {
   }
 
-  public get pageSizeFormControl(): FormControl {
-    return this.ficheMedecinForm.get('pageSize') as FormControl;
-  }
 }

@@ -2,6 +2,7 @@ import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import Medecin from '../../../models/medecin.model';
 import { Planification } from '../../../models/planification.model';
 import { TokenStorageService } from '../../../services/auth/token-storage.service';
@@ -32,7 +33,8 @@ export class PlanificationModalComponent implements OnInit {
     protected activeModal: NgbActiveModal,
     protected formBuilder: FormBuilder,
     protected planificationService: PlanificationService,
-    protected tokenStorageService: TokenStorageService
+    protected tokenStorageService: TokenStorageService,
+    protected toastr: ToastrService
     ) { }
 
   ngOnInit(): void {
@@ -74,6 +76,7 @@ export class PlanificationModalComponent implements OnInit {
     );
     this.planificationService.planifierEnMasse(planifications).subscribe(
       (response : HttpResponse<Planification[]>) => {
+        this.toastr.success('Les planifications sont enregistées, vous pouvez le consulter dans votre calendrier', 'Planifications en masse');
         this.onClose();
       }
     );

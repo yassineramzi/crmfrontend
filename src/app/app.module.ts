@@ -71,7 +71,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     InfiniteScrollModule,
     NgxSpinnerModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   declarations: [
     AppComponent,

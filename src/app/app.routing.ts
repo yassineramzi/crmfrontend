@@ -65,6 +65,10 @@ export const routes: Routes = [
       {
         path: 'fiche-medecin',
         loadChildren: () => import('./views/fiche-medecin/fiche-medecin.module').then(m => m.FicheMedecinModule)
+      },
+      {
+        path: 'fiche-visite-medecin',
+        loadChildren: () => import('./views/fiche-visite-medecin/fiche-visite-medecin.module').then(m => m.FicheVisiteMedecinModule)
       }
     ]
   },
