@@ -11,21 +11,23 @@ export class Planification {
 
     public medecin : number;
 
-    constructor(formControl: FormControl, date: Date){
-        this.medecin = formControl.value.id;
-        this.proprietaire = formControl.value.proprietaire;
-        const time = formControl.value.time;
-        this.dateDebut = new Date(date);
-        this.dateDebut.setHours(Planification.getHours(time).valueOf()+1, Planification.getMinutes(time).valueOf());
-        this.dateFin = new Date(date);
-        this.dateFin.setHours(Planification.getHoursFinPlanification(time).valueOf()+1, Planification.getMinutesFinPlanification(time));
+    constructor(formControl?: FormControl, date?: Date){
+        if(formControl && date) {
+            this.medecin = formControl.value.id;
+            this.proprietaire = formControl.value.proprietaire;
+            const time = formControl.value.time;
+            this.dateDebut = new Date(date);
+            this.dateDebut.setHours(Planification.getHours(time).valueOf()+1, Planification.getMinutes(time).valueOf());
+            this.dateFin = new Date(date);
+            this.dateFin.setHours(Planification.getHoursFinPlanification(time).valueOf()+1, Planification.getMinutesFinPlanification(time));
+        }
     }
 
-    private static getHours(time: string): Number {
+    public static getHours(time: string): Number {
         return new Number(time.substring(0, time.indexOf(":")));
     }
 
-    private static getMinutes(time: string): Number {
+    public static getMinutes(time: string): Number {
         return new Number(time.substring((time.indexOf(":")+1)));
     }
 

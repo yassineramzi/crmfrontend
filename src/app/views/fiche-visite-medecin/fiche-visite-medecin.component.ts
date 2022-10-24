@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +17,7 @@ import StatisticsService from '../../services/statistics.service';
   templateUrl: './fiche-visite-medecin.component.html',
   styleUrls: ['./fiche-visite-medecin.component.scss']
 })
-export class FicheVisiteMedecinComponent implements OnInit {
+export class FicheVisiteMedecinComponent {
 
   public ficheVisiteMedecinForm: FormGroup = this.formBuilder.group({
     date : new FormControl(null),
@@ -27,8 +28,6 @@ export class FicheVisiteMedecinComponent implements OnInit {
   });
 
   public medecin: Medecin = new Medecin();
-
-  public nomDelegue: string = '';
 
   public medecinInitials: string;
 
@@ -81,10 +80,6 @@ export class FicheVisiteMedecinComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    this.nomDelegue = this.tokenStorageService.getUser().username;
-  }
-
   public getClassPotentiel(potentiel: string): string {
     return this.potentielService.getClassPotentiel(potentiel);
   }
@@ -112,6 +107,24 @@ export class FicheVisiteMedecinComponent implements OnInit {
   }
 
   public savePlanification(): void {
+    const planification: Planification = new Planification();
+    planification.proprietaire = this.tokenStorageService.getUser().id;
+    planification.medecin = this.medecin.id;
+    planification.dateDebut = new Date(this.ficheVisiteMedecinForm.get('date').value);
+    planification.dateDebut.setHours(
+      Planification.getHours(this.ficheVisiteMedecinForm.get('time').value).valueOf(),
+      Planification.getMinutes(this.ficheVisiteMedecinForm.get('time').value).valueOf()
+    );
+    planification.dateFin = new Date(this.ficheVisiteMedecinForm.get('date').value);
+    planification.dateFin.setHours(
+      Planification.getHours(this.ficheVisiteMedecinForm.get('time').value).valueOf(),
+      (Planification.getMinutes(this.ficheVisiteMedecinForm.get('time').value).valueOf()+this.ficheVisiteMedecinForm.get('duree').value)
+    );
+    this.planificationService.create(planification).subscribe(
+      (response : HttpResponse<Planification>) => {
+        this.toastrService.success('La planification est enregistée, vous pouvez le consulter dans votre calendrier', 'Création d\'une planification');
+      }
+    );
   }
 
 }

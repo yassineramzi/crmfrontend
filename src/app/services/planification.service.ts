@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 import { Planification } from "../models/planification.model";
 
+type EntityResponseType = HttpResponse<Planification>;
 type EntityArrayResponseType = HttpResponse<Planification[]>;
 
 @Injectable({providedIn: 'root'})
@@ -11,6 +12,10 @@ export default class PlanificationService {
     private resourceUrl = environment.api_url + 'api/planification';
 
     constructor(private http: HttpClient) {
+    }
+
+    public create(planification: Planification): Observable<EntityResponseType> {
+        return this.http.post<Planification>(this.resourceUrl + '/create', planification, {observe: 'response'});
     }
     
     public planifierEnMasse(planifications: Array<Planification>): Observable<EntityArrayResponseType> {
