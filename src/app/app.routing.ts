@@ -1,3 +1,4 @@
+import { LoginRequestComponent } from './views/login-request/login-request.component';
 
 import { AddmedecinComponent } from './views/addmedecin/addmedecin.component';
 import { NgModule, Component } from '@angular/core';
@@ -57,6 +58,13 @@ export const routes: Routes = [
       title: 'Accueil'
     },
     children: [
+
+      {
+        path: 'user',
+        component:LoginRequestComponent
+      },
+
+
 
       {
         path: 'societe',

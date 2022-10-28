@@ -31,4 +31,15 @@ export const navItems: INavData[] = [
     }
   }, 
   
+
+  {
+    name: 'Utilisateur',
+    url: '/user',
+    icon: 'icon-user',
+    badge: {
+      variant: 'info',
+      text: 'Nouveau'
+    }
+  }, 
+
 ];

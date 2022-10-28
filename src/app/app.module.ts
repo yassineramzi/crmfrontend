@@ -51,6 +51,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AddmedecinComponent } from './views/addmedecin/addmedecin.component';
 import { SocieteComponent } from './views/societe/societe.component';
+import { LoginRequestComponent } from './views/login-request/login-request.component';
 
 
 
@@ -90,6 +91,7 @@ import { SocieteComponent } from './views/societe/societe.component';
     LoginComponent,
     AddmedecinComponent,
     SocieteComponent,
+    LoginRequestComponent,
     
    
     

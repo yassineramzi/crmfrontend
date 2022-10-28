@@ -1,0 +1,68 @@
+
+<div class="row">
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-body">
+
+
+
+
+              
+            
+           <button type="button" class="btn btn-primary" (click)="openadd(ajouter)">Nouveau utilisateur</button>
+            <div class="row">
+                <div class="col-md-12">
+
+
+                    
+                    
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive" >
+                        <!--Vue mode liste-->
+                        <table id="table" class="table table-centered table-hover m-1"   >
+                          <thead>
+                            <tr>
+                               
+                                <th scope="col">Nom</th>
+
+                                 <th scope="col">mot de passe</th>
+                                 <th scope="col">action</th>
+                              
+                              </tr>
+                          </thead>
+                          <tbody
+                            infinite-scroll
+                            [infiniteScrollDistance]="scrollDistance"
+                            [infiniteScrollUpDistance]="scrollUpDistance"
+                            [infiniteScrollThrottle]="throttle"
+                            (scrolled)="addItems()">
+                          
+                            <tr *ngFor="let loginRequest of arrayPage ; let i = index">
+                                
+                                <td><span class="client-name">{{loginRequest.username}} </span></td>
+                                <td><span class="client-name">{{loginRequest.password}} </span></td>
+                
+                                
+
+                                <td>
+
+                                    <button type="button"  class="fa fa-edit"   style="background-color:#EDF1FB  ;"   (click)="openup(societe ,modifier)"></button>
+                                    <button type="button"  class="btn btn-primary"  class="fa fa-trash" style="background-color:#EDF1FB ;"   (click)="opensup(supprimer)"> </button>
+                                </td>
+
+
+                            </tr>
+                          </tbody>
+
+
+                        </table>
+                        
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/.col-->
