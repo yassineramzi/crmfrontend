@@ -20,5 +20,15 @@ export const navItems: INavData[] = [
     }
   },
   
+
+  {
+    name: 'Société',
+    url: '/societe',
+    icon: 'icon-home',
+    badge: {
+      variant: 'info',
+      text: 'Nouveau'
+    }
+  }, 
   
 ];

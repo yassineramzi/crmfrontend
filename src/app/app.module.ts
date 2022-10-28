@@ -50,7 +50,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AddmedecinComponent } from './views/addmedecin/addmedecin.component';
-import { UpdatemedecinComponent } from './views/updatemedecin/updatemedecin.component';
+import { SocieteComponent } from './views/societe/societe.component';
+
+
+
+
 
 @NgModule({
   imports: [
@@ -85,7 +89,11 @@ import { UpdatemedecinComponent } from './views/updatemedecin/updatemedecin.comp
     P500Component,
     LoginComponent,
     AddmedecinComponent,
-    UpdatemedecinComponent,
+    SocieteComponent,
+    
+   
+    
+   
   ],
   providers: [
     {

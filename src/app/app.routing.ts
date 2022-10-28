@@ -1,3 +1,4 @@
+
 import { AddmedecinComponent } from './views/addmedecin/addmedecin.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,14 +9,18 @@ import { DefaultLayoutComponent } from './containers';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
-import { UpdatemedecinComponent } from './views/updatemedecin/updatemedecin.component';
+import { SocieteComponent } from './views/societe/societe.component';
+
+
+
+
 
 export const routes: Routes = [
   
   {path: "add",component:AddmedecinComponent},
   
   
-  {path: "update",component:UpdatemedecinComponent},
+  
   
   
   
@@ -53,8 +58,10 @@ export const routes: Routes = [
     },
     children: [
 
-    
-
+      {
+        path: 'societe',
+        component:SocieteComponent
+      },
 
       {
         path: 'medecins',
