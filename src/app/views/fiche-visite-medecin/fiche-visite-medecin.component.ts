@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin } from 'rxjs';
@@ -20,8 +20,8 @@ import StatisticsService from '../../services/statistics.service';
 export class FicheVisiteMedecinComponent {
 
   public ficheVisiteMedecinForm: FormGroup = this.formBuilder.group({
-    date : new FormControl(null),
-    time : new FormControl(null),
+    date : new FormControl(null, Validators.required),
+    time : new FormControl(null, Validators.required),
     duree : new FormControl(null),
     typeVisite : new FormControl(null),
     note : new FormControl(null),
@@ -122,7 +122,8 @@ export class FicheVisiteMedecinComponent {
     );
     this.planificationService.create(planification).subscribe(
       (response : HttpResponse<Planification>) => {
-        this.toastrService.success('La planification est enregistée, vous pouvez le consulter dans votre calendrier', 'Création d\'une planification');
+        this.router.navigate(['/fiche-medecin/',this.medecin.id]);
+        this.toastrService.success('Vous pouvez la consulter depuis votre calendrier', 'Création d\'une planification');
       }
     );
   }

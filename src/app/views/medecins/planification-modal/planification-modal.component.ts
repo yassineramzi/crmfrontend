@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import Medecin from '../../../models/medecin.model';
@@ -20,7 +20,7 @@ export class PlanificationModalComponent implements OnInit {
   public planificationsForm : FormArray = this.formBuilder.array([]);
 
   public planificationFormDate : FormGroup = this.formBuilder.group({
-    date : new FormControl(null)
+    date : new FormControl(null, Validators.required)
   });
 
   public hour: number = 9;
@@ -76,7 +76,7 @@ export class PlanificationModalComponent implements OnInit {
     );
     this.planificationService.planifierEnMasse(planifications).subscribe(
       (response : HttpResponse<Planification[]>) => {
-        this.toastr.success('Les planifications sont enregistées, vous pouvez le consulter dans votre calendrier', 'Planifications en masse');
+        this.toastr.success('Vous pouvez les consulter depuis votre calendrier', 'Planifications en masse');
         this.onClose();
       }
     );
