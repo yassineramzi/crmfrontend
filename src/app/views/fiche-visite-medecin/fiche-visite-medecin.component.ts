@@ -124,6 +124,10 @@ export class FicheVisiteMedecinComponent {
       (response : HttpResponse<Planification>) => {
         this.router.navigate(['/fiche-medecin/',this.medecin.id]);
         this.toastrService.success('Vous pouvez la consulter depuis votre calendrier', 'Création d\'une planification');
+      },
+      (error : any) => {
+        this.router.navigate(['/fiche-medecin/',this.medecin.id]);
+        this.toastrService.error('Une planification existe pour cette date et ce médecin', 'Erreur création d\'une planification');
       }
     );
   }
