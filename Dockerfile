@@ -2,7 +2,8 @@
 FROM trion/ng-cli:11.0.4 as builder
 WORKDIR /app
 COPY package.json package.json
-RUN npm install
+COPY package-lock.json package-lock.json
+RUN npm ci  --debug 
 COPY . .
 RUN ng build --prod
 
