@@ -69,6 +69,10 @@ export const routes: Routes = [
       {
         path: 'fiche-visite-medecin',
         loadChildren: () => import('./views/fiche-visite-medecin/fiche-visite-medecin.module').then(m => m.FicheVisiteMedecinModule)
+      },
+      {
+        path: 'produits',
+        loadChildren: () => import('./views/produits/produits.module').then(m => m.ProduitsModule)
       }
     ]
   },

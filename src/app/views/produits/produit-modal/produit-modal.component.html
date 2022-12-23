@@ -1,0 +1,59 @@
+<div class="modal-header">
+    <h5 class="modal-title client-name">
+      Ajouter un produit
+    </h5>
+</div>
+<div class="modal-body"  [formGroup]="produitsForm">
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Nom :</label>
+        <input type="text" class="form-control" placeholder="Nom du produit" formControlName="nom">
+        <span class="invalid-feedback d-block" *ngIf=
+            "
+            ((produitsForm.get('nom').dirty 
+            ||
+            produitsForm.get('nom').touched
+            ) 
+            &&
+            (produitsForm.get('nom').hasError('required')))
+            ">
+            Veuillez saisir le nom du produit
+        </span>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Catégorie :</label>
+        <select class="form-control" formControlName="categorie">
+            <option value="General Medicine">General Medicine</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Gynaecology">Gynaecology</option>
+            <option value="Otorhinolaryngology">Otorhinolaryngology</option>
+            <option value="Rheumatology">Rheumatology</option>
+            <option value="Psychiatry">Psychiatry</option>
+            <option value="Radiology">Radiology</option>
+            <option value="Ophthalmology">Ophthalmology</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Neurology">Neurology</option>
+            <option value="Dermatology">Dermatology</option>
+            <option value="Nephrology">Nephrology</option>
+            <option value="Oncology">Oncology</option>
+            <option value="Hospital Pharmacy">Hospital Pharmacy</option>
+            <option value="Physical Medicine & Rehabilitation">Physical Medicine & Rehabilitation</option>
+            <option value="Sage-Femme">Sage-Femme</option>
+            <option value="Dental Surgery">Dental Surgery</option>
+        </select>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Potentiel :</label>
+        <select class="form-control" formControlName="potentiel">
+            <option value="A+">A+</option>
+            <option value="A">A</option>
+            <option value="B+">B+</option>
+            <option value="B">B</option>
+            <option value="C+">C+</option>
+            <option value="C">C</option>
+        </select>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default float-left" (click)="onClose()">Annuler</button>
+    <button type="submit" class="btn btn-primary float-right" (click)="save()" [disabled]="!produitsForm.valid">Ajouter</button>
+</div>

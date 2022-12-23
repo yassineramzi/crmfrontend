@@ -1,0 +1,196 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row" [formGroup]="rechercheProduitForm"> 
+                    <div class="col-md-12">
+                        <div class="row" [hidden]="!affichageCritereRecherche">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Spécialité</label>
+                                    <select class="form-control" formControlName="categorie">
+                                        <option value="General Medicine">General Medicine</option>
+                                        <option value="Pharmacy">Pharmacy</option>
+                                        <option value="Gynaecology">Gynaecology</option>
+                                        <option value="Otorhinolaryngology">Otorhinolaryngology</option>
+                                        <option value="Rheumatology">Rheumatology</option>
+                                        <option value="Psychiatry">Psychiatry</option>
+                                        <option value="Radiology">Radiology</option>
+                                        <option value="Ophthalmology">Ophthalmology</option>
+                                        <option value="Cardiology">Cardiology</option>
+                                        <option value="Neurology">Neurology</option>
+                                        <option value="Dermatology">Dermatology</option>
+                                        <option value="Nephrology">Nephrology</option>
+                                        <option value="Oncology">Oncology</option>
+                                        <option value="Hospital Pharmacy">Hospital Pharmacy</option>
+                                        <option value="Physical Medicine & Rehabilitation">Physical Medicine & Rehabilitation</option>
+                                        <option value="Sage-Femme">Sage-Femme</option>
+                                        <option value="Dental Surgery">Dental Surgery</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nom</label>
+                                    <input type="text" class="form-control" formControlName="nom" placeholder="Nom du produit"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Potentiel</label>
+                                    <select class="form-control" formControlName="potentiel" placeholder="Potentiel">
+                                        <option value="A+">A+</option>
+                                        <option value="A">A</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B">B</option>
+                                        <option value="C+">C+</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group float-right">
+                                    <button class="btn btn-primary m-2" type="button" (click)="afficherCritereRecherche()">
+                                        <span *ngIf="affichageCritereRecherche">Masquer les critères</span>
+                                        <span *ngIf="!affichageCritereRecherche">Afficher les critères</span>
+                                    </button>
+                                    <button class="btn btn-primary m-2" type="button" (click)="initialiserCritereRecherche()">
+                                        Réinitialiser
+                                    </button>
+                                    <button class="btn btn-primary m-2" type="button" (click)="rechercherProduits()">
+                                        Filtrer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.col-->
+</div><!--/.row-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group float-left">
+                            <span class="mt-2 mb-2 mr-1" [ngClass]="affichageModeListe  ? 'view-mode-selected' : 'view-mode-not-selected'" (click)="changerAffichage()"><i class="fa fa-list"></i></span>
+                            <span class="mt-2 mb-2 ml-1 mr-2" [ngClass]="affichageModeListe  ? 'view-mode-not-selected' : 'view-mode-selected'" (click)="changerAffichage()"><i class="fa fa-address-card-o"></i></span>
+                            <span class="m-2"><i class="fa fa-info-circle mr-2"></i>{{dataArray.length}}&nbsp;<strong>Produits trouvés</strong></span>
+                        </div>
+                        <div class="input-group float-right">
+                            <span class="m-2">{{entiteSelectionnes.length}} <strong>Produits sélectionés</strong></span>
+                            <button class="btn btn-primary m-1" type="button" [disabled]="entiteSelectionnes.length === 0">
+                                <i class="fa fa-trash"></i> Supprimer
+                            </button>
+                            <button class="btn btn-primary m-1" type="button"  (click)="openPlanificationModal()">
+                                <i class="fa fa-plus"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <!--Vue mode liste-->
+                            <table id="table" class="table table-centered table-hover m-1" *ngIf="affichageModeListe">
+                              <thead>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" />
+                                        </div>
+                                    </td>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Spécialité</th>
+                                    <th scope="col">Potentiel</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody
+                                infinite-scroll
+                                [infiniteScrollDistance]="scrollDistance"
+                                [infiniteScrollUpDistance]="scrollUpDistance"
+                                [infiniteScrollThrottle]="throttle"
+                                (scrolled)="addItems()"
+                              >
+                                <tr *ngIf="dataArrayPage.length === 0">
+                                    <td colspan="4">
+                                        <span class="d-flex justify-content-center">Aucun produit trouvé</span>
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let produit of dataArrayPage">
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" (click)="selectionner(produit.id)"/>
+                                        </div>
+                                    </td>
+                                    <td><span class="client-name">{{produit.nom}}</span></td>
+                                    <td>{{produit.categorie}}</td>
+                                    <td>
+                                        <div [ngClass]="getClassPotentiel(produit.potentiel)">
+                                            <div class="potentiel-content potentiel-color">
+                                                <i class="fa fa-bullseye"></i>
+                                                <span class="potentiel-text">{{produit.potentiel}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!--Vue mode Card-->
+                            <div class="row mb-2" *ngIf="!affichageModeListe && dataArrayPage.length === 0">
+                                <span class="col-md-12 d-flex justify-content-center">Aucun produit trouvé</span>
+                            </div>
+                            <div 
+                                class="row card-margin" 
+                                *ngIf="!affichageModeListe" 
+                                infinite-scroll
+                                [infiniteScrollDistance]="scrollDistance"
+                                [infiniteScrollUpDistance]="scrollUpDistance"
+                                [infiniteScrollThrottle]="throttle"
+                                 (scrolled)="addItems()">
+                                <div *ngFor="let produit of dataArrayPage" class="card m-3 border-radius-card" style="width: 18rem;">
+                                    <div class="card-body border-radius-card" [ngClass]="isSelectionne(produit.id)  ? 'selected-item' : 'not-selected-item'">
+                                        <h5 class="card-title">
+                                            <div class="input-group">
+                                                <div class="col-2">
+                                                    <input class="form-check-input" type="checkbox" (click)="selectionner(produit.id)"/>
+                                                </div>
+                                                <div class="col-10 pl-0">
+                                                    <span class="client-name">{{produit.nom}}</span>
+                                                </div>
+                                            </div>
+                                        </h5>
+                                        <div class="card-text">
+                                            <div class="row">
+                                                <div class="col-8 col-md-6 pr-0 pt-1">
+                                                    <div class="input-group">
+                                                        <span><i class="icon-color fa fa-stethoscope"></i> {{produit.categorie}} </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-3 d-flex justify-content-center">
+                                                    <div [ngClass]="(getClassPotentiel(produit.potentiel)+'-card')">
+                                                        <div class="potentiel-content-card potentiel-color d-flex justify-content-center">
+                                                            <i class="fa fa-bullseye mt-1 mr-1"></i>
+                                                            <span class="potentiel-text mr-1">{{produit.potentiel}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.col-->
+</div><!--/.row-->
