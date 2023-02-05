@@ -19,7 +19,6 @@ export const navItems: INavData[] = [
       text: 'Nouveau'
     }
   },
-  /*
   {
     name: 'Pharmacies',
     url: '/pharmacies',
@@ -28,7 +27,7 @@ export const navItems: INavData[] = [
       variant: 'info',
       text: 'Nouveau'
     }
-  },*/
+  },
   {
     name: 'Agenda',
     url: '/agenda',
@@ -39,18 +38,45 @@ export const navItems: INavData[] = [
     }
   },
   {
-    name: 'Paramétrage',
-    url: '/settings',
-    icon: 'icon-settings',
+    name: 'Produits',
+    url: '/produits',
+    icon: 'icon-plus',
     badge: {
       variant: 'info',
       text: 'Nouveau'
     }
   },
   {
-    name: 'Produits',
-    url: '/produits',
-    icon: 'icon-plus',
+    name: 'Echantillons',
+    url: '/echantillons',
+    icon: 'icon-wrench',
+    badge: {
+      variant: 'info',
+      text: 'Nouveau'
+    }
+  },
+  {
+    name: 'Matériel promotionnels',
+    url: '/materiels',
+    icon: 'icon-tag',
+    badge: {
+      variant: 'info',
+      text: 'Nouveau'
+    }
+  },
+  {
+    name: 'Délégués',
+    url: '/delegues',
+    icon: 'icon-people',
+    badge: {
+      variant: 'info',
+      text: 'Nouveau'
+    }
+  },
+  {
+    name: 'Paramétrage',
+    url: '/settings',
+    icon: 'icon-settings',
     badge: {
       variant: 'info',
       text: 'Nouveau'

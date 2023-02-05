@@ -3,22 +3,22 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import PotentielService from '../../services/potentiel.service';
 import RechercheAbsractComponent from '../commun/rechercheAbsract.component';
-import Produit from '../../models/produit.model';
-import { ProduitModalComponent } from './produit-modal/produit-modal.component';
-import CritereRechercheProduit from '../../models/critereRechercheProduit.model';
+import Materiel from '../../models/materiel.model';
+import { MaterielModalComponent } from './materiel-modal/materiel-modal.component';
+import CritereRechercheMateriel from '../../models/critereRechercheMateriel.model';
 import { HttpResponse } from '@angular/common/http';
-import ProduitService from '../../services/produit.service';
+import MaterielService from '../../services/materiel.service';
 
-type EntityArrayResponseProduitType = HttpResponse<Produit[]>;
+type EntityArrayResponseMaterielType = HttpResponse<Materiel[]>;
 
 @Component({
-  selector: 'app-produits',
-  templateUrl: './produits.component.html',
-  styleUrls: ['./produits.component.scss']
+  selector: 'app-materiels',
+  templateUrl: './materiels.component.html',
+  styleUrls: ['./materiels.component.scss']
 })
-export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
+export class MaterielsComponent extends RechercheAbsractComponent<Materiel> {
   
-  public rechercheProduitForm: FormGroup = this.formBuilder.group(
+  public rechercheMaterielForm: FormGroup = this.formBuilder.group(
     {
       nom : new FormControl(null),
       categorie : new FormControl(null),
@@ -30,17 +30,17 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
     protected formBuilder: FormBuilder,
     protected modalService: NgbModal,
     protected potentielService: PotentielService,
-    protected produitService: ProduitService
+    protected materielService: MaterielService
   ) {
     super(formBuilder, modalService, potentielService);
     this.affichageModeListe = true;
   }
 
-  public rechercherProduits(): void {
+  public rechercherMateriels(): void {
     this.initData();
-    const critereRechercheProduit: CritereRechercheProduit = new CritereRechercheProduit(this.rechercheProduitForm);
-    this.produitService.search(critereRechercheProduit).subscribe(
-      (medecins: EntityArrayResponseProduitType) => {
+    const critereRechercheMateriel: CritereRechercheMateriel = new CritereRechercheMateriel(this.rechercheMaterielForm);
+    this.materielService.search(critereRechercheMateriel).subscribe(
+      (medecins: EntityArrayResponseMaterielType) => {
         this.dataArray = medecins.body;
         this.addItems();
       }
@@ -48,7 +48,7 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
   }
 
   public initialiserCritereRecherche(): void {
-    this.rechercheProduitForm.patchValue(
+    this.rechercheMaterielForm.patchValue(
       {
         nom : null,
         categorie : null,
@@ -58,21 +58,21 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
   }
 
   public openPlanificationModal(): void {
-    const modalRef = this.modalService.open(ProduitModalComponent, {size: 'md'});
+    const modalRef = this.modalService.open(MaterielModalComponent, {size: 'md'});
   }
 
   public selectionner(id: number): void {
-    const predicate: any = (entite: Produit)=>{
+    const predicate: any = (entite: Materiel)=>{
       if(entite.id === id) {
         return entite;
       }else {
         return null;
       }
     };
-    let entiteSelectionne: Produit = this.entiteSelectionnes.find(predicate);
+    let entiteSelectionne: Materiel = this.entiteSelectionnes.find(predicate);
     if (entiteSelectionne) {
-      const idProduitSelectionne = this.entiteSelectionnes.indexOf(entiteSelectionne);
-      this.entiteSelectionnes.splice(idProduitSelectionne, 1);
+      const idMaterielSelectionne = this.entiteSelectionnes.indexOf(entiteSelectionne);
+      this.entiteSelectionnes.splice(idMaterielSelectionne, 1);
     } else {
       entiteSelectionne = this.dataArray.find(predicate);
       this.entiteSelectionnes.push(entiteSelectionne);
@@ -80,7 +80,7 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
   }
 
   public isSelectionne(id: number): boolean {
-    const predicate: any = (entite: Produit)=>{
+    const predicate: any = (entite: Materiel)=>{
       if(entite.id === id) {
         return entite;
       }else {

@@ -3,22 +3,22 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import PotentielService from '../../services/potentiel.service';
 import RechercheAbsractComponent from '../commun/rechercheAbsract.component';
-import Produit from '../../models/produit.model';
-import { ProduitModalComponent } from './produit-modal/produit-modal.component';
-import CritereRechercheProduit from '../../models/critereRechercheProduit.model';
+import Echantillon from '../../models/echantillon.model';
+import { EchantillonModalComponent } from './echantillon-modal/echantillon-modal.component';
+import CritereRechercheEchantillon from '../../models/critereRechercheEchantillon.model';
 import { HttpResponse } from '@angular/common/http';
-import ProduitService from '../../services/produit.service';
+import EchantillonService from '../../services/echantillon.service';
 
-type EntityArrayResponseProduitType = HttpResponse<Produit[]>;
+type EntityArrayResponseEchantillonType = HttpResponse<Echantillon[]>;
 
 @Component({
-  selector: 'app-produits',
-  templateUrl: './produits.component.html',
-  styleUrls: ['./produits.component.scss']
+  selector: 'app-echantillons',
+  templateUrl: './echantillons.component.html',
+  styleUrls: ['./echantillons.component.scss']
 })
-export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
+export class EchantillonsComponent extends RechercheAbsractComponent<Echantillon> {
   
-  public rechercheProduitForm: FormGroup = this.formBuilder.group(
+  public rechercheEchantillonForm: FormGroup = this.formBuilder.group(
     {
       nom : new FormControl(null),
       categorie : new FormControl(null),
@@ -30,17 +30,17 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
     protected formBuilder: FormBuilder,
     protected modalService: NgbModal,
     protected potentielService: PotentielService,
-    protected produitService: ProduitService
+    protected echantillonService: EchantillonService
   ) {
     super(formBuilder, modalService, potentielService);
     this.affichageModeListe = true;
   }
 
-  public rechercherProduits(): void {
+  public rechercherEchantillons(): void {
     this.initData();
-    const critereRechercheProduit: CritereRechercheProduit = new CritereRechercheProduit(this.rechercheProduitForm);
-    this.produitService.search(critereRechercheProduit).subscribe(
-      (medecins: EntityArrayResponseProduitType) => {
+    const critereRechercheEchantillon: CritereRechercheEchantillon = new CritereRechercheEchantillon(this.rechercheEchantillonForm);
+    this.echantillonService.search(critereRechercheEchantillon).subscribe(
+      (medecins: EntityArrayResponseEchantillonType) => {
         this.dataArray = medecins.body;
         this.addItems();
       }
@@ -48,7 +48,7 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
   }
 
   public initialiserCritereRecherche(): void {
-    this.rechercheProduitForm.patchValue(
+    this.rechercheEchantillonForm.patchValue(
       {
         nom : null,
         categorie : null,
@@ -58,21 +58,21 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
   }
 
   public openPlanificationModal(): void {
-    const modalRef = this.modalService.open(ProduitModalComponent, {size: 'md'});
+    const modalRef = this.modalService.open(EchantillonModalComponent, {size: 'md'});
   }
 
   public selectionner(id: number): void {
-    const predicate: any = (entite: Produit)=>{
+    const predicate: any = (entite: Echantillon)=>{
       if(entite.id === id) {
         return entite;
       }else {
         return null;
       }
     };
-    let entiteSelectionne: Produit = this.entiteSelectionnes.find(predicate);
+    let entiteSelectionne: Echantillon = this.entiteSelectionnes.find(predicate);
     if (entiteSelectionne) {
-      const idProduitSelectionne = this.entiteSelectionnes.indexOf(entiteSelectionne);
-      this.entiteSelectionnes.splice(idProduitSelectionne, 1);
+      const idEchantillonSelectionne = this.entiteSelectionnes.indexOf(entiteSelectionne);
+      this.entiteSelectionnes.splice(idEchantillonSelectionne, 1);
     } else {
       entiteSelectionne = this.dataArray.find(predicate);
       this.entiteSelectionnes.push(entiteSelectionne);
@@ -80,7 +80,7 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
   }
 
   public isSelectionne(id: number): boolean {
-    const predicate: any = (entite: Produit)=>{
+    const predicate: any = (entite: Echantillon)=>{
       if(entite.id === id) {
         return entite;
       }else {

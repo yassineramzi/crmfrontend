@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <div class="row" [formGroup]="rechercheProduitForm"> 
+                <div class="row" [formGroup]="rechercheMaterielForm"> 
                     <div class="col-md-12">
                         <div class="row" [hidden]="!affichageCritereRecherche">
                             <div class="col-md-4">
@@ -32,7 +32,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Nom</label>
-                                    <input type="text" class="form-control" formControlName="nom" placeholder="Nom du produit"/>
+                                    <input type="text" class="form-control" formControlName="nom" placeholder="Nom du materiel"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -52,7 +52,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="input-group float-right">
-                                    <button class="btn btn-primary m-2" type="button" (click)="rechercherProduits()">
+                                    <button class="btn btn-primary m-2" type="button" (click)="rechercherMateriels()">
                                         Filtrer
                                     </button>
                                     <button class="btn btn-primary m-2" type="button" (click)="initialiserCritereRecherche()">
@@ -79,10 +79,10 @@
                     <div class="col-md-12">
                         <div class="input-group float-left">
                             <span class="mt-2 mb-2 mr-1" [ngClass]="affichageModeListe  ? 'view-mode-selected' : 'view-mode-not-selected'"><i class="fa fa-list"></i></span>
-                            <span class="m-2"><i class="fa fa-info-circle mr-2"></i>{{dataArray.length}}&nbsp;<strong>Produits trouvés</strong></span>
+                            <span class="m-2"><i class="fa fa-info-circle mr-2"></i>{{dataArray.length}}&nbsp;<strong>Materiels trouvés</strong></span>
                         </div>
                         <div class="input-group float-right">
-                            <span class="m-2">{{entiteSelectionnes.length}} <strong>Produits sélectionés</strong></span>
+                            <span class="m-2">{{entiteSelectionnes.length}} <strong>Materiels sélectionés</strong></span>
                             <button class="btn btn-primary m-1" type="button" [disabled]="entiteSelectionnes.length === 0">
                                 <i class="fa fa-trash"></i> Supprimer
                             </button>
@@ -119,22 +119,22 @@
                               >
                                 <tr *ngIf="dataArrayPage.length === 0">
                                     <td colspan="5">
-                                        <span class="d-flex justify-content-center">Aucun produit trouvé</span>
+                                        <span class="d-flex justify-content-center">Aucun materiel trouvé</span>
                                     </td>
                                 </tr>
-                                <tr *ngFor="let produit of dataArrayPage">
+                                <tr *ngFor="let materiel of dataArrayPage">
                                     <td>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" (click)="selectionner(produit.id)"/>
+                                            <input class="form-check-input" type="checkbox" (click)="selectionner(materiel.id)"/>
                                         </div>
                                     </td>
-                                    <td><span class="client-name">{{produit.nom}}</span></td>
-                                    <td>{{produit.categorie}}</td>
+                                    <td><span class="client-name">{{materiel.nom}}</span></td>
+                                    <td>{{materiel.categorie}}</td>
                                     <td>
-                                        <div [ngClass]="getClassPotentiel(produit.potentiel)">
+                                        <div [ngClass]="getClassPotentiel(materiel.potentiel)">
                                             <div class="potentiel-content potentiel-color">
                                                 <i class="fa fa-bullseye"></i>
-                                                <span class="potentiel-text">{{produit.potentiel}}</span>
+                                                <span class="potentiel-text">{{materiel.potentiel}}</span>
                                             </div>
                                         </div>
                                     </td>
