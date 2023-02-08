@@ -20,25 +20,28 @@
         </span>
     </div>
     <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Description :</label>
+        <input type="text" class="form-control" placeholder="Description du materiel" formControlName="description">
+        <span class="invalid-feedback d-block" *ngIf=
+            "
+            ((materielsForm.get('description').dirty 
+            ||
+            materielsForm.get('description').touched
+            ) 
+            &&
+            (materielsForm.get('description').hasError('required')))
+            ">
+            Veuillez saisir la description du materiel
+        </span>
+    </div>
+    <div class="row p-2">
         <label class="col-7 col-md-7 client-name">Catégorie :</label>
         <select class="form-control" formControlName="categorie">
-            <option value="General Medicine">General Medicine</option>
-            <option value="Pharmacy">Pharmacy</option>
-            <option value="Gynaecology">Gynaecology</option>
-            <option value="Otorhinolaryngology">Otorhinolaryngology</option>
-            <option value="Rheumatology">Rheumatology</option>
-            <option value="Psychiatry">Psychiatry</option>
-            <option value="Radiology">Radiology</option>
-            <option value="Ophthalmology">Ophthalmology</option>
-            <option value="Cardiology">Cardiology</option>
-            <option value="Neurology">Neurology</option>
-            <option value="Dermatology">Dermatology</option>
-            <option value="Nephrology">Nephrology</option>
-            <option value="Oncology">Oncology</option>
-            <option value="Hospital Pharmacy">Hospital Pharmacy</option>
-            <option value="Physical Medicine & Rehabilitation">Physical Medicine & Rehabilitation</option>
-            <option value="Sage-Femme">Sage-Femme</option>
-            <option value="Dental Surgery">Dental Surgery</option>
+            <option value="Mobilier médical">Mobilier médical</option>
+            <option value="Premiers secours - urgences">Premiers secours - urgences</option>
+            <option value="Diagnostic médical">Diagnostic médical</option>
+            <option value="Malettes médicales - Vêtements - Protection">Malettes médicales - Vêtements - Protection</option>
+            <option value="Instrumentation médicale">Instrumentation médicale</option>
         </select>
     </div>
     <div class="row p-2">

@@ -16,6 +16,7 @@ export class MaterielModalComponent implements OnInit {
 
   public materielsForm : FormGroup = this.formBuilder.group({
     nom : new FormControl(null, Validators.required),
+    description : new FormControl(null, Validators.required),
     categorie : new FormControl(null, Validators.required),
     potentiel : new FormControl(null, Validators.required)
   });

@@ -5,6 +5,8 @@ export default class Materiel {
 
     public nom: string;
 
+    public description: string;
+
     public categorie: String;
 
     public potentiel: String;
@@ -12,6 +14,7 @@ export default class Materiel {
     constructor(formGroup?: FormGroup){
         if(formGroup) {
             this.nom = formGroup.get(['nom'])!.value;
+            this.description = formGroup.get(['description'])!.value;
             this.categorie = formGroup.get(['categorie'])!.value;
             this.potentiel = formGroup.get(['potentiel'])!.value;
         }

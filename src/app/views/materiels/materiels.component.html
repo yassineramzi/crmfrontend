@@ -5,37 +5,31 @@
                 <div class="row" [formGroup]="rechercheMaterielForm"> 
                     <div class="col-md-12">
                         <div class="row" [hidden]="!affichageCritereRecherche">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Spécialité</label>
                                     <select class="form-control" formControlName="categorie">
-                                        <option value="General Medicine">General Medicine</option>
-                                        <option value="Pharmacy">Pharmacy</option>
-                                        <option value="Gynaecology">Gynaecology</option>
-                                        <option value="Otorhinolaryngology">Otorhinolaryngology</option>
-                                        <option value="Rheumatology">Rheumatology</option>
-                                        <option value="Psychiatry">Psychiatry</option>
-                                        <option value="Radiology">Radiology</option>
-                                        <option value="Ophthalmology">Ophthalmology</option>
-                                        <option value="Cardiology">Cardiology</option>
-                                        <option value="Neurology">Neurology</option>
-                                        <option value="Dermatology">Dermatology</option>
-                                        <option value="Nephrology">Nephrology</option>
-                                        <option value="Oncology">Oncology</option>
-                                        <option value="Hospital Pharmacy">Hospital Pharmacy</option>
-                                        <option value="Physical Medicine & Rehabilitation">Physical Medicine & Rehabilitation</option>
-                                        <option value="Sage-Femme">Sage-Femme</option>
-                                        <option value="Dental Surgery">Dental Surgery</option>
+                                        <option value="Mobilier médical">Mobilier médical</option>
+                                        <option value="Premiers secours - urgences">Premiers secours - urgences</option>
+                                        <option value="Diagnostic médical">Diagnostic médical</option>
+                                        <option value="Malettes médicales - Vêtements - Protection">Malettes médicales - Vêtements - Protection</option>
+                                        <option value="Instrumentation médicale">Instrumentation médicale</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Nom</label>
                                     <input type="text" class="form-control" formControlName="nom" placeholder="Nom du materiel"/>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input type="text" class="form-control" formControlName="description" placeholder="Description du materiel"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Potentiel</label>
                                     <select class="form-control" formControlName="potentiel" placeholder="Potentiel">
@@ -105,6 +99,7 @@
                                         </div>
                                     </td>
                                     <th scope="col">Nom</th>
+                                    <th scope="col">Description</th>
                                     <th scope="col">Spécialité</th>
                                     <th scope="col">Potentiel</th>
                                     <th scope="col">Actions</th>
@@ -129,6 +124,7 @@
                                         </div>
                                     </td>
                                     <td><span class="client-name">{{materiel.nom}}</span></td>
+                                    <td><span class="client-name">{{materiel.description}}</span></td>
                                     <td>{{materiel.categorie}}</td>
                                     <td>
                                         <div [ngClass]="getClassPotentiel(materiel.potentiel)">

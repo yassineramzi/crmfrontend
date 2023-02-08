@@ -22,7 +22,8 @@ export class MaterielsComponent extends RechercheAbsractComponent<Materiel> {
     {
       nom : new FormControl(null),
       categorie : new FormControl(null),
-      potentiel : new FormControl(null)
+      potentiel : new FormControl(null),
+      description : new FormControl(null)
     }
   );
 
@@ -52,7 +53,8 @@ export class MaterielsComponent extends RechercheAbsractComponent<Materiel> {
       {
         nom : null,
         categorie : null,
-        potentiel : null
+        potentiel : null,
+        description : null
       }
     );
   }
