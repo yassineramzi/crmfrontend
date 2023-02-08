@@ -61,6 +61,9 @@ export class MaterielsComponent extends RechercheAbsractComponent<Materiel> {
 
   public openPlanificationModal(): void {
     const modalRef = this.modalService.open(MaterielModalComponent, {size: 'md'});
+    modalRef.result.then(() => {
+      this.rechercherMateriels();
+    });
   }
 
   public selectionner(id: number): void {

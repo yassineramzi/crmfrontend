@@ -59,6 +59,9 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
 
   public openPlanificationModal(): void {
     const modalRef = this.modalService.open(ProduitModalComponent, {size: 'md'});
+    modalRef.result.then(() => {
+      this.rechercherProduits();
+    });
   }
 
   public selectionner(id: number): void {
