@@ -10,6 +10,7 @@ type EntityArrayResponseType = HttpResponse<Materiel[]>;
 
 @Injectable({providedIn: 'root'})
 export default class MaterielService {
+
     private resourceUrl = environment.api_url + 'api/materiels';
 
     constructor(private http: HttpClient) {
@@ -21,5 +22,9 @@ export default class MaterielService {
 
     public search(critereRechercheMateriel: CritereRechercheMateriel): Observable<EntityArrayResponseType> {
         return this.http.post<Materiel[]>(this.resourceUrl + '/search', critereRechercheMateriel, {observe: 'response'});
+    }
+
+    public delete(id: number) : Observable<HttpResponse<void>> {
+        return this.http.delete<void>(this.resourceUrl + '/' + id + '/delete',  {observe: 'response'});
     }
 }

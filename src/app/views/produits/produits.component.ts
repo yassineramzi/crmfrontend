@@ -57,8 +57,9 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
     );
   }
 
-  public openPlanificationModal(): void {
+  public openModal(produit?: Produit): void {
     const modalRef = this.modalService.open(ProduitModalComponent, {size: 'md'});
+    modalRef.componentInstance.produit = produit;
     modalRef.result.then(() => {
       this.rechercherProduits();
     });
@@ -93,4 +94,24 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
     return this.entiteSelectionnes.some(predicate);
   }
 
+  public delete(): void {
+    if(confirm("Voulez-vous supprimer les produits selectionnés ?")) {
+      this.entiteSelectionnes.forEach( produit => {
+        this.produitService.delete(produit.id).subscribe(
+          response => {
+            this.rechercherProduits();
+          }
+        );
+      });
+    }
+  }
+  
+  public edit(idProduit: number): void {
+    let produit: Produit = this.dataArray.filter(
+      produitTemp => produitTemp.id === idProduit
+    )[0];
+    if ( produit !== null ) {
+      this.openModal(produit);
+    }
+  }
 }

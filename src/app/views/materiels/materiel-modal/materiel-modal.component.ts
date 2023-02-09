@@ -15,11 +15,14 @@ import MaterielService from '../../../services/materiel.service';
 export class MaterielModalComponent implements OnInit {
 
   public materielsForm : FormGroup = this.formBuilder.group({
+    id: new FormControl(null),
     nom : new FormControl(null, Validators.required),
     description : new FormControl(null, Validators.required),
     categorie : new FormControl(null, Validators.required),
     potentiel : new FormControl(null, Validators.required)
   });
+
+  public materiel : Materiel;
 
   constructor(
     protected activeModal: NgbActiveModal,
@@ -30,7 +33,15 @@ export class MaterielModalComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
+    if (this.materiel) {
+      this.materielsForm.patchValue({
+        id: this.materiel.id,
+        nom: this.materiel.nom,
+        description: this.materiel.description,
+        categorie: this.materiel.categorie,
+        potentiel: this.materiel.potentiel
+      });
+    }
   }
 
   public onClose(): void {

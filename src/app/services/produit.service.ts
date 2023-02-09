@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "../../environments/environment";
@@ -21,5 +21,9 @@ export default class ProduitService {
 
     public search(critereRechercheProduit: CritereRechercheProduit): Observable<EntityArrayResponseType> {
         return this.http.post<Produit[]>(this.resourceUrl + '/search', critereRechercheProduit, {observe: 'response'});
+    }
+
+    public delete(id: number): Observable<HttpResponse<void>> {
+        return this.http.delete<void>(this.resourceUrl + '/' + id + '/delete',  {observe: 'response'});
     }
 }

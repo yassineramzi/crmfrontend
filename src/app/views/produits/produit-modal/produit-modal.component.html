@@ -1,6 +1,7 @@
 <div class="modal-header">
     <h5 class="modal-title client-name">
-      Ajouter un produit
+        <span *ngIf="!produitsForm.get('id').value">Ajouter un produit</span>
+        <span *ngIf="produitsForm.get('id').value">Modifier un produit</span>
     </h5>
 </div>
 <div class="modal-body"  [formGroup]="produitsForm">
@@ -55,5 +56,8 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default float-left" (click)="onClose()">Annuler</button>
-    <button type="submit" class="btn btn-primary float-right" (click)="save()" [disabled]="!produitsForm.valid">Ajouter</button>
+    <button type="submit" class="btn btn-primary float-right" (click)="save()" [disabled]="!produitsForm.valid">
+        <span *ngIf="!produitsForm.get('id').value">Ajouter</span>
+        <span *ngIf="produitsForm.get('id').value">Modifier</span>
+    </button>
 </div>

@@ -59,8 +59,9 @@ export class MaterielsComponent extends RechercheAbsractComponent<Materiel> {
     );
   }
 
-  public openPlanificationModal(): void {
+  public openModal(materiel?: Materiel): void {
     const modalRef = this.modalService.open(MaterielModalComponent, {size: 'md'});
+    modalRef.componentInstance.materiel = materiel;
     modalRef.result.then(() => {
       this.rechercherMateriels();
     });
@@ -95,4 +96,24 @@ export class MaterielsComponent extends RechercheAbsractComponent<Materiel> {
     return this.entiteSelectionnes.some(predicate);
   }
 
+  public delete(): void {
+    if(confirm("Voulez-vous supprimer les materiels selectionnés ?")) {
+      this.entiteSelectionnes.forEach( materiel => {
+        this.materielService.delete(materiel.id).subscribe(
+          response => {
+            this.rechercherMateriels();
+          }
+        );
+      });
+    }
+  }
+
+  public edit(idMateriel: number): void {
+    let materiel: Materiel = this.dataArray.filter(
+      materielTemp => materielTemp.id === idMateriel
+    )[0];
+    if ( materiel !== null ) {
+      this.openModal(materiel);
+    }
+  }
 }

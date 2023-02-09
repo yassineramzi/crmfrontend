@@ -58,8 +58,6 @@ export default abstract class RechercheAbsractComponent<T> {
       return this.potentielService.getClassPotentiel(potentiel);
     }
 
-    public abstract openPlanificationModal(): void;
-
     public abstract selectionner(id: number): void;
 
     public abstract isSelectionne(id: number): boolean;

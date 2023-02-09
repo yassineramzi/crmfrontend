@@ -15,10 +15,13 @@ import ProduitService from '../../../services/produit.service';
 export class ProduitModalComponent implements OnInit {
 
   public produitsForm : FormGroup = this.formBuilder.group({
+    id : new FormControl(null),
     nom : new FormControl(null, Validators.required),
     categorie : new FormControl(null, Validators.required),
     potentiel : new FormControl(null, Validators.required)
   });
+
+  public produit: Produit;
 
   constructor(
     protected activeModal: NgbActiveModal,
@@ -28,9 +31,16 @@ export class ProduitModalComponent implements OnInit {
     protected toastr: ToastrService
     ) { }
 
-  ngOnInit(): void {
-
-  }
+    ngOnInit(): void {
+      if (this.produit) {
+        this.produitsForm.patchValue({
+          id: this.produit.id,
+          nom: this.produit.nom,
+          categorie: this.produit.categorie,
+          potentiel: this.produit.potentiel
+        });
+      }
+    }
 
   public onClose(): void {
     this.activeModal.close();
