@@ -47,7 +47,7 @@
 
                                 <td>
 
-                                    <button type="button"  class="fa fa-edit"   style="background-color:#EDF1FB  ;"   (click)="openup(societe ,modifier)"></button>
+                                    <button type="button"  class="fa fa-edit"   style="background-color:#EDF1FB  ;"   (click)="openup( loginRequest,modifier)"></button>
                                     <button type="button"  class="btn btn-primary"  class="fa fa-trash" style="background-color:#EDF1FB ;"   (click)="opensup(supprimer)"> </button>
                                 </td>
 
@@ -66,3 +66,111 @@
         </div>
     </div>
 </div><!--/.col-->
+
+
+
+
+<ng-template #supprimer let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"></h4>
+      
+    </div>
+    <div class="modal-body">
+      <p>Êtes-vous sûr de vouloir supprimer ce utilisateur</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button"   class="btn btn-primary" (click)= "deleteUser(index); d('Cross click')">oui</button>
+      <button type="button" class="btn btn-primary"  (click)= "d('Cross click')">non</button>
+    </div>
+  </ng-template>
+
+
+
+
+  
+
+
+
+  <ng-template #modifier let-c="close" let-d="dismiss" let-a="loginRequest">
+    <div class="modal-header"   style="background-color:rgb(80, 19, 248);">
+      <h4 class="modal-title" id="modal-basic-title  " style="color:white"   >modifier utilisateur   </h4>
+      
+    </div>
+    <div class="modal-body">
+       
+
+
+      <form [formGroup]="formupdate" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+        <label>
+          <strong>  Nom d'utilisateur </strong></label> <br>
+          <input type="text"   class="form-control"  formControlName="username" >
+          </div>
+      
+          <div class="form-group">
+            <label>
+              <strong>  mot de passe </strong></label> <br>
+              <input type="text"   class="form-control"  formControlName="password" >
+              </div>
+          
+      <br>
+        <button  class="btn btn-primary" (click)="update(loginRequest) ;d('Cross click')">Enregistrer</button>
+      
+        <button class="btn btn-primary" (click)= "d('Cross click')">Fermer</button>
+
+        
+      
+      </form>
+
+
+    </div>
+    <div class="modal-footer">
+      Thinline
+    </div>
+  </ng-template>
+
+
+
+
+   
+  <ng-template #ajouter  let-c="close" let-d="dismiss" >
+    <div class="modal-header"   style="background-color:rgb(80, 19, 248);">
+      <h4 class="modal-title" id="modal-basic-title  " style="color:white"   >Ajouter utilisateur  </h4>
+      
+    </div>
+    <div class="modal-body">
+       
+
+
+      <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>
+              <strong>  Nom d'utilisateur </strong></label> <br>
+              <input type="text"   class="form-control"  formControlName="username" >
+              </div>
+          
+              <div class="form-group">
+                <label>
+                  <strong>  mot de passe </strong></label> <br>
+                  <input type="text"   class="form-control"  formControlName="password" >
+                  </div>
+      <br>
+
+      
+        <button  class="btn btn-primary" (click)="add(loginRequest) ;d('Cross click')">Enregistrer</button>
+      
+        <button class="btn btn-primary" (click)= "d('Cross click')">Fermer</button>
+
+        
+      
+      </form>
+
+
+    </div>
+    <div class="modal-footer">
+      Thinline
+    </div>
+  </ng-template>
+  
+
+  

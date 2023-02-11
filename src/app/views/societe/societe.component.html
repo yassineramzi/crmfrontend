@@ -22,10 +22,13 @@
                             <table id="table" class="table table-centered table-hover m-1"   >
                               <thead>
                                 <tr>
-                                   
+
                                     <th scope="col">Nom</th>
                                    
                                      <th scope="col">action</th>
+                                  
+                                  
+                                  
                                   
                                   </tr>
                               </thead>
@@ -96,17 +99,17 @@
   
   
           <form [formGroup]="formupdate" (ngSubmit)="onSubmit()">
-  
+            <div class="form-group">
             <label>
               <strong>  Nom </strong></label> <br>
-              <input type="text" style="color:red;left:400px;" formControlName="nom" >
-
-          <br>
-
-          <br>
-            <button  class="btn btn-primary" (click)="update(societe) ;d('Cross click')">enregistrer</button>
+              <input type="text"   class="form-control"  formControlName="nom" >
+              </div>
           
-            <button class="btn btn-primary" (click)= "d('Cross click')">fermer</button>
+
+          <br>
+            <button  class="btn btn-primary" (click)="update(societe) ;d('Cross click')">Enregistrer</button>
+          
+            <button class="btn btn-primary" (click)= "d('Cross click')">Fermer</button>
     
             
           
@@ -134,17 +137,17 @@
   
   
           <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
-  
+            <div class="form-group">
             <label>
               <strong>  Nom </strong></label> <br>
-              <input type="text" style="color:red;left:400px;" formControlName="nom" >
-
+              <input type="text" class="form-control"  formControlName="nom" >
+          </div>
           <br>
 
-          <br>
-            <button  class="btn btn-primary" (click)="add(societe) ;d('Cross click')">enregistrer</button>
           
-            <button class="btn btn-primary" (click)= "d('Cross click')">fermer</button>
+            <button  class="btn btn-primary" (click)="add(societe) ;d('Cross click')">Enregistrer</button>
+          
+            <button class="btn btn-primary" (click)= "d('Cross click')">Fermer</button>
     
             
           

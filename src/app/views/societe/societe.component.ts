@@ -105,10 +105,10 @@ export class SocieteComponent implements OnInit {
 
 
 
-update(medecin){
+update(societe){
 
 
-let index = this.arrayPage.findIndex(medecin =>medecin.id);
+let index = this.arrayPage.findIndex(societe =>societe.id);
 console.log("looog")
 
 

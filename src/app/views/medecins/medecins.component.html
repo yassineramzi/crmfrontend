@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive" >
-                            <!--Vue mode liste-->
+                         
                             <table id="table" class="table table-centered table-hover m-1"   >
                               <thead>
                                 <tr>
@@ -75,7 +75,7 @@
                                 </tr>
                               </tbody>
 
-
+                          
                             </table>
                             
                             
@@ -97,13 +97,14 @@
       <div class="modal-body">
         <form [formGroup]="formMedecin" (ngSubmit)="onSubmit()">
 
-          <label>
-            <strong>  Nom et prénom </strong></label> <br>
-            <input type="text" style="color:red;left:400px;" formControlName="nom">
-         
-        
-         
+          <div class="form-group">
+            <label > <strong>  Nom et prénom </strong></label>
+            <input type="text" class="form-control"     formControlName="nom">
+          </div>
+
+          
         <br>
+        <div class="form-group">
           <label><strong>Spécialité</strong></label>
           <select class="form-control"   formControlName="specialite">
             <option value="">liste de choix</option>
@@ -126,16 +127,17 @@
               <option value="Sage-Femme">Sage-Femme</option>
               <option value="Dental Surgery">Dental Surgery</option>
           </select>
-        
+        </div>
         
         <br>
+        <div class="form-group">
           <label><strong>Mobile</strong></label>
           <br>
-          <input type="text"  style="color:red;left:400px;" formControlName="mobile">
+          <input type="text"  class="form-control"    formControlName="mobile">
+        </div>
         
         
-        
-        <br>
+        <br>  <div class="form-group">
           <label><strong>Secteur IMS</strong></label>
           <select class="form-control" formControlName="secteur">
               <option value="Agdal/Riad">Agdal/Riad</option>
@@ -144,19 +146,18 @@
               <option value="Yacoub El Mansour">Yacoub El Mansour</option>
               <option value="Souissi">Souissi</option>
           </select>
-        
-        
+        </div>
           
         <br>
-        
+        <div class="form-group">
           <label><strong>Adresse</strong> </label>
           <br>
-          <input type="text"  style="color:red;left:400px;" formControlName="adresse">
-        
+          <input type="text" class="form-control" formControlName="adresse">
+        </div>
         <br>
         
         
-        
+        <div class="form-group">
           <label><strong>Potentiel</strong></label>
           <select class="form-control" formControlName="potentiel">
               <option value="A+">A+</option>
@@ -166,14 +167,17 @@
               <option value="C+">C+</option>
               <option value="C">C</option>
           </select>
-        
+        </div>
         <br>
+       
+       
         <br>
-          <button  class="btn btn-primary" (click)="add();modal.close('Save click')">enregistrer</button>
+          <button  class="btn btn-primary" (click)="add();modal.close('Save click')">Enregistrer</button>
         
-          <button class="btn btn-primary" (click)="modal.close('Save click')">fermer</button>
-  
-          
+          <button class="btn btn-primary" (click)="modal.close('Save click')">Fermer</button>
+        
+         
+            
         
         </form>
       </div>
@@ -221,14 +225,16 @@
 
 
         <form [formGroup]="formupdate" (ngSubmit)="onSubmit()">
-
+          <div class="form-group">
           <label>
             <strong>  Nom et prénom </strong></label> <br>
-            <input type="text" style="color:red;left:400px;" formControlName="nom" >
-         
+            <input type="text" class="form-control" formControlName="nom" >
+         </div>
         
          
         <br>
+
+        <div class="form-group">
           <label><strong>Spécialité</strong></label>
           <select class="form-control"   formControlName="specialite">
             <option value="">liste de choix</option>
@@ -251,16 +257,18 @@
               <option value="Sage-Femme">Sage-Femme</option>
               <option value="Dental Surgery">Dental Surgery</option>
           </select>
-        
+        </div>
         
         <br>
+        <div class="form-group">
           <label><strong>Mobile</strong></label>
           <br>
-          <input type="text"  style="color:red;left:400px;" formControlName="mobile">
-        
+          <input type="text" class="form-control" formControlName="mobile">
+        </div>
         
         
         <br>
+        <div class="form-group">
           <label><strong>Secteur IMS</strong></label>
           <select class="form-control" formControlName="secteur">
               <option value="Agdal/Riad">Agdal/Riad</option>
@@ -269,19 +277,19 @@
               <option value="Yacoub El Mansour">Yacoub El Mansour</option>
               <option value="Souissi">Souissi</option>
           </select>
-        
+        </div>
         
           
         <br>
-        
+        <div class="form-group">
           <label><strong>Adresse</strong> </label>
           <br>
-          <input type="text"  style="color:red;left:400px;" formControlName="adresse">
-        
+          <input type="text" class="form-control" formControlName="adresse">
+        </div>
         <br>
         
         
-        
+        <div class="form-group">
           <label><strong>Potentiel</strong></label>
           <select class="form-control" formControlName="potentiel">
               <option value="A+">A+</option>
@@ -291,7 +299,7 @@
               <option value="C+">C+</option>
               <option value="C">C</option>
           </select>
-        
+        </div>
         <br>
         <br>
           <button  class="btn btn-primary" (click)="updateItem(medecin) ;d('Cross click')">enregistrer</button>
