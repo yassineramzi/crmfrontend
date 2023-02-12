@@ -110,7 +110,7 @@ update(societe){
 
 let index = this.arrayPage.findIndex(societe =>societe.id);
 console.log("looog")
-
+console.log(index)
 
 this.arrayPage[index] = 
 {

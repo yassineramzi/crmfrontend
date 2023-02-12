@@ -24,10 +24,10 @@
                           <thead>
                             <tr>
                                
-                                <th scope="col">Nom</th>
+                                <th scope="col" class="col-5">Nom</th>
 
-                                 <th scope="col">mot de passe</th>
-                                 <th scope="col">action</th>
+                                 <th scope="col" class="col-5">mot de passe</th>
+                                 <th scope="col"  class="col-2">action</th>
                               
                               </tr>
                           </thead>
@@ -113,8 +113,11 @@
               <input type="text"   class="form-control"  formControlName="password" >
               </div>
           
+
+
+
       <br>
-        <button  class="btn btn-primary" (click)="update(loginRequest) ;d('Cross click')">Enregistrer</button>
+        <button  class="btn btn-primary" (click)="updateItem(loginRequest) ;d('Cross click')">Enregistrer</button>
       
         <button class="btn btn-primary" (click)= "d('Cross click')">Fermer</button>
 

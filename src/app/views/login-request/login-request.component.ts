@@ -13,20 +13,20 @@ export class LoginRequestComponent implements OnInit {
 
   arrayPage: any=[
     {
-      
+      id: 1,
       username: 'marwa',
       password :'42@.AZ',
 
     },
 
-    {
+    { id: 2,
       username: 'manal',
       password :'@:aze21A',
 
     },
 
 
-    {
+    { id: 3,
       username: 'chaimae',
       password :'09@RE/az',
 
@@ -91,14 +91,21 @@ export class LoginRequestComponent implements OnInit {
 
 
 
-update(loginRequest){
+
+  
+
+  
+updateItem(loginRequest){
+
 
 
 let index = this.arrayPage.findIndex(loginRequest=>loginRequest.id);
 console.log("looog")
 
+console.log(index)
 
-this.arrayPage[index] = 
+  
+this. arrayPage[index] = 
 {
 
   username : this.formupdate.value.username,
@@ -110,6 +117,14 @@ this.arrayPage[index] =
 console.log(this.arrayPage);
 this.formupdate.reset()
 }
+
+
+  
+
+
+
+
+
 
 
 
