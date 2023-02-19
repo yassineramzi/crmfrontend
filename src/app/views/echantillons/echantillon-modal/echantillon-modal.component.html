@@ -38,11 +38,23 @@
     <div class="row p-2">
         <label class="col-7 col-md-7 client-name">Catégorie :</label>
         <select class="form-control" formControlName="categorie">
-            <option value="Mobilier médical">Mobilier médical</option>
-            <option value="Premiers secours - urgences">Premiers secours - urgences</option>
-            <option value="Diagnostic médical">Diagnostic médical</option>
-            <option value="Malettes médicales - Vêtements - Protection">Malettes médicales - Vêtements - Protection</option>
-            <option value="Instrumentation médicale">Instrumentation médicale</option>
+            <option value="General Medicine">General Medicine</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Gynaecology">Gynaecology</option>
+            <option value="Otorhinolaryngology">Otorhinolaryngology</option>
+            <option value="Rheumatology">Rheumatology</option>
+            <option value="Psychiatry">Psychiatry</option>
+            <option value="Radiology">Radiology</option>
+            <option value="Ophthalmology">Ophthalmology</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Neurology">Neurology</option>
+            <option value="Dermatology">Dermatology</option>
+            <option value="Nephrology">Nephrology</option>
+            <option value="Oncology">Oncology</option>
+            <option value="Hospital Pharmacy">Hospital Pharmacy</option>
+            <option value="Physical Medicine & Rehabilitation">Physical Medicine & Rehabilitation</option>
+            <option value="Sage-Femme">Sage-Femme</option>
+            <option value="Dental Surgery">Dental Surgery</option>
         </select>
     </div>
     <div class="row p-2">
@@ -54,6 +66,77 @@
             <option value="B">B</option>
             <option value="C+">C+</option>
             <option value="C">C</option>
+        </select>
+    </div>
+
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Dosage :</label>
+        <input type="text" class="form-control" placeholder="Dosage l' echantillon" formControlName="dosage">
+        <span class="invalid-feedback d-block" *ngIf=
+            "
+            ((echantillonsForm.get('dosage').dirty 
+            ||
+            echantillonsForm.get('dosage').touched
+            ) 
+            &&
+            (echantillonsForm.get('dosage').hasError('required')))
+            ">
+            Veuillez saisir le dosage de l'echantillon
+        </span>
+    </div>
+
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Forme :</label>
+        <input type="text" class="form-control" placeholder="Forme l' echantillon" formControlName="forme">
+        <span class="invalid-feedback d-block" *ngIf=
+            "
+            ((echantillonsForm.get('forme').dirty 
+            ||
+            echantillonsForm.get('forme').touched
+            ) 
+            &&
+            (echantillonsForm.get('forme').hasError('required')))
+            ">
+            Veuillez saisir la forme de l'echantillon
+        </span>
+    </div>
+
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Numéro du lot :</label>
+        <input type="text" class="form-control" placeholder="Numéro du lot de l' echantillon" formControlName="numLot">
+        <span class="invalid-feedback d-block" *ngIf=
+            "
+            ((echantillonsForm.get('numLot').dirty 
+            ||
+            echantillonsForm.get('numLot').touched
+            ) 
+            &&
+            (echantillonsForm.get('numLot').hasError('required')))
+            ">
+            Veuillez saisir le numéro du lot de l'echantillon
+        </span>
+    </div>
+
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Quantité :</label>
+        <input type="number" class="form-control" placeholder="Numéro du lot de l' echantillon" formControlName="quantite">
+        <span class="invalid-feedback d-block" *ngIf=
+            "
+            ((echantillonsForm.get('quantite').dirty 
+            ||
+            echantillonsForm.get('quantite').touched
+            ) 
+            &&
+            (echantillonsForm.get('quantite').hasError('required')))
+            ">
+            Veuillez saisir la quantité de l'echantillon
+        </span>
+    </div>
+
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Produit lié :</label>
+        <select class="form-control" formControlName="idProduitLie">
+            <option *ngFor="let produit of produits" [ngValue]="produit.id">{{produit.nom}}</option>
         </select>
     </div>
 </div>

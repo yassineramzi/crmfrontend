@@ -35,6 +35,7 @@ export class MaterielsComponent extends RechercheAbsractComponent<Materiel> {
   ) {
     super(formBuilder, modalService, potentielService);
     this.affichageModeListe = true;
+    this.rechercherMateriels();
   }
 
   public rechercherMateriels(): void {

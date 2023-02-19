@@ -35,6 +35,7 @@ export class EchantillonsComponent extends RechercheAbsractComponent<Echantillon
   ) {
     super(formBuilder, modalService, potentielService);
     this.affichageModeListe = true;
+    this.rechercherEchantillons();
   }
 
   public rechercherEchantillons(): void {

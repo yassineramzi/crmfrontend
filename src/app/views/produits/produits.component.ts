@@ -34,14 +34,15 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
   ) {
     super(formBuilder, modalService, potentielService);
     this.affichageModeListe = true;
+    this.rechercherProduits();
   }
 
   public rechercherProduits(): void {
     this.initData();
     const critereRechercheProduit: CritereRechercheProduit = new CritereRechercheProduit(this.rechercheProduitForm);
     this.produitService.search(critereRechercheProduit).subscribe(
-      (medecins: EntityArrayResponseProduitType) => {
-        this.dataArray = medecins.body;
+      (produits: EntityArrayResponseProduitType) => {
+        this.dataArray = produits.body;
         this.addItems();
       }
     );
