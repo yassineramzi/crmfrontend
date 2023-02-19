@@ -116,4 +116,14 @@ export class MaterielsComponent extends RechercheAbsractComponent<Materiel> {
       this.openModal(materiel);
     }
   }
+
+  public deleteOne(idMateriel: number): void {
+    if(confirm("Voulez-vous supprimer ce materiel ?")) {
+      this.materielService.delete(idMateriel).subscribe(
+        response => {
+          this.rechercherMateriels();
+        }
+      );
+    }
+  }
 }

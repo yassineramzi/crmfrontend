@@ -54,6 +54,9 @@ export class MaterielModalComponent implements OnInit {
       (response : HttpResponse<Materiel>) => {
         this.toastr.success('Materiel créé avec succès', 'Création d\'un materiel');
         this.onClose();
+      },
+      (error : any) => {
+        this.toastr.error('Un matériel existe dèjà avec le nom : '+materiel.nom, 'Erreur création d\'un matériel');
       }
     );
   }

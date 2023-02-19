@@ -114,4 +114,14 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
       this.openModal(produit);
     }
   }
+
+  public deleteOne(idProduit: number): void {
+    if(confirm("Voulez-vous supprimer ce produit ?")) {
+      this.produitService.delete(idProduit).subscribe(
+        response => {
+          this.rechercherProduits();
+        }
+      );
+    }
+  }
 }

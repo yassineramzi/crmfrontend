@@ -5,6 +5,8 @@ export default class Echantillon {
 
     public nom: string;
 
+    public description: string;
+
     public categorie: String;
 
     public potentiel: String;

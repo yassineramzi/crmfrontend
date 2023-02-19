@@ -22,4 +22,8 @@ export default class EchantillonService {
     public search(critereRechercheEchantillon: CritereRechercheEchantillon): Observable<EntityArrayResponseType> {
         return this.http.post<Echantillon[]>(this.resourceUrl + '/search', critereRechercheEchantillon, {observe: 'response'});
     }
+
+    public delete(id: number) : Observable<HttpResponse<void>> {
+        return this.http.delete<void>(this.resourceUrl + '/' + id + '/delete',  {observe: 'response'});
+    }
 }

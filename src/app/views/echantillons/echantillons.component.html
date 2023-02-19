@@ -5,37 +5,31 @@
                 <div class="row" [formGroup]="rechercheEchantillonForm"> 
                     <div class="col-md-12">
                         <div class="row" [hidden]="!affichageCritereRecherche">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Spécialité</label>
                                     <select class="form-control" formControlName="categorie">
-                                        <option value="General Medicine">General Medicine</option>
-                                        <option value="Pharmacy">Pharmacy</option>
-                                        <option value="Gynaecology">Gynaecology</option>
-                                        <option value="Otorhinolaryngology">Otorhinolaryngology</option>
-                                        <option value="Rheumatology">Rheumatology</option>
-                                        <option value="Psychiatry">Psychiatry</option>
-                                        <option value="Radiology">Radiology</option>
-                                        <option value="Ophthalmology">Ophthalmology</option>
-                                        <option value="Cardiology">Cardiology</option>
-                                        <option value="Neurology">Neurology</option>
-                                        <option value="Dermatology">Dermatology</option>
-                                        <option value="Nephrology">Nephrology</option>
-                                        <option value="Oncology">Oncology</option>
-                                        <option value="Hospital Pharmacy">Hospital Pharmacy</option>
-                                        <option value="Physical Medicine & Rehabilitation">Physical Medicine & Rehabilitation</option>
-                                        <option value="Sage-Femme">Sage-Femme</option>
-                                        <option value="Dental Surgery">Dental Surgery</option>
+                                        <option value="Mobilier médical">Mobilier médical</option>
+                                        <option value="Premiers secours - urgences">Premiers secours - urgences</option>
+                                        <option value="Diagnostic médical">Diagnostic médical</option>
+                                        <option value="Malettes médicales - Vêtements - Protection">Malettes médicales - Vêtements - Protection</option>
+                                        <option value="Instrumentation médicale">Instrumentation médicale</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Nom</label>
-                                    <input type="text" class="form-control" formControlName="nom" placeholder="Nom du echantillon"/>
+                                    <input type="text" class="form-control" formControlName="nom" placeholder="Nom de l' echantillon"/>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <input type="text" class="form-control" formControlName="description" placeholder="Description du echantillon"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Potentiel</label>
                                     <select class="form-control" formControlName="potentiel" placeholder="Potentiel">
@@ -83,10 +77,10 @@
                         </div>
                         <div class="input-group float-right">
                             <span class="m-2">{{entiteSelectionnes.length}} <strong>Echantillons sélectionés</strong></span>
-                            <button class="btn btn-primary m-1" type="button" [disabled]="entiteSelectionnes.length === 0">
+                            <button class="btn btn-primary m-1" type="button" [disabled]="entiteSelectionnes.length === 0" (click)="delete()">
                                 <i class="fa fa-trash"></i> Supprimer
                             </button>
-                            <button class="btn btn-primary m-1" type="button"  (click)="openPlanificationModal()">
+                            <button class="btn btn-primary m-1" type="button"  (click)="openModal()">
                                 <i class="fa fa-plus"></i> Ajouter
                             </button>
                         </div>
@@ -105,6 +99,7 @@
                                         </div>
                                     </td>
                                     <th scope="col">Nom</th>
+                                    <th scope="col">Description</th>
                                     <th scope="col">Spécialité</th>
                                     <th scope="col">Potentiel</th>
                                     <th scope="col">Actions</th>
@@ -118,7 +113,7 @@
                                 (scrolled)="addItems()"
                               >
                                 <tr *ngIf="dataArrayPage.length === 0">
-                                    <td colspan="5">
+                                    <td colspan="6">
                                         <span class="d-flex justify-content-center">Aucun echantillon trouvé</span>
                                     </td>
                                 </tr>
@@ -129,6 +124,7 @@
                                         </div>
                                     </td>
                                     <td><span class="client-name">{{echantillon.nom}}</span></td>
+                                    <td><span class="client-name">{{echantillon.description}}</span></td>
                                     <td>{{echantillon.categorie}}</td>
                                     <td>
                                         <div [ngClass]="getClassPotentiel(echantillon.potentiel)">
@@ -138,7 +134,10 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        <i class="cil-pencil mr-1" (click)="edit(echantillon.id)"></i>
+                                        <i class="cil-trash mr-1" (click)="deleteOne(echantillon.id)"></i>
+                                    </td>
                                 </tr>
                               </tbody>
                             </table>

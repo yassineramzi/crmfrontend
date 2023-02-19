@@ -52,6 +52,9 @@ export class ProduitModalComponent implements OnInit {
       (response : HttpResponse<Produit>) => {
         this.toastr.success('Produit créé avec succès', 'Création d\'un produit');
         this.onClose();
+      },
+      (error : any) => {
+        this.toastr.error('Un produit existe dèjà avec le nom : '+produit.nom, 'Erreur création d\'un produit');
       }
     );
   }

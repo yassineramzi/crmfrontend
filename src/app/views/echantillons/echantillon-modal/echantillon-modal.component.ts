@@ -15,10 +15,14 @@ import EchantillonService from '../../../services/echantillon.service';
 export class EchantillonModalComponent implements OnInit {
 
   public echantillonsForm : FormGroup = this.formBuilder.group({
+    id: new FormControl(null),
     nom : new FormControl(null, Validators.required),
+    description : new FormControl(null, Validators.required),
     categorie : new FormControl(null, Validators.required),
     potentiel : new FormControl(null, Validators.required)
   });
+
+  public echantillon : Echantillon;
 
   constructor(
     protected activeModal: NgbActiveModal,
@@ -29,7 +33,15 @@ export class EchantillonModalComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
+    if (this.echantillon) {
+      this.echantillonsForm.patchValue({
+        id: this.echantillon.id,
+        nom: this.echantillon.nom,
+        description: this.echantillon.description,
+        categorie: this.echantillon.categorie,
+        potentiel: this.echantillon.potentiel
+      });
+    }
   }
 
   public onClose(): void {
@@ -42,6 +54,9 @@ export class EchantillonModalComponent implements OnInit {
       (response : HttpResponse<Echantillon>) => {
         this.toastr.success('Echantillon créé avec succès', 'Création d\'un echantillon');
         this.onClose();
+      },
+      (error : any) => {
+        this.toastr.error('Un échantillon existe dèjà avec le nom : '+echantillon.nom, 'Erreur création d\'un échantillon');
       }
     );
   }

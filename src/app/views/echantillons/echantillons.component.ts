@@ -22,7 +22,8 @@ export class EchantillonsComponent extends RechercheAbsractComponent<Echantillon
     {
       nom : new FormControl(null),
       categorie : new FormControl(null),
-      potentiel : new FormControl(null)
+      potentiel : new FormControl(null),
+      description : new FormControl(null)
     }
   );
 
@@ -52,13 +53,18 @@ export class EchantillonsComponent extends RechercheAbsractComponent<Echantillon
       {
         nom : null,
         categorie : null,
-        potentiel : null
+        potentiel : null,
+        description : null
       }
     );
   }
 
-  public openPlanificationModal(): void {
+  public openModal(echantillon?: Echantillon): void {
     const modalRef = this.modalService.open(EchantillonModalComponent, {size: 'md'});
+    modalRef.componentInstance.echantillon = echantillon;
+    modalRef.result.then(() => {
+      this.rechercherEchantillons();
+    });
   }
 
   public selectionner(id: number): void {
@@ -90,4 +96,34 @@ export class EchantillonsComponent extends RechercheAbsractComponent<Echantillon
     return this.entiteSelectionnes.some(predicate);
   }
 
+  public delete(): void {
+    if(confirm("Voulez-vous supprimer les echantillons selectionnés ?")) {
+      this.entiteSelectionnes.forEach( echantillon => {
+        this.echantillonService.delete(echantillon.id).subscribe(
+          response => {
+            this.rechercherEchantillons();
+          }
+        );
+      });
+    }
+  }
+
+  public edit(idEchantillon: number): void {
+    let echantillon: Echantillon = this.dataArray.filter(
+      echantillonTemp => echantillonTemp.id === idEchantillon
+    )[0];
+    if ( echantillon !== null ) {
+      this.openModal(echantillon);
+    }
+  }
+
+  public deleteOne(idEchantillon: number): void {
+    if(confirm("Voulez-vous supprimer cet echantillon ?")) {
+      this.echantillonService.delete(idEchantillon).subscribe(
+        response => {
+          this.rechercherEchantillons();
+        }
+      );
+    }
+  }
 }
