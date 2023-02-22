@@ -58,7 +58,13 @@ export class EchantillonModalComponent implements OnInit {
         nom: this.echantillon.nom,
         description: this.echantillon.description,
         categorie: this.echantillon.categorie,
-        potentiel: this.echantillon.potentiel
+        potentiel: this.echantillon.potentiel,
+        dosage : this.echantillon.dosage,
+        photo : this.echantillon.photo,
+        forme : this.echantillon.forme,
+        numLot : this.echantillon.numLot,
+        idProduitLie : this.echantillon.idProduitLie,
+        quantite : this.echantillon.quantite,
       });
     }
   }
