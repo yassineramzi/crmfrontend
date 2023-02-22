@@ -50,15 +50,27 @@ export class MaterielModalComponent implements OnInit {
 
   public save(): void {
     const materiel: Materiel = new Materiel(this.materielsForm);
-    this.materielService.create(materiel).subscribe(
-      (response : HttpResponse<Materiel>) => {
-        this.toastr.success('Materiel créé avec succès', 'Création d\'un materiel');
-        this.onClose();
-      },
-      (error : any) => {
-        this.toastr.error('Un matériel existe dèjà avec le nom : '+materiel.nom, 'Erreur création d\'un matériel');
-      }
-    );
+    if(materiel.id == null) {
+      this.materielService.create(materiel).subscribe(
+        (response : HttpResponse<Materiel>) => {
+          this.toastr.success('Materiel créé avec succès', 'Création d\'un materiel');
+          this.onClose();
+        },
+        (error : any) => {
+          this.toastr.error('Un matériel existe dèjà avec le nom : '+materiel.nom, 'Erreur création d\'un matériel');
+        }
+      );
+    }else {
+      this.materielService.update(materiel).subscribe(
+        (response : HttpResponse<Materiel>) => {
+          this.toastr.success('Materiel modifié avec succès', 'Modification d\'un materiel');
+          this.onClose();
+        },
+        (error : any) => {
+          this.toastr.error('Un matériel existe dèjà avec le nom : '+materiel.nom, 'Erreur modification d\'un matériel');
+        }
+      );
+    }
   }
 
 }

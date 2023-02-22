@@ -25,6 +25,7 @@ export default class Echantillon {
 
     constructor(formGroup?: FormGroup){
         if(formGroup) {
+            this.id = formGroup.get(['id'])!.value;
             this.nom = formGroup.get(['nom'])!.value;
             this.categorie = formGroup.get(['categorie'])!.value;
             this.potentiel = formGroup.get(['potentiel'])!.value;

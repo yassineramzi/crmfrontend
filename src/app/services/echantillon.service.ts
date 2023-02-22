@@ -19,6 +19,10 @@ export default class EchantillonService {
         return this.http.post<Echantillon>(this.resourceUrl + '/create', echantillon, {observe: 'response'});
     }
 
+    public update(echantillon: Echantillon): Observable<EntityResponseType> {
+        return this.http.put<Echantillon>(this.resourceUrl + '/update', echantillon, {observe: 'response'});
+    }
+
     public search(critereRechercheEchantillon: CritereRechercheEchantillon): Observable<EntityArrayResponseType> {
         return this.http.post<Echantillon[]>(this.resourceUrl + '/search', critereRechercheEchantillon, {observe: 'response'});
     }

@@ -48,15 +48,29 @@ export class ProduitModalComponent implements OnInit {
 
   public save(): void {
     const produit: Produit = new Produit(this.produitsForm);
-    this.produitService.create(produit).subscribe(
-      (response : HttpResponse<Produit>) => {
-        this.toastr.success('Produit créé avec succès', 'Création d\'un produit');
-        this.onClose();
-      },
-      (error : any) => {
-        this.toastr.error('Un produit existe dèjà avec le nom : '+produit.nom, 'Erreur création d\'un produit');
-      }
-    );
+
+    if(produit.id == null) {
+      this.produitService.create(produit).subscribe(
+        (response : HttpResponse<Produit>) => {
+          this.toastr.success('Produit créé avec succès', 'Création d\'un produit');
+          this.onClose();
+        },
+        (error : any) => {
+          this.toastr.error('Un produit existe dèjà avec le nom : '+produit.nom, 'Erreur création d\'un produit');
+        }
+      );
+    }else {
+      this.produitService.update(produit).subscribe(
+        (response : HttpResponse<Produit>) => {
+          this.toastr.success('Produit modifié avec succès', 'Modification d\'un produit');
+          this.onClose();
+        },
+        (error : any) => {
+          this.toastr.error('Un produit existe dèjà avec le nom : '+produit.nom, 'Erreur modification d\'un produit');
+        }
+      );
+    }
+    
   }
 
 }

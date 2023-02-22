@@ -19,6 +19,10 @@ export default class ProduitService {
         return this.http.post<Produit>(this.resourceUrl + '/create', produit, {observe: 'response'});
     }
 
+    public update(produit: Produit): Observable<EntityResponseType> {
+        return this.http.put<Produit>(this.resourceUrl + '/update', produit, {observe: 'response'});
+    }
+
     public search(critereRechercheProduit: CritereRechercheProduit): Observable<EntityArrayResponseType> {
         return this.http.post<Produit[]>(this.resourceUrl + '/search', critereRechercheProduit, {observe: 'response'});
     }

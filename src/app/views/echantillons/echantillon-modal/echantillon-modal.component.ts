@@ -69,15 +69,27 @@ export class EchantillonModalComponent implements OnInit {
 
   public save(): void {
     const echantillon: Echantillon = new Echantillon(this.echantillonsForm);
-    this.echantillonService.create(echantillon).subscribe(
-      (response : HttpResponse<Echantillon>) => {
-        this.toastr.success('Echantillon créé avec succès', 'Création d\'un echantillon');
-        this.onClose();
-      },
-      (error : any) => {
-        this.toastr.error('Un échantillon existe dèjà avec le nom : '+echantillon.nom, 'Erreur création d\'un échantillon');
-      }
-    );
+    if(echantillon.id == null) {
+      this.echantillonService.create(echantillon).subscribe(
+        (response : HttpResponse<Echantillon>) => {
+          this.toastr.success('Echantillon créé avec succès', 'Création d\'un echantillon');
+          this.onClose();
+        },
+        (error : any) => {
+          this.toastr.error('Un échantillon existe dèjà avec le nom : '+echantillon.nom, 'Erreur création d\'un échantillon');
+        }
+      );
+    } else {
+      this.echantillonService.update(echantillon).subscribe(
+        (response : HttpResponse<Echantillon>) => {
+          this.toastr.success('Echantillon modifié avec succès', 'Modification d\'un echantillon');
+          this.onClose();
+        },
+        (error : any) => {
+          this.toastr.error('Un échantillon existe dèjà avec le nom : '+echantillon.nom, 'Erreur modification d\'un échantillon');
+        }
+      );
+    }
   }
 
 }

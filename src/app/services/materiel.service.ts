@@ -20,6 +20,10 @@ export default class MaterielService {
         return this.http.post<Materiel>(this.resourceUrl + '/create', materiel, {observe: 'response'});
     }
 
+    public update(materiel: Materiel): Observable<EntityResponseType> {
+        return this.http.put<Materiel>(this.resourceUrl + '/update', materiel, {observe: 'response'});
+    }
+
     public search(critereRechercheMateriel: CritereRechercheMateriel): Observable<EntityArrayResponseType> {
         return this.http.post<Materiel[]>(this.resourceUrl + '/search', critereRechercheMateriel, {observe: 'response'});
     }
