@@ -11,6 +11,7 @@ import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { SocieteComponent } from './views/societe/societe.component';
+import { UtilisateurComponent } from './views/utilisateur/utilisateur.component';
 
 
 
@@ -58,6 +59,14 @@ export const routes: Routes = [
       title: 'Accueil'
     },
     children: [
+
+      {
+        path: 'users',
+        component:UtilisateurComponent
+      },
+
+
+
 
       {
         path: 'user',

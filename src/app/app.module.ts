@@ -52,6 +52,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AddmedecinComponent } from './views/addmedecin/addmedecin.component';
 import { SocieteComponent } from './views/societe/societe.component';
 import { LoginRequestComponent } from './views/login-request/login-request.component';
+import { UtilisateurComponent } from './views/utilisateur/utilisateur.component';
 
 
 
@@ -92,6 +93,7 @@ import { LoginRequestComponent } from './views/login-request/login-request.compo
     AddmedecinComponent,
     SocieteComponent,
     LoginRequestComponent,
+    UtilisateurComponent,
     
    
     

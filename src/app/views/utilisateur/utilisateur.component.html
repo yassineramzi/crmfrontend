@@ -1,0 +1,258 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+    
+    
+    
+    
+                  
+                
+               <button type="button" class="btn btn-primary" (click)="openadd(ajouter)">Nouveau utilisateur</button>
+                <div class="row">
+                    <div class="col-md-12">
+    
+    
+                        
+                        
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive" >
+                           
+                            <table id="table" class="table table-centered table-hover m-1"   >
+                              <thead>
+                                <tr>
+    
+                                     <th scope="col" class="col-1.5">Token</th>
+                                     <th scope="col" class="col-1.5">Type</th>
+                                     <th scope="col" class="col-1.5">Nom</th>
+                                     <th scope="col" class="col-1.5">email</th>
+                                     <th scope="col" class="col-1.5">societe</th>
+                                     <th scope="col" class="col-1.5">Roles </th>
+
+                                     <th scope="col"  class="col-3">action</th>
+                                  
+                                  </tr>
+                              </thead>
+                              <tbody  infinite-scroll
+                              [infiniteScrollDistance]="scrollDistance"
+                              [infiniteScrollUpDistance]="scrollUpDistance"
+                              [infiniteScrollThrottle]="throttle"
+                              (scrolled)="addItems()"
+                              >
+                           
+                                <tr *ngFor="let jwtResponse of arrayPage ; let i = index">
+                                    
+                                    <td><span class="client-name">{{jwtResponse.token}} </span></td>
+                                    <td><span class="client-name">{{jwtResponse.type}} </span></td>
+                                    <td><span class="client-name">{{jwtResponse.username}} </span></td>
+                                    <td><span class="client-name">{{jwtResponse.email}} </span></td>
+                                    <td><span class="client-name">{{jwtResponse.societe.nom}} </span></td>
+                                    <td><span class="client-name">{{ jwtResponse.roles.join(', ') }}</span></td>
+                                    <td>
+    
+                                        <button type="button"  class="fa fa-edit"   style="background-color:#EDF1FB  ;"   (click)=" openup(jwtResponse,modifier)"></button>
+                                        <button type="button"  class="btn btn-primary"  class="fa fa-trash" style="background-color:#EDF1FB ;"   (click)="opensup(supprimer)"> </button>
+                                    </td>
+    
+    
+                                </tr>
+                              </tbody>
+    
+    
+                            </table>
+                            
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <ng-template #ajouter  let-c="close" let-d="dismiss" >
+        <div class="modal-header"   style="background-color:rgb(80, 19, 248);">
+          <h4 class="modal-title" id="modal-basic-title  " style="color:white"   >Ajouter utilisateur   </h4>
+          
+        </div>
+        <div class="modal-body">
+           
+  
+           
+
+
+
+          <form [formGroup]="formadd" (ngSubmit)="onSubmit()">
+            <div class="form-group"> 
+            <label>
+              <strong>  Token </strong></label> <br>
+              <input type="text" class="form-control"  formControlName="token" >
+          </div>
+          <br>
+
+          <div class="form-group"> 
+            <label>
+              <strong>  Type </strong></label> <br>
+              <input type="text" class="form-control"  formControlName="type" >
+          </div>
+          <br>
+
+          <div class="form-group"> 
+            <label>
+              <strong>  Nom </strong></label> <br>
+              <input type="text" class="form-control"  formControlName="username" >
+          </div>
+          <br>
+
+
+
+          <div class="form-group"> 
+            <label>
+              <strong>  email </strong></label> <br>
+              <input type="text" class="form-control"  formControlName="email" >
+          </div>
+          <br>
+          <div class="form-group">
+            <label><strong>Societe</strong></label>
+            <select class="form-control" formControlName="societe">
+                <option value="BIOCODEX MAROC">BIOCODEX MAROC</option>
+                <option value="BAYER S.A">BAYER S.A</option>
+                <option value="BOTTU S.A">BOTTU S.A</option>
+                <option value="thinline">thinline</option>
+            </select>
+          </div>    
+          <br>
+           
+
+
+         <div class="form-group"> 
+            <label>
+              <strong> roles </strong></label> <br>
+              <input type="text" class="form-control"  formControlName="roles" >
+    
+          </div>
+          <br>
+
+          
+            <button  class="btn btn-primary" (click)="add(jwtResponse) ;d('Cross click')">Enregistrer</button>
+          
+            <button class="btn btn-primary" (click)= "d('Cross click')">Fermer</button>
+    
+            
+          
+          </form>
+  
+  
+        </div>
+        <div class="modal-footer">
+          Thinline
+        </div>
+      </ng-template>
+      
+
+
+
+
+
+      
+      <ng-template #modifier let-c="close" let-d="dismiss" let-a="societe">
+        <div class="modal-header"   style="background-color:rgb(80, 19, 248);">
+          <h4 class="modal-title" id="modal-basic-title  " style="color:white"   >modifier société  </h4>
+          
+        </div>
+        <div class="modal-body">
+           
+  
+  
+          <form [formGroup]="formupdate" (ngSubmit)="onSubmit()">
+          
+
+            <div class="form-group"> 
+                <label>
+                  <strong>  Token </strong></label> <br>
+                  <input type="text" class="form-control"  formControlName="token" >
+              </div>
+              <br>
+    
+              <div class="form-group"> 
+                <label>
+                  <strong>  Type </strong></label> <br>
+                  <input type="text" class="form-control"  formControlName="type" >
+              </div>
+              <br>
+    
+              <div class="form-group"> 
+                <label>
+                  <strong>  Nom </strong></label> <br>
+                  <input type="text" class="form-control"  formControlName="username" >
+              </div>
+              <br>
+  
+              <div class="form-group"> 
+                <label>
+                  <strong>  email </strong></label> <br>
+                  <input type="text" class="form-control"  formControlName="email" >
+              </div>
+              <br>
+
+              <div class="form-group">
+                <label><strong>Societe</strong></label>
+                <select class="form-control" formControlName="societe">
+                    <option value="BIOCODEX MAROC">BIOCODEX MAROC</option>
+                    <option value="BAYER S.A">BAYER S.A</option>
+                    <option value="BOTTU S.A">BOTTU S.A</option>
+                    <option value="thinline">thinline</option>
+                </select>
+              </div>    
+              <br>
+               
+    
+    
+              <div class="form-group"> 
+                <label>
+                  <strong> roles </strong></label> <br>
+                  <input type="text" class="form-control"  formControlName="roles" >
+        
+              </div>
+            
+
+          <br>
+            <button  class="btn btn-primary" (click)="updateItem(jwtResponse) ;d('Cross click')">Enregistrer</button>
+          
+            <button class="btn btn-primary" (click)= "d('Cross click')">Fermer</button>
+    
+            
+          
+          </form>
+  
+  
+        </div>
+        <div class="modal-footer">
+          Thinline
+        </div>
+      </ng-template>
+      
+
+
+
+      <ng-template #supprimer let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title"></h4>
+          
+        </div>
+        <div class="modal-body">
+          <p>Êtes-vous sûr de vouloir supprimer ce utilisateur</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button"   class="btn btn-primary" (click)= "deleteuser(index); d('Cross click')">oui</button>
+          <button type="button" class="btn btn-primary"  (click)= "d('Cross click')">non</button>
+        </div>
+      </ng-template>
+
+
+      
+     

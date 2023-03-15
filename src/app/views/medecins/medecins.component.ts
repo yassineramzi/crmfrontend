@@ -161,6 +161,8 @@ deleteFieldValue(index) {
    },
   }
 );
+
+console.log(this.dataArrayPage);
  this.formMedecin.reset()
 
  }
