@@ -95,9 +95,8 @@ export class UtilisateurComponent implements OnInit {
       
       nom: this.formadd.value.societe,
      },
-
-     
-     roles: this.formadd.value.roles,
+     roles: this.formadd.value.roles.split(',').map(role => role.trim())
+  
     }
   );
   
@@ -125,11 +124,9 @@ export class UtilisateurComponent implements OnInit {
       id: [''],
       username: [''],
       email: [''],
-      societe: this.formBuilder.group({
-        nom: [''],
-        
-      }),
-      roles: this.formBuilder.array([])
+      societe: [''],
+     // roles: this.formBuilder.array([])
+     roles: ['']
     });
 
 
@@ -205,9 +202,9 @@ this.arrayPage[index] =
   id: 1,
   nom: this.formupdate.value.societe,
  },
- roles: this.formupdate.value.roles,
-}
 
+roles: this.formupdate.value.roles.split(',').map(role => role.trim())
+}
 
 console.log(this.arrayPage);
 this.formupdate.reset()
@@ -229,3 +226,19 @@ deleteuser(index) {
   
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//split : devise la chaine de caractere a plusieurs sous chaine en utiisant la virgule
+//map : supprime les espace de debut et de fin de chaque role 
