@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h5 class="modal-title client-name">
+        <span>Ajouter un delegue</span>
+    </h5>
+</div>
+<div class="modal-body"  [formGroup]="deleguesForm">
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Nom :</label>
+        <input type="text" class="form-control" placeholder="Nom du delegue" formControlName="nom">
+        <span class="invalid-feedback d-block" *ngIf=
+            "
+            ((deleguesForm.get('nom').dirty 
+            ||
+            deleguesForm.get('nom').touched
+            ) 
+            &&
+            (deleguesForm.get('nom').hasError('required')))
+            ">
+            Veuillez saisir le nom du delegue
+        </span>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Prénom :</label>
+        <input type="text" class="form-control" placeholder="Prénom du delegue" formControlName="prenom">
+        <span class="invalid-feedback d-block" *ngIf=
+            "((deleguesForm.get('prenom').dirty || deleguesForm.get('prenom').touched) && deleguesForm.get('prenom').hasError('required'))">
+            Veuillez saisir le prénom du delegue
+        </span>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Email :</label>
+        <input type="email" class="form-control" placeholder="Email du delegue" formControlName="email">
+        <span class="invalid-feedback d-block" *ngIf=
+            "((deleguesForm.get('email').dirty || deleguesForm.get('email').touched) && deleguesForm.get('email').hasError('required'))">
+            Veuillez saisir l'email du delegue
+        </span>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Fixe :</label>
+        <input type="text" class="form-control" placeholder="Numéro fixe du delegue" formControlName="fixe">
+        <span class="invalid-feedback d-block" *ngIf=
+            "((deleguesForm.get('fixe').dirty || deleguesForm.get('fixe').touched) && deleguesForm.get('fixe').hasError('required'))">
+            Veuillez saisir le numéro fixe du delegue
+        </span>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Mobile :</label>
+        <input type="text" class="form-control" placeholder="Numéro mobile du delegue" formControlName="mobile">
+        <span class="invalid-feedback d-block" *ngIf=
+            "((deleguesForm.get('mobile').dirty || deleguesForm.get('mobile').touched) && deleguesForm.get('mobile').hasError('required'))">
+            Veuillez saisir le numéro mobile du delegue
+        </span>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Email :</label>
+        <input type="text" class="form-control" placeholder="Email du delegue" formControlName="email">
+        <span class="invalid-feedback d-block" *ngIf=
+            "((deleguesForm.get('email').dirty || deleguesForm.get('email').touched) && deleguesForm.get('email').hasError('required'))">
+            Veuillez saisir l'email du delegue
+        </span>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default float-left" (click)="onClose()">Annuler</button>
+    <button type="submit" class="btn btn-primary float-right" (click)="save()" [disabled]="!deleguesForm.valid">
+        <span>Ajouter</span>
+    </button>
+</div>

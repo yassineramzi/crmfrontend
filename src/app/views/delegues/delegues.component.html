@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row" [formGroup]="rechercheDelegueForm"> 
+                    <div class="col-md-12">
+                        <div class="row" [hidden]="!affichageCritereRecherche">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" formControlName="email" placeholder="Email du delegue"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Nom</label>
+                                    <input type="text" class="form-control" formControlName="nom" placeholder="Nom du delegue"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Prenom</label>
+                                    <input type="text" class="form-control" formControlName="prenom" placeholder="Prenom du delegue"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group float-right">
+                                    <button class="btn btn-primary m-2" type="button" (click)="rechercherDelegues()">
+                                        Filtrer
+                                    </button>
+                                    <button class="btn btn-primary m-2" type="button" (click)="initialiserCritereRecherche()">
+                                        Réinitialiser
+                                    </button>
+                                    <button class="btn btn-primary m-2" type="button" (click)="afficherCritereRecherche()">
+                                        <span *ngIf="affichageCritereRecherche">Masquer les critères</span>
+                                        <span *ngIf="!affichageCritereRecherche">Afficher les critères</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.col-->
+</div><!--/.row-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group float-left">
+                            <span class="mt-2 mb-2 mr-1" [ngClass]="affichageModeListe  ? 'view-mode-selected' : 'view-mode-not-selected'"><i class="fa fa-list"></i></span>
+                            <span class="m-2"><i class="fa fa-info-circle mr-2"></i>{{dataArray.length}}&nbsp;<strong>Delegues trouvés</strong></span>
+                        </div>
+                        <div class="input-group float-right">
+                            <span class="m-2">{{entiteSelectionnes.length}} <strong>Delegues sélectionés</strong></span>
+                            <button class="btn btn-primary m-1" type="button" [disabled]="entiteSelectionnes.length === 0" (click)="delete()">
+                                <i class="fa fa-trash"></i> Supprimer
+                            </button>
+                            <button class="btn btn-primary m-1" type="button" (click)="openModal()">
+                                <i class="fa fa-plus"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <!--Vue mode liste-->
+                            <table id="table" class="table table-centered table-hover m-1" *ngIf="affichageModeListe">
+                              <thead>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" />
+                                        </div>
+                                    </td>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Mobile</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody
+                                infinite-scroll
+                                [infiniteScrollDistance]="scrollDistance"
+                                [infiniteScrollUpDistance]="scrollUpDistance"
+                                [infiniteScrollThrottle]="throttle"
+                                (scrolled)="addItems()"
+                              >
+                                <tr *ngIf="dataArrayPage.length === 0">
+                                    <td colspan="5">
+                                        <span class="d-flex justify-content-center">Aucun delegue trouvé</span>
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let delegue of dataArrayPage">
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" (click)="selectionner(delegue.id)"/>
+                                        </div>
+                                    </td>
+                                    <td><span class="client-name">{{delegue.nom}} {{delegue.prenom}}</span></td>
+                                    <td>{{delegue.email}}</td>
+                                    <td>{{delegue.mobile}}</td>
+                                    <td>
+                                        <i class="cil-trash mr-1" (click)="deleteOne(delegue.id)"></i>
+                                    </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.col-->
+</div><!--/.row-->

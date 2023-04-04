@@ -81,6 +81,10 @@ export const routes: Routes = [
       {
         path: 'materiels',
         loadChildren: () => import('./views/materiels/materiels.module').then(m => m.MaterielsModule)
+      },
+      {
+        path: 'delegues',
+        loadChildren: () => import('./views/delegues/delegues.module').then(m => m.DeleguesModule)
       }
     ]
   },
