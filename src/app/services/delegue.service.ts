@@ -16,11 +16,11 @@ export default class DelegueService {
     }
 
     public create(delegue: Delegue): Observable<EntityResponseType> {
-        return this.http.post<Delegue>(this.resourceUrl + '/create', delegue, {observe: 'response'});
+        return this.http.post<Delegue>(this.resourceUrl + '/delegue/create', delegue, {observe: 'response'});
     }
 
     public update(delegue: Delegue): Observable<EntityResponseType> {
-        return this.http.put<Delegue>(this.resourceUrl + '/update', delegue, {observe: 'response'});
+        return this.http.put<Delegue>(this.resourceUrl + '/delegue/update', delegue, {observe: 'response'});
     }
 
     public search(critereRechercheDelegue: CritereRechercheDelegue): Observable<EntityArrayResponseType> {
@@ -32,6 +32,6 @@ export default class DelegueService {
     }
 
     public delete(id: number): Observable<HttpResponse<void>> {
-        return this.http.delete<void>(this.resourceUrl + '/' + id + '/delete',  {observe: 'response'});
+        return this.http.delete<void>(this.resourceUrl + '/delegue/' + id + '/delete',  {observe: 'response'});
     }
 }

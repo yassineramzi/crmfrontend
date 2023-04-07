@@ -75,7 +75,7 @@ export class DeleguesComponent extends RechercheAbsractComponent<Delegue> {
     const modalRef = this.modalService.open(DelegueModalComponent, {size: 'md'});
     modalRef.componentInstance.delegue = delegue;
     modalRef.result.then(() => {
-      this.rechercherDelegues();
+      this.findAll();
     });
   }
 
@@ -113,7 +113,7 @@ export class DeleguesComponent extends RechercheAbsractComponent<Delegue> {
       this.entiteSelectionnes.forEach( delegue => {
         this.delegueService.delete(delegue.id).subscribe(
           response => {
-            this.rechercherDelegues();
+            this.findAll();
           }
         );
       });
@@ -133,7 +133,7 @@ export class DeleguesComponent extends RechercheAbsractComponent<Delegue> {
     if(confirm("Voulez-vous supprimer ce delegue ?")) {
       this.delegueService.delete(idDelegue).subscribe(
         response => {
-          this.rechercherDelegues();
+          this.findAll();
         }
       );
     }

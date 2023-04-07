@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import Delegue from '../../../models/delegue.model';
 import { TokenStorageService } from '../../../services/auth/token-storage.service';
 import DelegueService from '../../../services/delegue.service';
+import { JwtResponse } from '../../../models/jwtResponse.model';
 
 @Component({
   selector: 'app-delegue-modal',
@@ -15,6 +16,7 @@ import DelegueService from '../../../services/delegue.service';
 export class DelegueModalComponent implements OnInit {
 
   public deleguesForm : FormGroup = this.formBuilder.group({
+    id : [null],
     nom: ['', Validators.required],
     prenom: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -46,8 +48,8 @@ export class DelegueModalComponent implements OnInit {
   }
 
   public save(): void {
-    const delegue: Delegue = new Delegue(this.deleguesForm);
-
+    const token: JwtResponse = this.tokenStorageService.getUser();
+    const delegue: Delegue = new Delegue(this.deleguesForm, token.societe);
     if(delegue.id == null) {
       this.delegueService.create(delegue).subscribe(
         (response : HttpResponse<Delegue>) => {

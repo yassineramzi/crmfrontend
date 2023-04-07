@@ -15,11 +15,11 @@ export default class Delegue {
         if(formGroup) {
             this.id = formGroup.get(['id'])!.value;
             this.nom = formGroup.get(['nom'])!.value;
-            this.prenom = formGroup.get(['categorie'])!.value;
-            this.login = formGroup.get(['potentiel'])!.value;
-            this.email = formGroup.get(['description'])!.value;
-            this.fixe = formGroup.get(['dosage'])!.value;
-            this.mobile = formGroup.get(['photo'])!.value;
+            this.prenom = formGroup.get(['prenom'])!.value;
+            this.login = formGroup.get(['login'])!.value;
+            this.email = formGroup.get(['email'])!.value;
+            this.fixe = formGroup.get(['fixe'])!.value;
+            this.mobile = formGroup.get(['mobile'])!.value;
             this.societe = societe;
         }
     }
