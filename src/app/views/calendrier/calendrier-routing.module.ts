@@ -9,7 +9,7 @@ const routes: Routes = [
     component: CalendrierComponent,
     data: {
       title: 'Agenda',
-      roles: ['ROLE_ADMIN']
+      roles: ['ROLE_ADMIN', 'ROLE_DELEGUE']
     },
     canActivate: [AuthGuard],
   }
