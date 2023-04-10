@@ -10,6 +10,7 @@ export default class Delegue {
     fixe: string;
     mobile: string;
     societe: Societe;
+    idPosition: number;
     
     constructor(formGroup?: FormGroup, societe?: Societe){
         if(formGroup) {
@@ -20,6 +21,7 @@ export default class Delegue {
             this.email = formGroup.get(['email'])!.value;
             this.fixe = formGroup.get(['fixe'])!.value;
             this.mobile = formGroup.get(['mobile'])!.value;
+            this.idPosition = formGroup.get(['idPosition'])!.value;
             this.societe = societe;
         }
     }

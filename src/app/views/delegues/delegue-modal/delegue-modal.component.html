@@ -66,6 +66,12 @@
             Veuillez saisir le numéro mobile du delegue
         </span>
     </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Position :</label>
+        <select class="form-control" formControlName="idPosition">
+            <option *ngFor="let position of positions" [value]="position.id">{{position.description}}</option>
+        </select>
+    </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-default float-left" (click)="onClose()">Annuler</button>
