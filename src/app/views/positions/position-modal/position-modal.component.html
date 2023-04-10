@@ -1,0 +1,79 @@
+<div class="modal-header">
+    <h5 class="modal-title client-name">
+        <span *ngIf="!positionsForm.get('id').value">Ajouter une position</span>
+        <span *ngIf="positionsForm.get('id').value">Modifier une position</span>
+    </h5>
+</div>
+<div class="modal-body"  [formGroup]="positionsForm">
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Description :</label>
+        <input type="text" class="form-control" placeholder="Description du position" formControlName="description">
+        <span class="invalid-feedback d-block" *ngIf=
+            "
+            ((positionsForm.get('description').dirty 
+            ||
+            positionsForm.get('description').touched
+            ) 
+            &&
+            (positionsForm.get('description').hasError('required')))
+            ">
+            Veuillez saisir la description du position
+        </span>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Spécialité</label>
+        <select class="form-control" formControlName="specialite">
+            <option value="General Medicine">General Medicine</option>
+            <option value="Pharmacy">Pharmacy</option>
+            <option value="Gynaecology">Gynaecology</option>
+            <option value="Otorhinolaryngology">Otorhinolaryngology</option>
+            <option value="Rheumatology">Rheumatology</option>
+            <option value="Psychiatry">Psychiatry</option>
+            <option value="Radiology">Radiology</option>
+            <option value="Ophthalmology">Ophthalmology</option>
+            <option value="Cardiology">Cardiology</option>
+            <option value="Neurology">Neurology</option>
+            <option value="Dermatology">Dermatology</option>
+            <option value="Nephrology">Nephrology</option>
+            <option value="Oncology">Oncology</option>
+            <option value="Hospital Pharmacy">Hospital Pharmacy</option>
+            <option value="Physical Medicine & Rehabilitation">Physical Medicine & Rehabilitation</option>
+            <option value="Sage-Femme">Sage-Femme</option>
+            <option value="Dental Surgery">Dental Surgery</option>
+        </select>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Potentiel :</label>
+        <select class="form-control" formControlName="potentiel">
+            <option value="A+">A+</option>
+            <option value="A">A</option>
+            <option value="B+">B+</option>
+            <option value="B">B</option>
+            <option value="C+">C+</option>
+            <option value="C">C</option>
+        </select>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Ville :</label>
+        <select class="form-control" formControlName="ville">
+            <option value="Rabat">Rabat</option>
+        </select>
+    </div>
+    <div class="row p-2">
+        <label class="col-7 col-md-7 client-name">Secteur :</label>
+        <select class="form-control" formControlName="secteur">
+            <option value="Agdal/Riad">Agdal/Riad</option>
+            <option value="Hassan">Hassan</option>
+            <option value="El-Youssoufia">El-Youssoufia</option>
+            <option value="Yacoub El Mansour">Yacoub El Mansour</option>
+            <option value="Souissi">Souissi</option>
+        </select>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default float-left" (click)="onClose()">Annuler</button>
+    <button type="submit" class="btn btn-primary float-right" (click)="save()" [disabled]="!positionsForm.valid">
+        <span *ngIf="!positionsForm.get('id').value">Ajouter</span>
+        <span *ngIf="positionsForm.get('id').value">Modifier</span>
+    </button>
+</div>

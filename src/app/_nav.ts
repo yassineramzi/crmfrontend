@@ -74,6 +74,15 @@ export const navItems: INavData[] = [
     }
   },
   {
+    name: 'Positions',
+    url: '/positions',
+    icon: 'icon-organization',
+    badge: {
+      variant: 'info',
+      text: 'Nouveau'
+    }
+  },
+  {
     name: 'Paramétrage',
     url: '/settings',
     icon: 'icon-settings',

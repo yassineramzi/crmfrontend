@@ -85,6 +85,10 @@ export const routes: Routes = [
       {
         path: 'delegues',
         loadChildren: () => import('./views/delegues/delegues.module').then(m => m.DeleguesModule)
+      },
+      {
+        path: 'positions',
+        loadChildren: () => import('./views/positions/positions.module').then(m => m.PositionsModule)
       }
     ]
   },

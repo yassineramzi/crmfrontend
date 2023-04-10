@@ -1,0 +1,184 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row" [formGroup]="recherchePositionForm"> 
+                    <div class="col-md-12">
+                        <div class="row" [hidden]="!affichageCritereRecherche">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Spécialité</label>
+                                            <select class="form-control" formControlName="specialite">
+                                                <option value="General Medicine">General Medicine</option>
+                                                <option value="Pharmacy">Pharmacy</option>
+                                                <option value="Gynaecology">Gynaecology</option>
+                                                <option value="Otorhinolaryngology">Otorhinolaryngology</option>
+                                                <option value="Rheumatology">Rheumatology</option>
+                                                <option value="Psychiatry">Psychiatry</option>
+                                                <option value="Radiology">Radiology</option>
+                                                <option value="Ophthalmology">Ophthalmology</option>
+                                                <option value="Cardiology">Cardiology</option>
+                                                <option value="Neurology">Neurology</option>
+                                                <option value="Dermatology">Dermatology</option>
+                                                <option value="Nephrology">Nephrology</option>
+                                                <option value="Oncology">Oncology</option>
+                                                <option value="Hospital Pharmacy">Hospital Pharmacy</option>
+                                                <option value="Physical Medicine & Rehabilitation">Physical Medicine & Rehabilitation</option>
+                                                <option value="Sage-Femme">Sage-Femme</option>
+                                                <option value="Dental Surgery">Dental Surgery</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <input type="text" class="form-control" formControlName="description" placeholder="Description du position"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Potentiel</label>
+                                            <select class="form-control" formControlName="potentiel" placeholder="Potentiel">
+                                                <option value="A+">A+</option>
+                                                <option value="A">A</option>
+                                                <option value="B+">B+</option>
+                                                <option value="B">B</option>
+                                                <option value="C+">C+</option>
+                                                <option value="C">C</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Ville</label>
+                                            <select class="form-control" formControlName="ville">
+                                                <option value="Rabat">Rabat</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Secteur IMS</label>
+                                            <select class="form-control" formControlName="secteur">
+                                                <option value="Agdal/Riad">Agdal/Riad</option>
+                                                <option value="Hassan">Hassan</option>
+                                                <option value="El-Youssoufia">El-Youssoufia</option>
+                                                <option value="Yacoub El Mansour">Yacoub El Mansour</option>
+                                                <option value="Souissi">Souissi</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group float-right">
+                                    <button class="btn btn-primary m-2" type="button" (click)="rechercherPositions()">
+                                        Filtrer
+                                    </button>
+                                    <button class="btn btn-primary m-2" type="button" (click)="initialiserCritereRecherche()">
+                                        Réinitialiser
+                                    </button>
+                                    <button class="btn btn-primary m-2" type="button" (click)="afficherCritereRecherche()">
+                                        <span *ngIf="affichageCritereRecherche">Masquer les critères</span>
+                                        <span *ngIf="!affichageCritereRecherche">Afficher les critères</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.col-->
+</div><!--/.row-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group float-left">
+                            <span class="mt-2 mb-2 mr-1" [ngClass]="affichageModeListe  ? 'view-mode-selected' : 'view-mode-not-selected'"><i class="fa fa-list"></i></span>
+                            <span class="m-2"><i class="fa fa-info-circle mr-2"></i>{{dataArray.length}}&nbsp;<strong>Positions trouvés</strong></span>
+                        </div>
+                        <div class="input-group float-right">
+                            <span class="m-2">{{entiteSelectionnes.length}} <strong>Positions sélectionés</strong></span>
+                            <button class="btn btn-primary m-1" type="button" [disabled]="entiteSelectionnes.length === 0" (click)="delete()">
+                                <i class="fa fa-trash"></i> Supprimer
+                            </button>
+                            <button class="btn btn-primary m-1" type="button"  (click)="openModal()">
+                                <i class="fa fa-plus"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <!--Vue mode liste-->
+                            <table id="table" class="table table-centered table-hover m-1" *ngIf="affichageModeListe">
+                              <thead>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" />
+                                        </div>
+                                    </td>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Spécialité</th>
+                                    <th scope="col">Potentiel</th>
+                                    <th scope="col">Ville</th>
+                                    <th scope="col">Secteur</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody
+                                infinite-scroll
+                                [infiniteScrollDistance]="scrollDistance"
+                                [infiniteScrollUpDistance]="scrollUpDistance"
+                                [infiniteScrollThrottle]="throttle"
+                                (scrolled)="addItems()"
+                              >
+                                <tr *ngIf="dataArrayPage.length === 0">
+                                    <td colspan="8">
+                                        <span class="d-flex justify-content-center">Aucune position trouvé</span>
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let position of dataArrayPage">
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" (click)="selectionner(position.id)"/>
+                                        </div>
+                                    </td>
+                                    <td><span class="client-name">{{position.nom}}</span></td>
+                                    <td><span class="client-name">{{position.description}}</span></td>
+                                    <td>{{position.categorie}}</td>
+                                    <td>
+                                        <div [ngClass]="getClassPotentiel(position.potentiel)">
+                                            <div class="potentiel-content potentiel-color">
+                                                <i class="fa fa-bullseye"></i>
+                                                <span class="potentiel-text">{{position.potentiel}}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <i class="cil-pencil mr-1" (click)="edit(position.id)"></i>
+                                        <i class="cil-trash mr-1" (click)="deleteOne(position.id)"></i>
+                                    </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.col-->
+</div><!--/.row-->

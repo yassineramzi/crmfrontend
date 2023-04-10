@@ -9,7 +9,7 @@ const routes: Routes = [
     component: FicheMedecinComponent,
     data: {
       title: 'Fiche médecin',
-      roles: ['ROLE_ADMIN']
+      roles: ['ROLE_ADMIN', 'ROLE_DELEGUE']
     },
     canActivate: [AuthGuard]
   }

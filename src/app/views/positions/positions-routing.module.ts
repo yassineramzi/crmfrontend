@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../../services/auth/auth.guard';
-
-import { MedecinsComponent } from './medecins.component';
+import { PositionsComponent } from './positions.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: MedecinsComponent,
+    component: PositionsComponent,
     data: {
-      title: 'Médecins',
-      roles: ['ROLE_ADMIN', 'ROLE_DELEGUE']
+      title: 'Positions',
+      roles: ['ROLE_ADMIN']
     },
     canActivate: [AuthGuard]
   }
@@ -20,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MedecinsRoutingModule {}
+export class PositionsRoutingModule {}
