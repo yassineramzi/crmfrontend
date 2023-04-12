@@ -8,4 +8,5 @@ export class JwtResponse {
   public email: string;
   public societe: Societe;
   public roles: Array<string>;
+  public idPosition: number;
 }

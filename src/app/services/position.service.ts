@@ -30,4 +30,8 @@ export default class PositionService {
     public delete(id: number): Observable<HttpResponse<void>> {
         return this.http.delete<void>(this.resourceUrl + '/' + id + '/delete',  {observe: 'response'});
     }
+
+    public findById(id: number): Observable<EntityResponseType> {
+        return this.http.get<Position>(`${this.resourceUrl}/${id}`, {observe: 'response'});
+    }
 }

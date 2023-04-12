@@ -8,6 +8,9 @@ import MedecinService from '../../services/medecin.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PlanificationModalComponent } from './planification-modal/planification-modal.component';
 import PotentielService from '../../services/potentiel.service';
+import PositionService from '../../services/position.service';
+import Position from '../../models/position.model';
+import { TokenStorageService } from '../../services/auth/token-storage.service';
 
 type EntityArrayResponseMedecinType = HttpResponse<Medecin[]>;
 
@@ -25,14 +28,43 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
       potentiel : new FormControl(null),
     }
   );
+  
+  private position: Position; 
 
   constructor(
     protected formBuilder: FormBuilder,
     protected modalService: NgbModal,
     protected potentielService: PotentielService,
-    private medecinService: MedecinService
+    private medecinService: MedecinService,
+    private positionService: PositionService,
+    private tokenStorageService: TokenStorageService
   ) {
     super(formBuilder, modalService, potentielService);
+    this.rechercherMedecins();
+  }
+
+  private _initRechercheFromPosition(): void {
+    if(this.position) {
+      this.rechercheMedecinForm.patchValue({
+        secteur : this.position.secteur,
+        ville : this.position.ville,
+        specialite : this.position.specialite,
+        potentiel : this.position.potentiel
+      });
+    }
+  }
+
+  protected initData(): void {
+    super.initData();
+    const idPosition: number = this.tokenStorageService.getUser().idPosition;
+    if(idPosition) {
+      this.positionService.findById(idPosition).subscribe(
+        (response: HttpResponse<Position>) => {
+          this.position = response.body;
+          this._initRechercheFromPosition();
+        }
+      );
+    }
   }
 
   public rechercherMedecins(): void {
