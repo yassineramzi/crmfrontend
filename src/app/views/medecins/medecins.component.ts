@@ -73,7 +73,7 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
     this.medecinService.search(critereRechercheMedecin).subscribe(
       (medecins: EntityArrayResponseMedecinType) => {
         this.dataArray = medecins.body;
-        this.addItems();
+        this.refreshData();
       }
     );
   }

@@ -44,7 +44,7 @@ export class EchantillonsComponent extends RechercheAbsractComponent<Echantillon
     this.echantillonService.search(critereRechercheEchantillon).subscribe(
       (medecins: EntityArrayResponseEchantillonType) => {
         this.dataArray = medecins.body;
-        this.addItems();
+        this.refreshData();
       }
     );
   }

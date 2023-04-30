@@ -44,7 +44,7 @@ export class MaterielsComponent extends RechercheAbsractComponent<Materiel> {
     this.materielService.search(critereRechercheMateriel).subscribe(
       (medecins: EntityArrayResponseMaterielType) => {
         this.dataArray = medecins.body;
-        this.addItems();
+        this.refreshData();
       }
     );
   }

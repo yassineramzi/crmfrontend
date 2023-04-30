@@ -46,7 +46,7 @@ export class DeleguesComponent extends RechercheAbsractComponent<Delegue> {
     this.delegueService.search(critereRechercheDelegue).subscribe(
       (delegues: EntityArrayResponseDelegueType) => {
         this.dataArray = delegues.body;
-        this.addItems();
+        this.refreshData();
       }
     );
   }
@@ -56,7 +56,7 @@ export class DeleguesComponent extends RechercheAbsractComponent<Delegue> {
     this.delegueService.findAll(token.societe.id).subscribe(
       (delegues: EntityArrayResponseDelegueType) => {
         this.dataArray = delegues.body;
-        this.addItems();
+        this.refreshData();
       }
     );
   }

@@ -43,7 +43,7 @@ export class ProduitsComponent extends RechercheAbsractComponent<Produit> {
     this.produitService.search(critereRechercheProduit).subscribe(
       (produits: EntityArrayResponseProduitType) => {
         this.dataArray = produits.body;
-        this.addItems();
+        this.refreshData();
       }
     );
   }

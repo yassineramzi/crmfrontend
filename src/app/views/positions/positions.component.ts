@@ -45,7 +45,7 @@ export class PositionsComponent extends RechercheAbsractComponent<Position> {
     this.positionService.search(critereRecherchePosition).subscribe(
       (medecins: EntityArrayResponsePositionType) => {
         this.dataArray = medecins.body;
-        this.addItems();
+        this.refreshData();
       }
     );
   }
