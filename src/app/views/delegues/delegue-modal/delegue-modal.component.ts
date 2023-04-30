@@ -43,11 +43,12 @@ export class DelegueModalComponent implements OnInit {
     ) { this._initPositions(); }
 
     ngOnInit(): void {
+      /*
       if (this.delegue) {
         this.deleguesForm.patchValue({
           id: this.delegue.id,
         });
-      }
+      }*/
     }
     
     private _initPositions(): void {
@@ -72,7 +73,7 @@ export class DelegueModalComponent implements OnInit {
             this.onClose();
           },
           (error : any) => {
-            this.toastr.error('Un delegue existe dèjà avec le nom : '+delegue.nom, 'Erreur création d\'un delegue');
+            this.toastr.error(error.message, 'Erreur création d\'un delegue');
           }
         );
       }else {
@@ -82,7 +83,7 @@ export class DelegueModalComponent implements OnInit {
             this.onClose();
           },
           (error : any) => {
-            this.toastr.error('Un delegue existe dèjà avec le nom : '+delegue.nom, 'Erreur modification d\'un delegue');
+            this.toastr.error(error.message, 'Erreur création d\'un delegue');
           }
         );
       }

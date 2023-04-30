@@ -73,7 +73,7 @@ export class DeleguesComponent extends RechercheAbsractComponent<Delegue> {
 
   public openModal(delegue?: Delegue): void {
     const modalRef = this.modalService.open(DelegueModalComponent, {size: 'md'});
-    modalRef.componentInstance.delegue = delegue;
+    // modalRef.componentInstance.delegue = delegue;
     modalRef.result.then(() => {
       this.findAll();
     });

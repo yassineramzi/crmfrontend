@@ -40,7 +40,7 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
     private tokenStorageService: TokenStorageService
   ) {
     super(formBuilder, modalService, potentielService);
-    this.rechercherMedecins();
+    this.initData();
   }
 
   private _initRechercheFromPosition(): void {
@@ -62,13 +62,13 @@ export class MedecinsComponent extends RechercheAbsractComponent<Medecin>{
         (response: HttpResponse<Position>) => {
           this.position = response.body;
           this._initRechercheFromPosition();
+          this.rechercherMedecins();
         }
       );
     }
   }
 
   public rechercherMedecins(): void {
-    this.initData();
     const critereRechercheMedecin: CritereRechercheMedecin = new CritereRechercheMedecin(this.rechercheMedecinForm);
     this.medecinService.search(critereRechercheMedecin).subscribe(
       (medecins: EntityArrayResponseMedecinType) => {
